@@ -1,0 +1,122 @@
+[
+    {
+        "image_name": "c_idiom_emoji_1.jpeg",
+        "gt": "心想事成",
+        "pred": "心猿意马",
+        "inference chain": "The emojis represent 'heart' (❤️), 'elephant' (象), 'tomato' (番茄), and 'orange' (橙). The homophonic characters in Chinese can be associated as follows: '心' (heart) sounds like '心', '象' (elephant) sounds like '猿' (monkey), '番茄' (tomato) sounds like '意' (mind), and '橙' (orange) sounds like '马' (horse). Together, they form the idiom '心猿意马', meaning a restless mind."
+    },
+    {
+        "image_name": "c_idiom_emoji_2.jpeg",
+        "gt": "开门见山",
+        "pred": "开门见山",
+        "inference chain": "The emojis can be broken down as follows: two 'hands' (open hands, which symbolize 'opening'), a 'door' (which represents 'door'), 'eyes' (symbolizing seeing), and a 'mountain' (which refers to a mountain). Combining these meanings leads to 'open the door and see the mountain', which corresponds to the Chinese idiom '开门见山' (literally 'open the door and see the mountain', meaning to get straight to the point)."
+    },
+    {
+        "image_name": "c_idiom_emoji_3.jpeg",
+        "gt": "张灯结彩",
+        "pred": "掌上明珠",
+        "inference chain": "The emojis represent: 'clapping hands' (掌), 'light bulb' (明), 'bow' (珠), and 'rainbow' (珠). These can be interpreted as '掌' for the clapping hands (which sounds like '掌'), '明' for the light bulb (which sounds like '明'), '珠' for the bow (which sounds like '珠'), and '珠' for the rainbow (as '珠' sounds similar). When combined, they represent the idiom '掌上明珠', meaning 'the pearl in one's hand' or 'a precious gem'."
+    },
+    {
+        "image_name": "c_idiom_emoji_4.jpeg",
+        "gt": "余音绕梁",
+        "pred": "鱼乐满堂",
+        "inference chain": "The fish emoji represents '鱼', which sounds like 'yu' in Chinese. The music notes emoji can be associated with '乐', meaning joy or music. The swirl can symbolize a gathering or a circular pattern, which is connected to '满', meaning full or abundant. Finally, the rice bowl emoji suggests '堂', often associated with home or a place. Putting these together forms the idiom '鱼乐满堂', meaning joy and abundance in a home."
+    },
+    {
+        "image_name": "c_idiom_emoji_5.jpeg",
+        "gt": "人山人海",
+        "pred": "人山人海",
+        "inference chain": "The first emoji is a person (人), the second represents a mountain (山), and the third represents a wave (海). Combining these characters, '人山人海' is a commonly used Chinese idiom, which means 'a sea of people' or a crowded place."
+    },
+    {
+        "image_name": "c_idiom_emoji_6.jpeg",
+        "gt": "刻舟求剑",
+        "pred": "刃舟得篮球火箭",
+        "inference chain": "The knife (刃), boat (舟), basketball (篮球), and rocket (火箭) are used in a homophonic manner in Chinese to form the idiom. By combining the names of the objects: '刃' (knife), '舟' (boat), '篮' (basket), and '火箭' (rocket), they form the idiomatic expression '刃舟得篮球火箭'."
+    },
+    {
+        "image_name": "c_idiom_emoji_7.jpeg",
+        "gt": "喜上眉梢",
+        "pred": "笑逐颜开",
+        "inference chain": "The first emoji represents a smiling face, which corresponds to '笑' (smile). The second emoji represents a pointing finger, which can be interpreted as '逐' (to pursue). The third emoji, a rose, symbolizes beauty or happiness, and can represent '颜' (face). The fourth emoji, fire, indicates passion or excitement, which fits with '开' (to open or flourish). Together, they form the idiom '笑逐颜开', which means to smile with joy or to be very happy."
+    },
+    {
+        "image_name": "c_idiom_emoji_8.jpeg",
+        "gt": "趾高气扬",
+        "pred": "指日可待",
+        "inference chain": "The emojis represent the following items: a pointing finger (指), a birthday cake with candles (日), a balloon (可), and a sheep (待). By combining the homophonic meanings of these objects, we get '指日可待', which means 'just around the corner' or 'imminent'."
+    },
+    {
+        "image_name": "c_idiom_emoji_9.jpeg",
+        "gt": "杯水车薪",
+        "pred": "杯水车薪",
+        "inference chain": "The first emoji represents 'beer' (杯), the second emoji represents 'water' (水), the third emoji represents 'car' (车), and the fourth emoji represents 'heart' (薪). The phrase '杯水车薪' is a four-character idiom meaning 'a drop in the bucket', which describes an insignificant or inadequate effort in the face of a large problem. It combines the homophones of '杯' (cup), '水' (water), '车' (car), and '薪' (firewood), creating the idiom."
+    },
+    {
+        "image_name": "c_idiom_emoji_10.jpeg",
+        "gt": "鸡飞蛋打",
+        "pred": "破釜沉舟",
+        "inference chain": "The emojis represent a chick breaking out of an egg, an airplane (飞), an egg (卵), and a hammer (锤). The chick breaking out of the egg suggests something starting or breaking free (破), while the hammer suggests an action of destruction or determination (沉). The airplane could symbolize a drastic or resolute decision, and the egg represents something whole or intact, which is then broken or destroyed. The four-character idiom '破釜沉舟' (which means 'to cut one's way out and go all in') corresponds to this inference as it refers to a resolute decision with no turning back."
+    },
+    {
+        "image_name": "c_idiom_emoji_11.jpeg",
+        "gt": "比翼双飞",
+        "pred": "笔下生花",
+        "inference chain": "The pencil (笔) represents writing or creativity, 'coat' (外套) sounds similar to 'xiao' (小), which is part of the homophone 'xiu' (秀), which is associated with beauty and refinement. 'Couple' (情侣) represents harmony, while the airplane (飞机) sounds similar to 'hua' (花), which signifies beauty or flourishing. Combining these elements points to the idiom '笔下生花', meaning creativity flowing beautifully like flowers from the pen."
+    },
+    {
+        "image_name": "c_idiom_emoji_12.jpeg",
+        "gt": "全心全意",
+        "pred": "拳拳服膺",
+        "inference chain": "The first emoji is a fist, which can be associated with the word '拳' (fist). The second emoji is a heart, which sounds like '服' (to adhere or to accept). The third emoji is another fist, which reinforces '拳' (fist) again. The final emoji is a shirt, which sounds like '膺' (to bear or wear). Together, these form the idiom '拳拳服膺', which means 'to be deeply committed or devoted to'."
+    },
+    {
+        "image_name": "c_idiom_emoji_13.jpeg",
+        "gt": "螳臂当车",
+        "pred": "甜言蜜语",
+        "inference chain": "The first emoji is a lollipop, which represents sweetness, associating with '甜' (sweet). The second emoji represents a muscular arm, which is similar to '言' (words, implying strength). The third emoji shows a construction barrier, indicating something restrictive, which correlates with '蜜' (honey, something sweet and sticky). The fourth emoji is a taxi, which can phonetically relate to '语' (speech). Together, they form the idiom '甜言蜜语', which means sweet words or flattering speech."
+    },
+    {
+        "image_name": "c_idiom_emoji_14.jpeg",
+        "gt": "花好月圆",
+        "pred": "花好月圆",
+        "inference chain": "The emojis represent: a tulip (花, which sounds like 'hua'), a hamster (鼠, which sounds like 'shu'), a moon (月, which sounds like 'yue'), and a red circle (圆, which sounds like 'yuan'). Combining these sounds gives us the idiom '花好月圆', which means a perfect and harmonious situation."
+    },
+    {
+        "image_name": "c_idiom_emoji_15.jpeg",
+        "gt": "耳目一新",
+        "pred": "耳目一新",
+        "inference chain": "The emojis represent 'ear' (耳), 'eye' (目), 'clothing' (衣), and 'heart' (心). The homophones for '耳' (ear) and '目' (eye) combined imply '耳目一新' (to be refreshed or impressed), as '耳目' refers to one's senses. The heart and clothing emojis might symbolize 'new' or 'impression,' linking to '一新,' which means new or refreshed."
+    },
+    {
+        "image_name": "c_idiom_emoji_16.jpeg",
+        "gt": "守株待兔",
+        "pred": "举世闻名",
+        "inference chain": "The first emoji represents a raised hand, which can be interpreted as '举' (raise). The second emoji is a pig, which sounds like '世' (world) in Chinese. The third emoji is a top hat, which can be associated with the idea of being notable or distinguished, thus representing '闻' (famous). The fourth emoji is a rabbit, which sounds like '名' (name), leading to the idiom '举世闻名', meaning 'world-famous'."
+    },
+    {
+        "image_name": "c_idiom_emoji_17.jpeg",
+        "gt": "琴棋书画",
+        "pred": "扬帆起航",
+        "inference chain": "The banjo (扬) sounds like '扬', the red flag (帆) represents a sail, and the books (起航) suggest the idea of a journey or embarking on a course. The painting (航) refers to a vast horizon, indicating a new beginning. Together, these elements form the idiom '扬帆起航', which means to set sail and start a new journey."
+    },
+    {
+        "image_name": "c_idiom_emoji_18.jpeg",
+        "gt": "花见花开",
+        "pred": "花好月圆",
+        "inference chain": "The first emoji represents a pink flower, which can be associated with the word '花' (flower). The second emoji shows eyes, which are homophonic to the word '好' (good). The third emoji represents a red flower, which can be associated with the word '月' (moon, as a symbol of beauty). The last emoji shows two hands raised, which can be interpreted as '圆' (round, symbolizing completeness or harmony). Combining these words forms the idiom '花好月圆,' which means a perfect and harmonious situation, often used to describe a happy life or a perfect setting."
+    },
+    {
+        "image_name": "c_idiom_emoji_19.jpeg",
+        "gt": "步步惊心",
+        "pred": "步步惊心",
+        "inference chain": "The first part of the emoji sequence represents footsteps, which can be associated with the word '步' (step). The second part, a worried face emoji, suggests anxiety or fear, often associated with '惊' (shock). The last part, a heart emoji, represents affection or emotion, which phonetically matches '心' (heart). Combining these elements forms the idiom '步步惊心', which describes a situation full of anxiety or tension, where each step causes fear."
+    },
+    {
+        "image_name": "c_idiom_emoji_20.jpeg",
+        "gt": "刀光剑影",
+        "pred": "刀光剑影",
+        "inference chain": "The knife represents '刀' (dao), the lightning represents '光' (light), the rocket represents '剑' (jian, sword), and the film reel represents '影' (shadow). Combining these elements gives the idiom '刀光剑影', which means a scene full of danger or tension, typically in the context of a fierce battle or conflict."
+    }
+]

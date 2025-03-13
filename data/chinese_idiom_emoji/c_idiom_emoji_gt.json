@@ -1,0 +1,542 @@
+[
+    {
+        "image_name": "c_idiom_emoji_1.jpeg",
+        "gt": "心想事成"
+    },
+    {
+        "image_name": "c_idiom_emoji_2.jpeg",
+        "gt": "开门见山"
+    },
+    {
+        "image_name": "c_idiom_emoji_3.jpeg",
+        "gt": "张灯结彩"
+    },
+    {
+        "image_name": "c_idiom_emoji_4.jpeg",
+        "gt": "余音绕梁"
+    },
+    {
+        "image_name": "c_idiom_emoji_5.jpeg",
+        "gt": "人山人海"
+    },
+    {
+        "image_name": "c_idiom_emoji_6.jpeg",
+        "gt": "刻舟求剑"
+    },
+    {
+        "image_name": "c_idiom_emoji_7.jpeg",
+        "gt": "喜上眉梢"
+    },
+    {
+        "image_name": "c_idiom_emoji_8.jpeg",
+        "gt": "趾高气扬"
+    },
+    {
+        "image_name": "c_idiom_emoji_9.jpeg",
+        "gt": "杯水车薪"
+    },
+    {
+        "image_name": "c_idiom_emoji_10.jpeg",
+        "gt": "鸡飞蛋打"
+    },
+    {
+        "image_name": "c_idiom_emoji_11.jpeg",
+        "gt": "比翼双飞"
+    },
+    {
+        "image_name": "c_idiom_emoji_12.jpeg",
+        "gt": "全心全意"
+    },
+    {
+        "image_name": "c_idiom_emoji_13.jpeg",
+        "gt": "螳臂当车"
+    },
+    {
+        "image_name": "c_idiom_emoji_14.jpeg",
+        "gt": "花好月圆"
+    },
+    {
+        "image_name": "c_idiom_emoji_15.jpeg",
+        "gt": "耳目一新"
+    },
+    {
+        "image_name": "c_idiom_emoji_16.jpeg",
+        "gt": "守株待兔"
+    },
+    {
+        "image_name": "c_idiom_emoji_17.jpeg",
+        "gt": "琴棋书画"
+    },
+    {
+        "image_name": "c_idiom_emoji_18.jpeg",
+        "gt": "花见花开"
+    },
+    {
+        "image_name": "c_idiom_emoji_19.jpeg",
+        "gt": "步步惊心"
+    },
+    {
+        "image_name": "c_idiom_emoji_20.jpeg",
+        "gt": "刀光剑影"
+    },
+    {
+        "image_name": "c_idiom_emoji_21.jpeg",
+        "gt": "七嘴八舌"
+    },
+    {
+        "image_name": "c_idiom_emoji_22.jpeg",
+        "gt": "心心相印"
+    },
+    {
+        "image_name": "c_idiom_emoji_23.jpeg",
+        "gt": "携手并肩"
+    },
+    {
+        "image_name": "c_idiom_emoji_24.jpeg",
+        "gt": "一拍即合"
+    },
+    {
+        "image_name": "c_idiom_emoji_25.jpeg",
+        "gt": "天下无双"
+    },
+    {
+        "image_name": "c_idiom_emoji_26.jpeg",
+        "gt": "鸟语花香"
+    },
+    {
+        "image_name": "c_idiom_emoji_27.jpeg",
+        "gt": "郎才女貌"
+    },
+    {
+        "image_name": "c_idiom_emoji_28.jpeg",
+        "gt": "花前月下"
+    },
+    {
+        "image_name": "c_idiom_emoji_29.jpeg",
+        "gt": "风华绝代"
+    },
+    {
+        "image_name": "c_idiom_emoji_30.jpeg",
+        "gt": "冰清玉洁"
+    },
+    {
+        "image_name": "c_idiom_emoji_31.jpeg",
+        "gt": "爱屋及乌"
+    },
+    {
+        "image_name": "c_idiom_emoji_32.jpeg",
+        "gt": "事事如意"
+    },
+    {
+        "image_name": "c_idiom_emoji_33.jpeg",
+        "gt": "心照不宣"
+    },
+    {
+        "image_name": "c_idiom_emoji_34.jpeg",
+        "gt": "萍水相逢"
+    },
+    {
+        "image_name": "c_idiom_emoji_35.jpeg",
+        "gt": "雷声震耳"
+    },
+    {
+        "image_name": "c_idiom_emoji_36.jpeg",
+        "gt": "早生贵子"
+    },
+    {
+        "image_name": "c_idiom_emoji_37.jpeg",
+        "gt": "指腹为婚"
+    },
+    {
+        "image_name": "c_idiom_emoji_38.jpeg",
+        "gt": "骑虎难下"
+    },
+    {
+        "image_name": "c_idiom_emoji_39.jpeg",
+        "gt": "吹吹打打"
+    },
+    {
+        "image_name": "c_idiom_emoji_40.jpeg",
+        "gt": "望眼欲穿"
+    },
+    {
+        "image_name": "c_idiom_emoji_41.jpeg",
+        "gt": "一鸣惊人"
+    },
+    {
+        "image_name": "c_idiom_emoji_42.jpeg",
+        "gt": "掩人耳目"
+    },
+    {
+        "image_name": "c_idiom_emoji_43.jpeg",
+        "gt": "鸡飞狗跳"
+    },
+    {
+        "image_name": "c_idiom_emoji_44.jpeg",
+        "gt": "吹牛拍马"
+    },
+    {
+        "image_name": "c_idiom_emoji_45.jpeg",
+        "gt": "妙笔生花"
+    },
+    {
+        "image_name": "c_idiom_emoji_46.jpeg",
+        "gt": "口蜜腹剑"
+    },
+    {
+        "image_name": "c_idiom_emoji_47.jpeg",
+        "gt": "走马观花"
+    },
+    {
+        "image_name": "c_idiom_emoji_48.jpeg",
+        "gt": "衣食父母"
+    },
+    {
+        "image_name": "c_idiom_emoji_49.jpeg",
+        "gt": "星罗棋布"
+    },
+    {
+        "image_name": "c_idiom_emoji_50.jpeg",
+        "gt": "返老还童"
+    },
+    {
+        "image_name": "c_idiom_emoji_51.jpeg",
+        "gt": "众望所归"
+    },
+    {
+        "image_name": "c_idiom_emoji_52.jpeg",
+        "gt": "放虎归山"
+    },
+    {
+        "image_name": "c_idiom_emoji_53.jpeg",
+        "gt": "前因后果"
+    },
+    {
+        "image_name": "c_idiom_emoji_54.jpeg",
+        "gt": "拨云见日"
+    },
+    {
+        "image_name": "c_idiom_emoji_55.jpeg",
+        "gt": "一气呵成"
+    },
+    {
+        "image_name": "c_idiom_emoji_56.jpeg",
+        "gt": "依依不舍"
+    },
+    {
+        "image_name": "c_idiom_emoji_57.jpeg",
+        "gt": "齐心协力"
+    },
+    {
+        "image_name": "c_idiom_emoji_58.jpeg",
+        "gt": "芸芸众生"
+    },
+    {
+        "image_name": "c_idiom_emoji_59.jpeg",
+        "gt": "口口相传"
+    },
+    {
+        "image_name": "c_idiom_emoji_60.jpeg",
+        "gt": "靡靡之音"
+    },
+    {
+        "image_name": "c_idiom_emoji_61.jpeg",
+        "gt": "首屈一指"
+    },
+    {
+        "image_name": "c_idiom_emoji_62.jpeg",
+        "gt": "三人成虎"
+    },
+    {
+        "image_name": "c_idiom_emoji_63.jpeg",
+        "gt": "博而不精"
+    },
+    {
+        "image_name": "c_idiom_emoji_64.jpeg",
+        "gt": "白头偕老"
+    },
+    {
+        "image_name": "c_idiom_emoji_65.jpeg",
+        "gt": "爱不释手"
+    },
+    {
+        "image_name": "c_idiom_emoji_66.jpeg",
+        "gt": "渔翁之利"
+    },
+    {
+        "image_name": "c_idiom_emoji_67.jpeg",
+        "gt": "学富五车"
+    },
+    {
+        "image_name": "c_idiom_emoji_68.jpeg",
+        "gt": "天马行空"
+    },
+    {
+        "image_name": "c_idiom_emoji_69.jpeg",
+        "gt": "不识泰山"
+    },
+    {
+        "image_name": "c_idiom_emoji_70.jpeg",
+        "gt": "蒸蒸日上"
+    },
+    {
+        "image_name": "c_idiom_emoji_71.jpeg",
+        "gt": "风餐露宿"
+    },
+    {
+        "image_name": "c_idiom_emoji_72.jpeg",
+        "gt": "鼠目寸光"
+    },
+    {
+        "image_name": "c_idiom_emoji_73.jpeg",
+        "gt": "口是心非"
+    },
+    {
+        "image_name": "c_idiom_emoji_74.jpeg",
+        "gt": "狼烟四起"
+    },
+    {
+        "image_name": "c_idiom_emoji_75.jpeg",
+        "gt": "侯门似海"
+    },
+    {
+        "image_name": "c_idiom_emoji_76.jpeg",
+        "gt": "书香门第"
+    },
+    {
+        "image_name": "c_idiom_emoji_77.jpeg",
+        "gt": "风卷残云"
+    },
+    {
+        "image_name": "c_idiom_emoji_78.jpeg",
+        "gt": "玉树临风"
+    },
+    {
+        "image_name": "c_idiom_emoji_79.jpeg",
+        "gt": "逃之夭夭"
+    },
+    {
+        "image_name": "c_idiom_emoji_80.jpeg",
+        "gt": "南辕北辙"
+    },
+    {
+        "image_name": "c_idiom_emoji_81.jpeg",
+        "gt": "平心而论"
+    },
+    {
+        "image_name": "c_idiom_emoji_82.jpeg",
+        "gt": "心驰神往"
+    },
+    {
+        "image_name": "c_idiom_emoji_83.jpeg",
+        "gt": "日日夜夜"
+    },
+    {
+        "image_name": "c_idiom_emoji_84.jpeg",
+        "gt": "青梅竹马"
+    },
+    {
+        "image_name": "c_idiom_emoji_85.jpeg",
+        "gt": "汗牛充栋"
+    },
+    {
+        "image_name": "c_idiom_emoji_86.jpeg",
+        "gt": "指鹿为马"
+    },
+    {
+        "image_name": "c_idiom_emoji_87.jpeg",
+        "gt": "雾里看花"
+    },
+    {
+        "image_name": "c_idiom_emoji_88.jpeg",
+        "gt": "杯弓蛇影"
+    },
+    {
+        "image_name": "c_idiom_emoji_89.jpeg",
+        "gt": "白手起家"
+    },
+    {
+        "image_name": "c_idiom_emoji_90.jpeg",
+        "gt": "铁石心肠"
+    },
+    {
+        "image_name": "c_idiom_emoji_91.jpeg",
+        "gt": "门可罗雀"
+    },
+    {
+        "image_name": "c_idiom_emoji_92.jpeg",
+        "gt": "干柴烈火"
+    },
+    {
+        "image_name": "c_idiom_emoji_93.jpeg",
+        "gt": "心有所属"
+    },
+    {
+        "image_name": "c_idiom_emoji_94.jpeg",
+        "gt": "目中无人"
+    },
+    {
+        "image_name": "c_idiom_emoji_95.jpeg",
+        "gt": "心平气和"
+    },
+    {
+        "image_name": "c_idiom_emoji_96.jpeg",
+        "gt": "一见钟情"
+    },
+    {
+        "image_name": "c_idiom_emoji_97.jpeg",
+        "gt": "吉人天相"
+    },
+    {
+        "image_name": "c_idiom_emoji_98.jpeg",
+        "gt": "猴年马月"
+    },
+    {
+        "image_name": "c_idiom_emoji_99.jpeg",
+        "gt": "马马虎虎"
+    },
+    {
+        "image_name": "c_idiom_emoji_100.jpeg",
+        "gt": "怒火中烧"
+    },
+    {
+        "image_name": "c_idiom_emoji_101.jpeg",
+        "gt": "妙笔生花"
+    },
+    {
+        "image_name": "c_idiom_emoji_102.jpeg",
+        "gt": "相夫教子"
+    },
+    {
+        "image_name": "c_idiom_emoji_103.jpeg",
+        "gt": "薪火相传"
+    },
+    {
+        "image_name": "c_idiom_emoji_104.jpeg",
+        "gt": "惺惺相惜"
+    },
+    {
+        "image_name": "c_idiom_emoji_105.jpeg",
+        "gt": "上下一心"
+    },
+    {
+        "image_name": "c_idiom_emoji_106.jpeg",
+        "gt": "风雨同舟"
+    },
+    {
+        "image_name": "c_idiom_emoji_107.jpeg",
+        "gt": "驷马难追"
+    },
+    {
+        "image_name": "c_idiom_emoji_108.jpeg",
+        "gt": "目瞪口呆"
+    },
+    {
+        "image_name": "c_idiom_emoji_109.jpeg",
+        "gt": "珠光宝气"
+    },
+    {
+        "image_name": "c_idiom_emoji_110.jpeg",
+        "gt": "画蛇添足"
+    },
+    {
+        "image_name": "c_idiom_emoji_111.jpeg",
+        "gt": "人面桃花"
+    },
+    {
+        "image_name": "c_idiom_emoji_112.jpeg",
+        "gt": "苦口婆心"
+    },
+    {
+        "image_name": "c_idiom_emoji_113.jpeg",
+        "gt": "心比天高"
+    },
+    {
+        "image_name": "c_idiom_emoji_114.jpeg",
+        "gt": "阳春三月"
+    },
+    {
+        "image_name": "c_idiom_emoji_115.jpeg",
+        "gt": "望穿秋水"
+    },
+    {
+        "image_name": "c_idiom_emoji_116.jpeg",
+        "gt": "隔岸观火"
+    },
+    {
+        "image_name": "c_idiom_emoji_117.jpeg",
+        "gt": "左右逢源"
+    },
+    {
+        "image_name": "c_idiom_emoji_118.jpeg",
+        "gt": "指桑骂槐"
+    },
+    {
+        "image_name": "c_idiom_emoji_118.jpeg",
+        "gt": "吉星高照"
+    },
+    {
+        "image_name": "c_idiom_emoji_120.jpeg",
+        "gt": "喜气洋洋"
+    },
+    {
+        "image_name": "c_idiom_emoji_121.jpeg",
+        "gt": "一日三秋"
+    },
+    {
+        "image_name": "c_idiom_emoji_122.jpeg",
+        "gt": "碍手碍脚"
+    },
+    {
+        "image_name": "c_idiom_emoji_123.jpeg",
+        "gt": "游山玩水"
+    },
+    {
+        "image_name": "c_idiom_emoji_124.jpeg",
+        "gt": "虾兵蟹将"
+    },
+    {
+        "image_name": "c_idiom_emoji_125.jpeg",
+        "gt": "枯木逢春"
+    },
+    {
+        "image_name": "c_idiom_emoji_126.jpeg",
+        "gt": "纸醉金迷"
+    },
+    {
+        "image_name": "c_idiom_emoji_127.jpeg",
+        "gt": "乘风破浪"
+    },
+    {
+        "image_name": "c_idiom_emoji_128.jpeg",
+        "gt": "福禄鸳鸯"
+    },
+    {
+        "image_name": "c_idiom_emoji_129.jpeg",
+        "gt": "夫唱妇随"
+    },
+    {
+        "image_name": "c_idiom_emoji_130.jpeg",
+        "gt": "凤凰于飞"
+    },
+    {
+        "image_name": "c_idiom_emoji_131.jpeg",
+        "gt": "相敬如宾"
+    },
+    {
+        "image_name": "c_idiom_emoji_132.jpeg",
+        "gt": "花开富贵"
+    },
+    {
+        "image_name": "c_idiom_emoji_133.jpeg",
+        "gt": "缘定三生"
+    },
+    {
+        "image_name": "c_idiom_emoji_134.jpeg",
+        "gt": "白首相约"
+    },
+    {
+        "image_name": "c_idiom_emoji_135.jpeg",
+        "gt": "望文生义"
+    }
+]

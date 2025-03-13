@@ -1,0 +1,122 @@
+[
+    {
+        "image_name": "e_proverb_emoji_1.jpeg",
+        "gt": "a fish out of water",
+        "pred": "Don't fish in troubled waters",
+        "inference chain": "The fish emoji represents 'fish', the 'X' represents a negative or something to avoid, and the water drop emoji represents 'water'. Together, they suggest the proverb 'Don't fish in troubled waters', meaning not to get involved in situations that are difficult or problematic."
+    },
+    {
+        "image_name": "e_proverb_emoji_2.jpeg",
+        "gt": "speak of the devil",
+        "pred": "Speak of the devil",
+        "inference chain": "The first emoji represents lips, which suggest talking or speaking. The second emoji, a speech bubble, reinforces the idea of communication or speech. The third emoji, a devil face, represents the 'devil' in the saying. Together, these emojis form the idiom 'Speak of the devil,' which refers to someone appearing unexpectedly after being mentioned in conversation."
+    },
+    {
+        "image_name": "e_proverb_emoji_3.jpeg",
+        "gt": "salad days",
+        "pred": "Don't count your chickens before they hatch",
+        "inference chain": "The salad represents something fresh and incomplete, similar to a situation that is not yet fully developed. The calendar date (July 17) may represent a specific moment, but it is uncertain or unfulfilled. Together, these symbols suggest not to make assumptions or expect results before they actually materialize."
+    },
+    {
+        "image_name": "e_proverb_emoji_4.jpeg",
+        "gt": "a bowl of cherries",
+        "pred": "A bowl of cherries",
+        "inference chain": "The first emoji is the number '1', which suggests a singular or special thing. The second emoji is a bowl, which can be associated with something you hold or enjoy. The third emoji is cherries, which are often used metaphorically to refer to something sweet, delightful, or easy. Together, these elements point to the idiom 'a bowl of cherries,' which refers to something that is enjoyable or pleasant."
+    },
+    {
+        "image_name": "e_proverb_emoji_5.jpeg",
+        "gt": "cry me a river",
+        "pred": "Cry over spilt milk",
+        "inference chain": "The crying emoji represents sadness or regret, the number 1 might suggest something important or the first in line, and the wave emoji could symbolize something that has passed or spilled over, akin to milk being spilled and not recoverable. The combination implies regret over something that cannot be undone, which aligns with the proverb 'Cry over spilt milk'."
+    },
+    {
+        "image_name": "e_proverb_emoji_6.jpeg",
+        "gt": "not my cup of tea",
+        "pred": "Don't cry over spilled milk",
+        "inference chain": "The crossed 'X' symbol suggests something negative or a mistake, while the steaming cup of green tea indicates something pleasant or calm. Together, they imply that there's no point in getting upset over things that cannot be undone, like spilling milk. This aligns with the proverb 'Don't cry over spilled milk,' meaning not to dwell on past mistakes."
+    },
+    {
+        "image_name": "e_proverb_emoji_7.jpeg",
+        "gt": "feel blue",
+        "pred": "A broken heart",
+        "inference chain": "The emoji on the left shows a sad, disappointed face, which implies sadness or emotional pain. The blue heart emoji on the right symbolizes love, but the sadness combined with the heart suggests the concept of a broken heart, often used to describe emotional distress from a lost or unrequited love."
+    },
+    {
+        "image_name": "e_proverb_emoji_8.jpeg",
+        "gt": "good night",
+        "pred": "The night is young",
+        "inference chain": "The thumbs-up emoji signifies approval or agreement, and the cityscape at night with stars and a crescent moon suggests that it is nighttime. The combination implies that the night is still in its early stages, symbolizing potential or the idea that there is still time to enjoy or accomplish things."
+    },
+    {
+        "image_name": "e_proverb_emoji_9.jpeg",
+        "gt": "cost an arm and a leg",
+        "pred": "Money makes the world go round",
+        "inference chain": "The bag of money emoji represents money, the number '1' indicates importance or centrality, the muscle emoji represents strength or power, and the leg emoji indicates movement or progress. Together, they suggest that money is the driving force behind progress and power, symbolizing the idea that money is essential for making things happen in the world."
+    },
+    {
+        "image_name": "e_proverb_emoji_10.jpeg",
+        "gt": "it's raining cats and dogs",
+        "pred": "It's raining cats and dogs",
+        "inference chain": "The cloud emoji with raindrops represents rain. The following emojis show a progression from a cat to a dog, implying an exaggerated situation. The phrase 'raining cats and dogs' is an idiom meaning it's raining heavily, which fits the sequence of symbols in the image."
+    },
+    {
+        "image_name": "e_proverb_emoji_11.jpeg",
+        "gt": "a piece of cake",
+        "pred": "The first slice is the sweetest",
+        "inference chain": "The '1' emoji represents the first or the beginning, and the cake emoji represents a slice of cake. Together, they symbolize the idea that the first slice of something, often used metaphorically, is the best or most desirable. This is a common saying that refers to the idea that the initial experience of something new is often the most enjoyable."
+    },
+    {
+        "image_name": "e_proverb_emoji_12.jpeg",
+        "gt": "hot potato",
+        "pred": "Hot potato",
+        "inference chain": "The fire emoji represents 'hot', and the potato emoji symbolizes 'potato'. Together, these suggest the phrase 'hot potato', which refers to a difficult or uncomfortable issue that no one wants to deal with."
+    },
+    {
+        "image_name": "e_proverb_emoji_13.jpeg",
+        "gt": "dark horse",
+        "pred": "Don't look a gift horse in the mouth",
+        "inference chain": "The first emoji shows a black square, which could symbolize something neutral or unexpected. The second emoji shows a horse with a green saddle. A 'gift horse' refers to a horse received as a gift, and the proverb 'Don't look a gift horse in the mouth' advises not to criticize or be overly critical of something given for free. The combination of the horse emoji and the hint of green (possibly symbolizing a new or fresh gift) leads to the interpretation of this idiom."
+    },
+    {
+        "image_name": "e_proverb_emoji_14.jpeg",
+        "gt": "once in a blue moon",
+        "pred": "One step at a time",
+        "inference chain": "The first emoji is the number '1', representing a single step or action. The second emoji is a blue circle, which can symbolize a step or stage in a process. The third emoji is a crescent moon, often associated with a gradual change or process, suggesting the idea of progression. Together, they imply the idea of taking things one step at a time."
+    },
+    {
+        "image_name": "e_proverb_emoji_15.jpeg",
+        "gt": "smell the roses",
+        "pred": "A rose by any other name would smell as sweet",
+        "inference chain": "The first emoji represents a nose, symbolizing the sense of smell. The second emoji is a rose, often associated with beauty and fragrance. Together, they imply that the essence or qualities of something do not change based on what it is called, as suggested by the famous Shakespearean proverb."
+    },
+    {
+        "image_name": "e_proverb_emoji_16.jpeg",
+        "gt": "you're the apple of my eye",
+        "pred": "An eye for an eye",
+        "inference chain": "The eye emoji represents vision or sight, and the apple emoji is a common symbol of something that is valuable or a form of retribution. The combination 'eye' and 'apple' can symbolically represent the concept of retribution or justice, which aligns with the proverb 'an eye for an eye.'"
+    },
+    {
+        "image_name": "e_proverb_emoji_17.jpeg",
+        "gt": "apples and oranges",
+        "pred": "Apples and oranges",
+        "inference chain": "The image shows two apples and two oranges combined with a plus sign. 'Apples and oranges' is a common idiom used to describe two things that are fundamentally different and cannot be directly compared. The apples and oranges in the image represent these two distinct things."
+    },
+    {
+        "image_name": "e_proverb_emoji_18.jpeg",
+        "gt": "kill two birds with one stone",
+        "pred": "Kill two birds with one stone",
+        "inference chain": "The knife (kill), the birds (two birds), and the stone (one stone) collectively suggest the idiom 'Kill two birds with one stone', which means to accomplish two tasks with a single effort."
+    },
+    {
+        "image_name": "e_proverb_emoji_19.jpeg",
+        "gt": "no use crying over spilt milk",
+        "pred": "Don't cry over spilled milk",
+        "inference chain": "The first emoji (X) represents 'no' or 'something bad'. The second emoji (crying face) indicates sadness or crying. The third emoji (glass of milk) suggests 'milk', and the fourth emoji (water droplets) symbolizes something spilled or lost. Together, these emojis suggest the idea of not being upset over something that cannot be undone, which aligns with the proverb 'Don't cry over spilled milk'."
+    },
+    {
+        "image_name": "e_proverb_emoji_20.jpeg",
+        "gt": "time flies",
+        "pred": "Time flies",
+        "inference chain": "The hourglass emoji represents the passage of time, and the airplane emoji represents speed or something moving quickly. Together, they suggest the idea of time passing quickly or flying by, which corresponds to the proverb 'Time flies.'"
+    }
+]

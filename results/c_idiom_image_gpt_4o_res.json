@@ -1,0 +1,122 @@
+[
+    {
+        "image_name": "c_idiom_img_1.jpeg",
+        "gt": "察言观色",
+        "pred": "言简意赅",
+        "inference chain": "The image shows a child closely inspecting a character, which symbolizes careful observation or searching for meaning. The character is '言', which means speech or words. The idiom '言简意赅' refers to expressing something in a concise and clear manner, matching the idea of focusing on the essential part of the words."
+    },
+    {
+        "image_name": "c_idiom_img_2.jpeg",
+        "gt": "斗折蛇行",
+        "pred": "引蛇出洞",
+        "inference chain": "The image shows a snake with stars representing a constellation. The constellation depicted resembles the shape of a snake, and '引蛇出洞' literally means 'to lure a snake out of its hole,' which is often used metaphorically to describe revealing something hidden or making someone take action. The snake symbol and the reference to constellations suggest this idiom."
+    },
+    {
+        "image_name": "c_idiom_img_3.jpeg",
+        "gt": "谈虎色变",
+        "pred": "画龙点睛",
+        "inference chain": "The image shows a person thinking about a tiger, which is represented by a cartoon of a tiger. This connects with the idiom '画龙点睛', which means 'to add the finishing touch'. In this case, the person is thinking about the key detail (the tiger) that brings the image to life, much like how adding the final touch to a drawing enhances it."
+    },
+    {
+        "image_name": "c_idiom_img_4.jpeg",
+        "gt": "镜花水月",
+        "pred": "镜花水月",
+        "inference chain": "The image features a mirror with flowers and a moon reflected in the background, symbolizing something that looks beautiful but is ultimately unattainable or illusory. This connects to the idiom '镜花水月' (literally 'flowers in a mirror, moon in water'), which refers to something that cannot be grasped or is an illusion."
+    },
+    {
+        "image_name": "c_idiom_img_5.jpeg",
+        "gt": "举棋不定",
+        "pred": "黑白分明",
+        "inference chain": "The image shows a game of Go (围棋) with distinct black and white stones, highlighting the contrast between the two colors. This contrast in the game can be associated with the idiom '黑白分明', meaning clear distinction between black and white, which metaphorically refers to a clear difference or straightforward situation."
+    },
+    {
+        "image_name": "c_idiom_img_6.jpeg",
+        "gt": "一曝十寒",
+        "pred": "冰火两重天",
+        "inference chain": "The image shows a contrast between ice cubes and a sun, which symbolizes two opposing elements: ice (cold) and fire (heat). The four-character idiom '冰火两重天' (literally 'two layers of ice and fire') is used to describe a situation with extreme contrasts or opposites."
+    },
+    {
+        "image_name": "c_idiom_img_7.jpeg",
+        "gt": "入木三分",
+        "pred": "一针见血",
+        "inference chain": "The image shows a nail that is directly driven into the wood, symbolizing a clear and precise action. The four-character idiom '一针见血' (literally 'a needle pierces the blood') refers to hitting the mark directly and accurately, just like the nail penetrating the wood without deviation."
+    },
+    {
+        "image_name": "c_idiom_img_8.jpeg",
+        "gt": "见风使舵",
+        "pred": "风云变幻",
+        "inference chain": "The image shows a character holding a steering wheel with wind blowing towards them, implying control over changing conditions. The phrase '风云变幻' (literally, 'wind and clouds change') refers to fluctuating or changing situations, similar to how the character seems to be navigating the wind and weather."
+    },
+    {
+        "image_name": "c_idiom_img_9.jpeg",
+        "gt": "酒囊饭袋",
+        "pred": "杯水车薪",
+        "inference chain": "The image depicts a small amount of rice being poured into a bag with various objects inside, suggesting an insufficient or futile attempt to address a larger issue. '杯水车薪' (a cup of water to extinguish a cartload of firewood) is a Chinese idiom that describes a situation where the effort made is too small to make a difference or is inadequate to solve the problem at hand."
+    },
+    {
+        "image_name": "c_idiom_img_10.jpeg",
+        "gt": "空谷幽兰",
+        "pred": "壁立千仞",
+        "inference chain": "The image shows tall, steep rocks with some plants growing in front of them, which resembles the imagery of a steep, towering wall. The idiom '壁立千仞' refers to a sheer cliff or a towering wall, symbolizing something extremely difficult or towering in nature. The presence of tall rocks and the natural setting aligns with this meaning."
+    },
+    {
+        "image_name": "c_idiom_img_11.jpeg",
+        "gt": "倾盆大雨",
+        "pred": "水落石出",
+        "inference chain": "The image depicts water droplets falling from a container, which suggests the idea of water flowing and revealing something beneath. The idiom '水落石出' means that when the water level drops, the stones beneath it are revealed, symbolizing the truth or clarity coming to light after confusion or obscurity."
+    },
+    {
+        "image_name": "c_idiom_img_12.jpeg",
+        "gt": "拨云见日",
+        "pred": "拨云见日",
+        "inference chain": "The image shows a sun hidden behind a cloud, with an arrow and a hand gesture suggesting the cloud is being moved away. This resembles the idiom '拨云见日,' which means 'to clear away the clouds and see the sun,' symbolizing a situation where obstacles or difficulties are removed, leading to clarity or success."
+    },
+    {
+        "image_name": "c_idiom_img_13.jpeg",
+        "gt": "岁寒三友",
+        "pred": "梅兰竹菊",
+        "inference chain": "The image features a plum branch with red flowers, bamboo, and pine branches. These elements correspond to the four noble plants in Chinese culture: plum, orchid, bamboo, and chrysanthemum. The idiom '梅兰竹菊' refers to these four plants, symbolizing elegance and virtue, and is often used to describe someone with noble qualities or refined taste."
+    },
+    {
+        "image_name": "c_idiom_img_14.jpeg",
+        "gt": "饮水思源",
+        "pred": "遐想天开",
+        "inference chain": "The image shows a child thinking with a dreamy expression while drinking water, and a landscape with a winding road in the thought bubble. This suggests the child is imagining something fantastical or unrealistic, leading to the idiom '遐想天开', which refers to someone having wild or far-fetched ideas."
+    },
+    {
+        "image_name": "c_idiom_img_15.jpeg",
+        "gt": "糖衣炮弹",
+        "pred": "糖衣炮弹",
+        "inference chain": "The image shows a cannon shooting candy. The phrase '糖衣炮弹' (literally 'sugar-coated cannonball') refers to something that seems sweet or harmless but has a hidden harmful or forceful side. The candy represents the sweet appearance, while the cannon represents the hidden force, fitting the idiom perfectly."
+    },
+    {
+        "image_name": "c_idiom_img_16.jpeg",
+        "gt": "危在旦夕",
+        "pred": "昼夜颠倒",
+        "inference chain": "The image shows a divided scene with a moon and stars on one side (night) and a bright sun on the other (day). The presence of an exclamation mark and the contrast between night and day imply a disruption of normal day-night cycles, leading to the idiom '昼夜颠倒', meaning a reversal of day and night."
+    },
+    {
+        "image_name": "c_idiom_img_17.jpeg",
+        "gt": "山高水长",
+        "pred": "山水相依",
+        "inference chain": "The image shows two mountains and a river, which evokes the idea of mountains and rivers being interdependent, reflecting the idiom '山水相依', meaning that mountains and rivers complement each other."
+    },
+    {
+        "image_name": "c_idiom_img_18.jpeg",
+        "gt": "废寝忘食",
+        "pred": "挑灯夜读",
+        "inference chain": "The image shows a person studying at a desk, with a headband labeled 'Fighting' to indicate determination. The crossed-out symbols for food and bed suggest that the person is focused on studying and sacrificing other distractions like food or rest. This reflects the idiom '挑灯夜读', which refers to studying late into the night with focus and dedication."
+    },
+    {
+        "image_name": "c_idiom_img_19.jpeg",
+        "gt": "精卫填海",
+        "pred": "刻舟求剑",
+        "inference chain": "The image shows a bird flying above water, holding a stick in its beak, with a suggestion of something sinking in the water. This reflects the story of a person who drops a sword into the water and tries to mark the boat to find it later. The idiom '刻舟求剑' is used to describe someone who clings to outdated methods or is unable to adapt to changes."
+    },
+    {
+        "image_name": "c_idiom_img_20.jpeg",
+        "gt": "心乱如麻",
+        "pred": "千丝万缕",
+        "inference chain": "The image shows a heart shape made of intertwined ropes, which suggests a complex and intricate connection, similar to the meaning of '千丝万缕', which refers to a large number of fine threads, indicating something that is deeply and intricately connected."
+    }
+]
