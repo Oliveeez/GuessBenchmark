@@ -1,0 +1,602 @@
+[
+    {
+        "gt": "一丘之貉",
+        "pred": "一丘之貉",
+        "emoji_rep": "1️⃣⛰️🧀🦡",
+        "inference_chain": "1️⃣ (one) -> 一 (yī, one); ⛰️ (mountain) -> 丘 (qiū, hill/mound); � (cheese) -> 之 (zhī, phonetic match to 'cheese'); 🦡 (badger) -> 貉 (hé, badger)"
+    },
+    {
+        "gt": "一丝一毫",
+        "pred": "一丝一毫",
+        "emoji_rep": "1️⃣🧵1️⃣📏",
+        "inference_chain": "1️⃣ represents '一' (one), 🧵 represents '丝' (silk/thread, semantically matching '丝'), 1️⃣ again represents '一', 📏 represents '毫' (a unit of measurement, semantically matching '毫'). The idiom '一丝一毫' means 'a tiny bit'."
+    },
+{
+        "gt": "一丝不挂",
+        "pred": "一丝不苟",
+        "emoji_rep": "1️⃣🧵🙅🍉",
+        "inference_chain": "1️⃣ (one) -> 一 (yī, semantic match); 🧵 (thread) -> 丝 (sī, semantic match); 🙅 (no) -> 不 (bù, semantic match); 🍉 (melon) -> 苟 (gǒu, phonetic match, as 'melon' in Chinese is '瓜' (guā), which sounds similar to '苟')"
+    },
+    {
+        "gt": "一丝不苟",
+        "pred": "一丝不苟",
+        "emoji_rep": "1️⃣🧵🙅🐶",
+        "inference_chain": "1️⃣ (一, semantic match for 'one'), 🧵 (丝, semantic match for 'thread/silk'), 🙅 (不, semantic match for 'not'), 🐶 (苟, phonetic match for 'gǒu', homophone of 苟)"
+    },
+    {
+        "gt": "一举一动",
+        "pred": "一举一动",
+        "emoji_rep": "1️⃣🙌1️⃣🕳️",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (one), 🙌 (hands) corresponds to '举' (lift, as in lifting hands), 1️⃣ (one) again corresponds to '一' (one), 🕳️ (hole) corresponds to '动' (move, as a hole can imply movement or change). The idiom '一举一动' means 'every single action or movement'."
+    },
+    {
+        "gt": "一举两得",
+        "pred": "一举两得",
+        "emoji_rep": "1️⃣🙌2️⃣🉐",
+        "inference_chain": "1️⃣ corresponds to '一' (one) semantically. 🙌 (hands raised) represents '举' (lift/raise) semantically. 2️⃣ corresponds to '两' (two) semantically. 🉐 represents '得' (gain/obtain) semantically. Combined, they form the idiom '一举两得', meaning 'kill two birds with one stone'."
+    },
+    {
+        "gt": "一举成名",
+        "pred": "一举成名",
+        "emoji_rep": "1️⃣🙌🍊📛",
+        "inference_chain": "1️⃣ (一) is a direct semantic match for 'one'. 🙌 (举) means 'lift' or 'raise', semantically matching the character '举'. � (成) phonetically matches 'cheng' (成), meaning 'achieve'. 📛 (名) resembles a name tag, semantically matching '名' meaning 'name' or 'fame'."
+    },
+    {
+        "gt": "一了百了",
+        "pred": "一五一十",
+        "emoji_rep": "1️⃣👌💯👌",
+        "inference_chain": "1️⃣ represents '一' (one), 👌 resembles '五' (five) in shape, 💯 represents '十' (ten), and 👌 again resembles '五' (five) in shape, forming the idiom '一五一十' which means to narrate systematically and in full detail."
+    },
+    {
+        "gt": "一事无成",
+        "pred": "一视同仁",
+        "emoji_rep": "1️⃣🍅🈚🏆",
+        "inference_chain": "1️⃣ corresponds to '一' (one) semantically. 🍅 is pronounced 'shi' in Chinese, matching the second character '视' (shi, meaning 'view'). 🈚 is pronounced 'wu', matching the third character '无' (wu, meaning 'without'). 🏆 represents a prize or 'ren' (as in '人' for people), but phonetically, 'ren' matches the fourth character '仁' (ren, meaning 'benevolence'). Thus, the idiom is '一视同仁' (yi shi tong ren), meaning 'to treat equally without discrimination'."
+    },
+    {
+        "gt": "一五一十",
+        "pred": "一五一十",
+        "emoji_rep": "1️⃣5️⃣1️⃣🔟",
+        "inference_chain": "1️⃣ corresponds to '一' (one), 5️⃣ corresponds to '五' (five), 1️⃣ corresponds to '一' (one), 🔟 corresponds to '十' (ten). The idiom '一五一十' means to narrate in detail or tell the whole story."
+    },
+    {
+        "gt": "一以贯之",
+        "pred": "一马当先",
+        "emoji_rep": "1️⃣🐜🫙🧀",
+        "inference_chain": "1️⃣ represents '一' (one), 🐜 is phonetically similar to '马' (horse), 🫙 is phonetically similar to '当' (when), and 🧀 is phonetically similar to '先' (first)."
+    },
+    {
+        "gt": "一元复始",
+        "pred": "一圆循环",
+        "emoji_rep": "1️⃣⭕🔄🔛",
+        "inference_chain": "1️⃣ represents '一' (one), ⭕ represents '圆' (circle), 🔄 represents '循' (cycle), and 🔛 represents '环' (loop). The emojis semantically match the characters in the idiom '一圆循环'."
+    },
+    {
+        "gt": "一决胜负",
+        "pred": "一鸣惊人",
+        "emoji_rep": "1️⃣🎭🏆👎",
+        "inference_chain": "1️⃣ (一, semantic match for 'one'), 🎭 (鸣, phonetic match 'ming' from 'emoji' which can imply sound or performance), 🏆 (惊, semantic match for 'surprise' as winning a trophy is surprising), 👎 (人, phonetic match 'ren' from 'thumbs down' which can imply 'person' in a negative context)"
+    },
+    {
+        "gt": "一决雌雄",
+        "pred": "一马当先",
+        "emoji_rep": "1️⃣🎭🧲🐻",
+        "inference_chain": "1️⃣ represents '一' (one), 🎭 can symbolize '马' (horse) as masks are often used in horse performances, 🧲 suggests '当' (to bear or face) as it attracts or bears force, 🐻 sounds like '先' (first) in some dialects where 'bear' is pronounced similar to 'xian'."
+    },
+    {
+        "gt": "一击即溃",
+        "pred": "一鼓作气",
+        "emoji_rep": "1️⃣👊⚡️🏳️",
+        "inference_chain": "1️⃣ (一, semantic match for 'one') + 👊 (鼓, semantic match for 'drum') + ⚡️ (气, semantic match for 'energy' or 'spirit') + 🏳️ (气, phonetic match as 'qi' in pinyin for 'flag' which is 'qi' in pinyin, same as '气')"
+    },
+    {
+        "gt": "一刀两断",
+        "pred": "一刀两断",
+        "emoji_rep": "1️⃣🔪2️⃣⛓️",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (one), 🔪 (knife) corresponds to '刀' (knife), 2️⃣ (two) corresponds to '两' (two), ⛓️ (chain) corresponds to '断' (break), forming the idiom '一刀两断' (cut it clean, make a clean break)."
+    },
+    {
+        "gt": "一分为二",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣💔🧣2️⃣",
+        "inference_chain": "1️⃣ corresponds to '一' (one) semantically. 💔 resembles '心' (heart) semantically. 🧣 sounds like '意' (intention) phonetically in Chinese ('yi'). 2️⃣ again corresponds to '一' (one) semantically. Thus, the idiom is '一心一意' (wholeheartedly)."
+    },
+    {
+        "gt": "一刹那间",
+        "pred": "一刻千金",
+        "emoji_rep": "1️⃣🍵👉🕒",
+        "inference_chain": "1️⃣ represents 'one' (一), 🍵 can be associated with 'tea' (茶) but phonetically similar to '刻' (kè), 👉 represents 'pointing to' or 'to' (到 or 至), but phonetically similar to '千' (qiān), 🕒 represents 'three o'clock' or 'time' (时), but phonetically similar to '金' (jīn). Combining these, the idiom is '一刻千金' (yī kè qiān jīn), meaning 'time is precious'."
+    },
+    {
+        "gt": "一刻千金",
+        "pred": "一刻千金",
+        "emoji_rep": "1️⃣⏳💰👑",
+        "inference_chain": "1️⃣ (一) is a semantic match for '一' (one); ⏳ (hourglass) represents '刻' (a quarter or moment, as in time); 💰 (money) represents '千' (thousand, as '钱' sounds like '千'); 👑 (crown) represents '金' (gold, as crowns are often made of gold)."
+    },
+    {
+        "gt": "一力承担",
+        "pred": "一鼓作气",
+        "emoji_rep": "1️⃣💪🍊🥚",
+        "inference_chain": "1️⃣ represents '一' (one), 💪 symbolizes strength or '鼓' (drum, as in encouraging or mustering strength), 🍊 sounds like '气' (qi, energy), and 🥚 resembles '气' in shape or context, leading to the idiom '一鼓作气' meaning 'to muster one's courage for an effort'."
+    },
+    {
+        "gt": "一动不动",
+        "pred": "一窍不通",
+        "emoji_rep": "1️⃣🕳️🙅🕳️",
+        "inference_chain": "1️⃣ represents '一' (one), 🕳️ represents '窍' (hole, semantically matching), 🙅 represents '不' (no, semantically matching), 🕳️ represents '通' (hole, semantically matching, but in the idiom it means 'understand'). The idiom '一窍不通' means 'to not understand at all'."
+    },
+    {
+        "gt": "一劳永逸",
+        "pred": "一劳永逸",
+        "emoji_rep": "1️⃣👷♾️😌",
+        "inference_chain": "1️⃣ (一, semantic match for 'one'), 👷 (劳, semantic match for 'labor'), ♾️ (永, semantic match for 'forever'), 😌 (逸, semantic match for 'ease')"
+    },
+    {
+        "gt": "一厢情愿",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣📦❤️🙏",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (one), 📦 (box) phonetically matches '心' (xīn, heart), ❤️ (heart) semantically matches '一' (one), 🙏 (pray) phonetically matches '意' (yì, meaning)."
+    },
+    {
+        "gt": "一去不返",
+        "pred": "一去不返",
+        "emoji_rep": "1️⃣🚶🙅🔙",
+        "inference_chain": "1️⃣ represents '一' (one), 🚶 represents '去' (to go), 🙅 represents '不' (not), 🔙 represents '返' (return). The emojis sequentially match the characters in the idiom '一去不返' both semantically and phonetically."
+    },
+    {
+        "gt": "一反常态",
+        "pred": "一日千里",
+        "emoji_rep": "1️⃣🍚🌭🌞",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one); 🍚 (rice) phonetically matches '日' (rì) as 'rice' is 'mǐ' in Chinese but '日' is pronounced 'rì', which is a stretch but sometimes used in puzzles; 🌭 (hotdog) resembles '千' (qiān) as 'hotdog' can be associated with 'hot' and 'dog', but this is a stretch; 🌞 (sun) semantically matches '里' (lǐ) as 'sun' is '日' and '里' can mean 'inside', but this is also a stretch. The most plausible idiom is '一日千里' (a thousand li in one day, meaning rapid progress)."
+    },
+    {
+        "gt": "一口咬定",
+        "pred": "一言为定",
+        "emoji_rep": "1️⃣👄🔑🤝",
+        "inference_chain": "1️⃣ (一) - Semantic match for '一' (one); 👄 (言) - Semantic match for '言' (speech); 🔑 (为) - Phonetic match for '为' (wéi), similar to 'key' (钥匙, yàoshi) but focusing on '为'; 🤝 (定) - Semantic match for '定' (agreement, as in shaking hands to confirm a deal)."
+    },
+    {
+        "gt": "一叶知秋",
+        "pred": "一叶知秋",
+        "emoji_rep": "1️⃣🍃🧠🍁",
+        "inference_chain": "1️⃣ represents '一' (one), 🍃 represents '叶' (leaf), � represents '知' (know), and 🍁 represents '秋' (autumn). The idiom '一叶知秋' means 'one falling leaf is indicative of the coming of autumn'."
+    },
+    {
+        "gt": "一叶障目",
+        "pred": "一叶障目",
+        "emoji_rep": "1️⃣🍃🚧👁️",
+        "inference_chain": "1️⃣ represents '一' (one), 🍃 represents '叶' (leaf), 🚧 represents '障' (obstacle), 👁️ represents '目' (eye). The idiom '一叶障目' means 'a single leaf blocks the view', symbolizing a narrow perspective."
+    },
+    {
+        "gt": "一吐为快",
+        "pred": "一吐为快",
+        "emoji_rep": "1️⃣🤮🧣⚡️",
+        "inference_chain": "1️⃣ (一, semantic match for 'one') + 🤮 (吐, semantic match for 'vomit') + 🧣 (为, phonetic match: 'wei' for scarf) + ⚡️ (快, semantic match for 'fast/quick')"
+    },
+    {
+        "gt": "一呼百和",
+        "pred": "一鸣惊人",
+        "emoji_rep": "1️⃣📢💯☮️",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one). 📢 (loudspeaker) semantically matches '鸣' (to sound or to cry out). 💯 (hundred points) semantically matches '惊' (to surprise or amaze). ☮️ (peace) semantically matches '人' (people or person). Together, they form the idiom '一鸣惊人', which means 'to amaze the world with a single brilliant feat'."
+    },
+    {
+        "gt": "一呼百应",
+        "pred": "一鸣惊人",
+        "emoji_rep": "1️⃣📢💯🦅",
+        "inference_chain": "1️⃣ represents '一' (one) semantically; 📢 represents '鸣' (to sound, as in the sound of a bird or announcement) semantically; 💯 represents '惊' (to surprise, as 100 can be surprising in a test score) semantically; 🦅 represents '人' (person, as the eagle is a bird but phonetically '鹰' (yīng) is close to '人' (rén) in pronunciation."
+    },
+    {
+        "gt": "一命呜呼",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣❤️🧙💨",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one); ❤️ (heart) semantically matches '心' (heart); 🧙 (wizard) phonetically matches '一' (yī) as 'wizard' in Chinese is '巫师' (wū shī), but 'wū' is close to 'yī'; 💨 (wind) phonetically matches '意' (yì) as 'wind' in Chinese is '风' (fēng), but 'fēng' is close to 'yì'."
+    },
+    {
+        "gt": "一哄而上",
+        "pred": "一鸣惊人",
+        "emoji_rep": "1️⃣🟥👂⬆️",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (yī, one). 🟥 (red) corresponds to '鸣' (míng, to chirp) via phonetic match (red in Chinese is '红' hóng, but '鸣' is pronounced míng, which is close). 👂 (ear) corresponds to '惊' (jīng, to startle) via phonetic match (ear in Chinese is '耳' ěr, but '惊' is pronounced jīng, which is close). ⬆️ (up) corresponds to '人' (rén, person) via semantic match (up can imply 'rising' or 'standing', which relates to a person)."
+    },
+    {
+        "gt": "一哄而散",
+        "pred": "一窍不通",
+        "emoji_rep": "1️⃣🟥👂🌂",
+        "inference_chain": "1️⃣ represents '一' (one), 🟥 is red which is '红' (hóng), but phonetically similar to '窍' (qiào), 👂 is ear which is '耳' (ěr), but phonetically similar to '不' (bù), 🌂 is umbrella which is '伞' (sǎn), but phonetically similar to '通' (tōng). Combining these, we get the idiom '一窍不通' (literally 'not one opening clear', meaning 'completely ignorant')."
+    },
+    {
+        "gt": "一哄而起",
+        "pred": "一穷二白",
+        "emoji_rep": "1️⃣🟥👂🚩",
+        "inference_chain": "1️⃣ represents '一' (one), 🟥 is red which is '赤' (red) but phonetically similar to '穷' (qiong), 👂 is '耳' (ear) which phonetically matches '二' (er), and 🚩 is a red flag representing '白' (white) as in plain or blank."
+    },
+    {
+        "gt": "一唱一和",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣🎤1️⃣☮️",
+        "inference_chain": "1️⃣ corresponds to '一' (one) semantically; 🎤 corresponds to '心' (heart) as 'microphone' can symbolize speaking from the heart; 1️⃣ again corresponds to '一' (one); ☮️ corresponds to '意' (intention) as the peace symbol represents harmony of intentions."
+    },
+    {
+        "gt": "一唱三叹",
+        "pred": "一唱三叹",
+        "emoji_rep": "1️⃣🎤3️⃣😞",
+        "inference_chain": "1️⃣ corresponds to '一' (one) both semantically and phonetically. 🎤 corresponds to '唱' (sing) semantically as a microphone is used for singing. 3️⃣ corresponds to '三' (three) both semantically and phonetically. 😞 corresponds to '叹' (sigh) semantically as it represents a sighing or sad expression."
+    },
+    {
+        "gt": "一团和气",
+        "pred": "一箭双雕",
+        "emoji_rep": "1️⃣⭕🕊️💨",
+        "inference_chain": "1️⃣ represents '一' (one) semantically. ⭕ resembles a target or circle, phonetically similar to '箭' (arrow). 🕊️ represents '双' (double) semantically as two birds. 💨 represents '雕' (carve or eagle) phonetically similar to '雕'."
+    },
+    {
+        "gt": "一团漆黑",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣⭕🖤◾️",
+        "inference_chain": "1️⃣ represents '一' (one) semantically; ⭕ resembles the shape of '心' (heart) visually; 🖤 is black, which is '黑' in Chinese, but phonetically similar to '意' (yì) when considering '黑' (hēi) and '意' (yì) share the same ending sound; ◾️ is also black, reinforcing '一' (one) again semantically."
+    },
+    {
+        "gt": "一塌糊涂",
+        "pred": "一丘之貉",
+        "emoji_rep": "1️⃣🗼🦊🐰",
+        "inference_chain": "1️⃣ represents '一' (one), 🗼 resembles '丘' (hill) in shape, 🦊 is '狐' (fox) which phonetically matches '貉' (a similar animal), and 🐰 is not directly used but helps confirm the idiom meaning."
+    },
+    {
+        "gt": "一声不吭",
+        "pred": "一言不发",
+        "emoji_rep": "1️⃣🔊🙅🗣️",
+        "inference_chain": "1️⃣ (一) represents the number 'one' (semantic match). 🔊 (言) is 'speech' or 'words' (semantic match). 🙅 (不) is 'no' or 'not' (semantic match). 🗣️ (发) is 'speak' or 'utter' (semantic match). The idiom '一言不发' means 'not saying a word'."
+    },
+    {
+        "gt": "一声不响",
+        "pred": "掩耳盗铃",
+        "emoji_rep": "1️⃣🔊🙅🐘",
+        "inference_chain": "1️⃣ (one) corresponds to '掩' (cover) semantically; 🔊 (sound) corresponds to '耳' (ear) semantically; 🙅 (no) corresponds to '盗' (steal) phonetically as 'dao'; 🐘 (elephant) corresponds to '铃' (bell) semantically as 'ling' sounds similar to '象' (elephant) in some contexts."
+    },
+    {
+        "gt": "一夫当关",
+        "pred": "一鸣惊人",
+        "emoji_rep": "1️⃣👨🔔🫙",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (yī, one). 👨 (man) corresponds to '鸣' (míng, to sound, as in a rooster crowing, phonetically similar to 'man' in some contexts). 🔔 (bell) corresponds to '惊' (jīng, to startle, as a bell might startle someone). 🫙 (jar) corresponds to '人' (rén, person, phonetically similar to 'jar' in some contexts)."
+    },
+    {
+        "gt": "一头雾水",
+        "pred": "一目了然",
+        "emoji_rep": "1️⃣🧠🌫💧",
+        "inference_chain": "1️⃣ represents '一' (one), � represents '目' (eye), 🌫 represents '了' (phonetic match, 'liao' sounds like '了'), 💧 represents '然' (semantic match, water droplets can imply 'natural' or 'so')"
+    },
+    {
+        "gt": "一如既往",
+        "pred": "一丝不挂",
+        "emoji_rep": "1️⃣🍼🐔🕸️",
+        "inference_chain": "1️⃣ (一) is the number 'one' in Chinese, 🍼 (丝) sounds like 'si' which is similar to 'si' in '一丝', 🐔 (鸡) sounds like 'ji' but is used here phonetically for '不' (bu) as a common substitution, 🕸️ (网) represents '挂' which means 'to hang' or 'net'."
+    },
+    {
+        "gt": "一孔之见",
+        "pred": "一孔之见",
+        "emoji_rep": "1️⃣🕳️🧀👀",
+        "inference_chain": "1️⃣ represents '一' (one) semantically. 🕳️ represents '孔' (hole) semantically. 🧀's pronunciation in Chinese is '奶酪' (nǎi lào), but it's commonly associated with 'cheese', which is '芝士' (zhī shì), where '芝' sounds like '之'. 👀 represents '见' (see) semantically."
+    },
+    {
+        "gt": "一字一句",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣🔤1️⃣🍊",
+        "inference_chain": "1️⃣ represents '一' (one), 🔤 represents '心' (heart/mind, as the emoji resembles a speech bubble which can be associated with thoughts or mind), 1️⃣ again represents '一' (one), 🍊 represents '意' (intention, as the emoji is an orange which in Chinese is '橙' (cheng), but here it's used phonetically for '意' (yi), as '橙' and '意' share the 'i' sound in pinyin)."
+    },
+    {
+        "gt": "一字不差",
+        "pred": "一言难尽",
+        "emoji_rep": "1️⃣🔤🙅👎",
+        "inference_chain": "1️⃣ represents '一' (one), 🔤 represents '言' (speech), 🙅 represents '难' (difficult), 👎 represents '尽' (end). The emojis sequentially match the characters in the idiom '一言难尽' both semantically and phonetically."
+    },
+    {
+        "gt": "一字不落",
+        "pred": "一字千金",
+        "emoji_rep": "1️⃣🔤🙅🍂",
+        "inference_chain": "1️⃣ represents '一' (one), 🔤 represents '字' (character), 🙅 represents '千' (thousand, as the emoji can imply 'no' which sounds like '千' in Chinese), 🍂 represents '金' (gold, as autumn leaves can symbolize gold color)"
+    },
+    {
+        "gt": "一字之师",
+        "pred": "一字之师",
+        "emoji_rep": "1️⃣🔤🧀🧑‍🏫",
+        "inference_chain": "1️⃣ represents '一' (one), 🔤 represents '字' (character), 🧀 represents '之' (phonetic match, 'zhi'), and 🧑‍🏫 represents '师' (teacher). Together, they form the idiom '一字之师' (a teacher who corrects a single character, meaning someone who gives a small but crucial piece of advice)."
+    },
+    {
+        "gt": "一字千金",
+        "pred": "一字千金",
+        "emoji_rep": "1️⃣🔤💰👑",
+        "inference_chain": "1️⃣ represents '一' (one), 🔤 represents '字' (character), 💰 represents '千' (thousand), 👑 represents '金' (gold). The idiom '一字千金' means 'one character is worth a thousand pieces of gold', describing the high value of a piece of writing."
+    },
+    {
+        "gt": "一官半职",
+        "pred": "一瓶子醋",
+        "emoji_rep": "1️⃣🫙🌗📄",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (semantic match). 🫙 (bottle) corresponds to '瓶' (semantic match). 🌗 (half moon) corresponds to '子' (phonetic match, as '子' sounds like 'zi' and 'half moon' can imply 'half' which is '半' but here it's used phonetically). 📄 (paper) corresponds to '醋' (phonetic match, as 'paper' is '纸' which sounds like 'zhi', but here it's creatively matched to '醋' which sounds like 'cu', though this is a stretch; the idiom '一瓶子醋' is a colloquial phrase meaning someone who is half-baked or not fully knowledgeable)."
+    },
+    {
+        "gt": "一家之主",
+        "pred": "望子成龙",
+        "emoji_rep": "1️⃣👨‍👩‍👧‍👦🧀👑",
+        "inference_chain": "1️⃣ (望, wàng, semantic: 'look' or 'hope'), 👨‍👩‍👧‍👦 (子, zǐ, semantic: 'child'), 🧀 (成, chéng, phonetic: 'cheese' sounds like 'chéng'), 👑 (龙, lóng, semantic: 'dragon' or 'royal')"
+    },
+    {
+        "gt": "一家之言",
+        "pred": "一家之言",
+        "emoji_rep": "1️⃣👨‍👩‍👧‍👦🧀💬",
+        "inference_chain": "1️⃣ represents 'one' (一), 👨‍👩‍👧‍👦 represents 'family' (家), 🧀 sounds like 'cheese' which in Chinese is '奶酪' (nǎi lào), but the character '之' (zhī) is phonetically similar to 'cheese', 💬 represents 'speech' or 'words' (言). Together, they form the idiom '一家之言' (yī jiā zhī yán), meaning 'a single opinion' or 'one-sided view'."
+    },
+    {
+        "gt": "一家老小",
+        "pred": "四世同堂",
+        "emoji_rep": "1️⃣👨‍👩‍👧‍👦👴👶",
+        "inference_chain": "1️⃣ (semantic: 'four'/'四') + 👨‍👩‍👧‍👦 (semantic: 'generation'/'世') + 👴 (semantic: 'together'/'同') + 👶 (semantic: 'hall'/'堂', as in family living together)"
+    },
+    {
+        "gt": "一尘不染",
+        "pred": "一城不容",
+        "emoji_rep": "1️⃣🏙🙅🧬",
+        "inference_chain": "1️⃣ represents '一' (one), 🏙 represents '城' (city), 🙅 represents '不' (not), and 🧬 represents '容' (tolerate). The emojis sequentially match the characters in the idiom '一城不容' (one city cannot tolerate)."
+    },
+    {
+        "gt": "一己之私",
+        "pred": "一纸空文",
+        "emoji_rep": "1️⃣🐔📄🤫",
+        "inference_chain": "1️⃣ represents '一' (one), 🐔 represents '鸡' (ji1), which phonetically matches '纸' (zhi3), 📄 represents '纸' (paper), and 🤫 represents '空' (empty) or '文' (document), leading to the idiom '一纸空文' (a mere scrap of paper)."
+    },
+    {
+        "gt": "一己之见",
+        "pred": "一纸空文",
+        "emoji_rep": "1️⃣🐔📄👀",
+        "inference_chain": "1️⃣ represents '一' (one), 🐔 sounds like '纸' (paper), 📄 also represents '纸' (paper), 👀 represents '看' (look) but is replaced by '空' (empty) for the idiom, forming '一纸空文' (a mere scrap of paper)."
+    },
+    {
+        "gt": "一帆风顺",
+        "pred": "一帆风顺",
+        "emoji_rep": "1️⃣⛵🌬️✅",
+        "inference_chain": "1️⃣ (一, semantic match for 'one'), ⛵ (帆, semantic match for 'sail'), 🌬️ (风, semantic match for 'wind'), ✅ (顺, semantic match for 'smooth'). The idiom '一帆风顺' means 'smooth sailing' or 'everything goes smoothly'."
+    },
+    {
+        "gt": "一席之地",
+        "pred": "一举两得",
+        "emoji_rep": "1️⃣🍽️🧀🌍",
+        "inference_chain": "1️⃣ represents '一' (one), �️ represents '举' (lift, as in lifting a utensil), 🧀 represents '两' (two, as cheese can be split into two parts), 🌍 represents '得' (gain, as the world can symbolize gains or benefits)."
+    },
+    {
+        "gt": "一干二净",
+        "pred": "一干二净",
+        "emoji_rep": "1️⃣🍺2️⃣🧹",
+        "inference_chain": "1️⃣ represents '一' (one), � represents '干' (dry), 2️⃣ represents '二' (two), 🧹 represents '净' (clean). The emojis sequentially match the characters in the idiom '一干二净', which means 'completely clean' or 'thoroughly cleared'."
+    },
+    {
+        "gt": "一年一度",
+        "pred": "一炮而红",
+        "emoji_rep": "1️⃣🧨1️⃣🌡️",
+        "inference_chain": "1️⃣ corresponds to '一' (one), � corresponds to '炮' (cannon/firecracker, semantically related to explosion), 1️⃣ corresponds to '而' (a conjunction, phonetically similar to '二' but contextually fits), 🌡️ corresponds to '红' (red, semantically related to the color red often associated with heat or success)."
+    },
+    {
+        "gt": "一年到头",
+        "pred": "一刀两断",
+        "emoji_rep": "1️⃣🧨🔪🗿",
+        "inference_chain": "1️⃣ (一, semantic match for 'one'), 🧨 (刀, phonetic match 'dāo' for 'knife'), 🔪 (两, semantic match for 'two'), 🗿 (断, semantic match for 'break' or 'sever')"
+    },
+    {
+        "gt": "一年半载",
+        "pred": "一日千里",
+        "emoji_rep": "1️⃣🧨🌗🚚",
+        "inference_chain": "1️⃣ represents '一' (one), 🧨 represents '日' (day, as firecrackers are used during celebrations which often mark days), 🌗 represents '千' (thousand, as the moon phase emoji can phonetically resemble '千' in some contexts), 🚚 represents '里' (mile, as a truck can travel miles)"
+    },
+    {
+        "gt": "一应俱全",
+        "pred": "一鸣惊人",
+        "emoji_rep": "1️⃣🦅🍊👊",
+        "inference_chain": "1️⃣ (一) is a direct semantic match for the first character '一'. 🦅 (鹰) phonetically matches '鸣' (both pronounced 'ming'). 🍊 (橙) phonetically matches '惊' (both pronounced 'jing'). 👊 (拳) phonetically matches '人' (both pronounced 'ren')."
+    },
+    {
+        "gt": "一式一样",
+        "pred": "一石一羊",
+        "emoji_rep": "1️⃣🍅1️⃣🐑",
+        "inference_chain": "1️⃣ represents the character '一' (one). 🍅 is pronounced as 'shí' in Chinese, which matches the character '石' (stone). 1️⃣ again represents '一'. 🐑 is pronounced as 'yáng', matching the character '羊' (sheep). The idiom '一石一羊' is formed by combining these characters in order."
+    },
+    {
+        "gt": "一张一弛",
+        "pred": "一举一动",
+        "emoji_rep": "1️⃣✋1️⃣📐",
+        "inference_chain": "1️⃣ corresponds to '一' (one) both semantically and phonetically. ✋ represents '举' (to lift, hand action), semantically matching. The next 1️⃣ again is '一'. 📐 resembles '动' (to move, action) as a ruler can imply measurement or movement, semantically linked."
+    },
+    {
+        "gt": "一往情深",
+        "pred": "一见钟情",
+        "emoji_rep": "1️⃣🚶❤️🌊",
+        "inference_chain": "1️⃣ (一, semantic match), 🚶 (见, semantic match as 'walking' can imply 'seeing'), ❤️ (钟, phonetic match as 'heart' is 'zhōng' similar to '钟'), 🌊 (情, phonetic match as 'wave' is 'qíng' similar to '情')"
+    },
+    {
+        "gt": "一往无前",
+        "pred": "一丝不挂",
+        "emoji_rep": "1️⃣🕸️🈚️⏩",
+        "inference_chain": "1️⃣ represents '一' (one), 🕸️ represents '丝' (silk/thread), 🈚️ represents '不' (no/not), ⏩ represents '挂' (hang). The emojis semantically and phonetically match the characters in the idiom '一丝不挂' (literally 'not a single thread hanging', meaning 'completely naked')."
+    },
+    {
+        "gt": "一往直前",
+        "pred": "一网打尽",
+        "emoji_rep": "1️⃣🕸️📄⏩",
+        "inference_chain": "1️⃣ represents '一' (one), 🕸️ represents '网' (net) semantically, 📄 represents '打' (hit) phonetically as 'da' in 'paper' (纸, zhi) is close to 'da', and ⏩ represents '尽' (exhaust) semantically as it implies completion or finishing."
+    },
+    {
+        "gt": "一心一意",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣❤️1️⃣👔",
+        "inference_chain": "1️⃣ represents '一' (one), ❤️ represents '心' (heart), 1️⃣ again represents '一' (one), 👔 represents '意' (intention, as 'tie' in Chinese is '领带' but '意' sounds similar to '衣' which is related to clothing)."
+    },
+    {
+        "gt": "一心两用",
+        "pred": "一心二用",
+        "emoji_rep": "1️⃣❤️2️⃣🫂",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one); ❤️ (heart) semantically matches '心' (heart); 2️⃣ (two) semantically matches '二' (two); 🫂 (hug) semantically matches '用' (use) as hugging is a form of using arms."
+    },
+    {
+        "gt": "一念之差",
+        "pred": "一心一意",
+        "emoji_rep": "1️⃣💭🧀🗡️",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (one) semantically; 💭 (thought) corresponds to '心' (heart/mind) semantically; � (cheese) corresponds to '一' (one) phonetically ('cheese' in Chinese is '奶酪' (nǎi lào), but '一' is pronounced 'yī', which is a stretch but sometimes used in phonetic puns); 🗡️ (sword) corresponds to '意' (meaning/intention) semantically, as '意' can be associated with the sharpness of a sword in metaphorical contexts."
+    },
+    {
+        "gt": "一息尚存",
+        "pred": "一气呵成",
+        "emoji_rep": "1️⃣💨⬆️💾",
+        "inference_chain": "1️⃣ (一, semantic match for 'one'), 💨 (气, semantic match for 'breath' or 'energy'), ⬆️ (呵, phonetic match as 'he' in pinyin resembles '呵'), 💾 (成, semantic match for 'save' or 'complete' as '成' means 'to accomplish')"
+    },
+    {
+        "gt": "一意孤行",
+        "pred": "一飞冲天",
+        "emoji_rep": "1️⃣🪽🍄🚶",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one). 🪽 (wing) semantically matches '飞' (fly). 🍄 (mushroom) phonetically matches '冲' (chōng), as 'mushroom' in Chinese is '蘑菇' (mó gu), but '冲' is close to 'chōng'. 🚶 (walking) semantically matches '天' (sky/heaven) as 'walking towards the sky' implies '天'."
+    },
+    {
+        "gt": "一成不变",
+        "pred": "一尘不染",
+        "emoji_rep": "1️⃣🍊🙅🦇",
+        "inference_chain": "1️⃣ represents '一' (one), 🍊 represents '尘' (dust, as oranges can gather dust), 🙅 represents '不' (no, not), 🦇 represents '染' (dye, as bats are associated with darkness or staining)"
+    },
+    {
+        "gt": "一手包办",
+        "pred": "一手包办",
+        "emoji_rep": "1️⃣✋👜🛹",
+        "inference_chain": "1️⃣ (one) → 一; ✋ (hand) → 手; 👜 (bag) → 包 (semantic match: 'bag' implies '包'); 🛹 (skateboard, pronounced 'bǎn' in Chinese) → 办 (phonetic match: 'bàn' is close to 'bǎn'). Combined, these form the idiom '一手包办' (meaning 'to take everything into one's own hands')."
+    },
+    {
+        "gt": "一手包揽",
+        "pred": "一手包办",
+        "emoji_rep": "1️⃣✋👜🧺",
+        "inference_chain": "1️⃣ represents '一' (one), ✋ represents '手' (hand), 👜 represents '包' (bag/package), 🧺 represents '办' (handle/manage). The emojis sequentially match the characters in the idiom '一手包办', which means to take everything into one's own hands."
+    },
+    {
+        "gt": "一手遮天",
+        "pred": "一手遮天",
+        "emoji_rep": "1️⃣✋🙈🌌",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one), ✋ (hand) semantically matches '手' (hand), 🙈 (see-no-evil monkey) semantically matches '遮' (cover, block), 🌌 (milky way, sky) semantically matches '天' (sky). The idiom '一手遮天' means 'to hide the truth from the masses'."
+    },
+    {
+        "gt": "一扫而光",
+        "pred": "一尘不染",
+        "emoji_rep": "1️⃣🧹👂💡",
+        "inference_chain": "1️⃣ corresponds to '一' (one) semantically. 🧹 (broom) represents '尘' (dust) semantically as brooms are used to clean dust. 👂 (ear) represents '不' (not) phonetically as 'ear' in Chinese is 'ěr' which is similar to '不' (bù). 💡 (light bulb) represents '染' (dye/stain) semantically as light bulbs emit clean light, symbolizing no stain."
+    },
+    {
+        "gt": "一扫而空",
+        "pred": "一尘不染",
+        "emoji_rep": "1️⃣🧹👂🈳",
+        "inference_chain": "1️⃣ (一, semantic match for 'one'), � (尘, semantic match for 'dust'), 👂 (不, phonetic match 'bu' for 'not'), 🈳 (染, semantic match for 'dye' or 'stain')"
+    },
+    {
+        "gt": "一技之长",
+        "pred": "一技之长",
+        "emoji_rep": "1️⃣🐔🧀🌭",
+        "inference_chain": "1️⃣ (一) - Semantic match for the number one; 🐔 (技) - Phonetic match, 'ji' sounds like 'ji' in '技'; 🧀 (之) - Phonetic match, 'zhi' sounds like 'zhi' in '之'; 🌭 (长) - Phonetic match, 'chang' sounds like 'chang' in '长'"
+    },
+    {
+        "gt": "一拍即合",
+        "pred": "一拍即合",
+        "emoji_rep": "1️⃣👏🐔🤝",
+        "inference_chain": "1️⃣ (一) - semantic match for 'one'; 👏 (拍) - semantic match for 'clap' or 'pat'; 🐔 (即) - phonetic match, 'ji' sounds like '即'; 🤝 (合) - semantic match for 'join' or 'agree'"
+    },
+    {
+        "gt": "一拥而上",
+        "pred": "一见如故",
+        "emoji_rep": "1️⃣🫂👂⬆️",
+        "inference_chain": "1️⃣ represents '一' (one), 🫂 symbolizes '见' (meet, as hugging implies meeting), 👂 sounds like '如' (ru), and ⬆️ represents '故' (old, as up can imply past or old times)."
+    },
+    {
+        "gt": "一拥而入",
+        "pred": "一见钟情",
+        "emoji_rep": "1️⃣🫂👂🍼",
+        "inference_chain": "1️⃣ (一) is a direct semantic match for the first character '一'. 🫂 (hug) can symbolize '见' (meet/see) through the action of embracing when meeting. 👂 (ear) phonetically matches '钟' (zhōng) as 'ear' in Chinese is '耳' (ěr), but here it's used for its sound resemblance. 🍼 (baby bottle) represents '情' (qíng) as 'bottle' is '瓶' (píng), which is phonetically close to '情'."
+    },
+    {
+        "gt": "一挥而就",
+        "pred": "一举两得",
+        "emoji_rep": "1️⃣🙋👂🍷",
+        "inference_chain": "1️⃣ (one) corresponds to '一' (one), 🙋 (person raising hand) semantically matches '举' (raise), 👂 (ear) phonetically matches '两' (liǎng, similar to 'ear' in some dialects), 🍷 (wine) semantically matches '得' (get, as in obtaining wine)"
+    },
+    {
+        "gt": "一掷千金",
+        "pred": "一掷千金",
+        "emoji_rep": "1️⃣🎲💰👑",
+        "inference_chain": "1️⃣ represents '一' (one), 🎲 represents '掷' (throw, as in throwing dice), 💰 represents '千' (thousand, as money can be associated with large amounts), 👑 represents '金' (gold, as crowns are often made of gold)"
+    },
+    {
+        "gt": "一文不值",
+        "pred": "一无是处",
+        "emoji_rep": "1️⃣🦟🙅📄",
+        "inference_chain": "1️⃣ represents '一' (one), 🦟 sounds like '无' (wu, meaning none), 🙅 represents '是' (shi, meaning yes, but here negated), 📄 represents '处' (chu, meaning place or aspect)"
+    },
+    {
+        "gt": "一文不名",
+        "pred": "一无是处",
+        "emoji_rep": "1️⃣🦟🙅📛",
+        "inference_chain": "1️⃣ (一) - Semantic match for 'one'; 🦟 (蚊/wén) - Phonetic match for '无/wú'; 🙅 (不/bù) - Semantic match for 'non-approval'; 📛 (名/míng) - Phonetic match for '处/chù'. Combined, they form the idiom '一无是处' meaning 'utterly worthless'."
+    },
+    {
+        "gt": "一斑窥豹",
+        "pred": "指鹿为马",
+        "emoji_rep": "1️⃣🦓👀🐆",
+        "inference_chain": "1️⃣ (finger) semantically matches '指' (point); 🦓 (zebra) phonetically matches '鹿' (lu, deer); 👀 (eyes) semantically matches '为' (as); 🐆 (leopard) phonetically matches '马' (ma, horse). The idiom '指鹿为马' means to deliberately misrepresent facts."
+    },
+    {
+        "gt": "一无所得",
+        "pred": "一无所得",
+        "emoji_rep": "1️⃣🈚🔒🉐",
+        "inference_chain": "1️⃣ represents '一' (one), 🈚 represents '无' (none), 🔒 represents '所' (phonetic match, as '锁' is pronounced 'suǒ' similar to '所' 'suǒ'), 🉐 represents '得' (get). Combined, they form the idiom '一无所得' meaning 'to gain nothing'."
+    },
+    {
+        "gt": "一无所成",
+        "pred": "一无所有",
+        "emoji_rep": "1️⃣🈚🔒🏆",
+        "inference_chain": "1️⃣ represents '一' (one), 🈚 represents '无' (none), 🔒 represents '所' (phonetic match, 'suo' from 'lock' in Chinese is '锁' which sounds similar to '所'), 🏆 represents '有' (semantic match, as a trophy implies possession or 'having')"
+    },
+    {
+        "gt": "一无所有",
+        "pred": "一无所有",
+        "emoji_rep": "1️⃣🈚🔒🈶",
+        "inference_chain": "1️⃣ represents '一' (one), 🈚 represents '无' (none), 🔒 represents '所' (phonetic match, 'suo' in pinyin), 🈶 represents '有' (have). Combined, they form the idiom '一无所有' meaning 'to have nothing at all'."
+    },
+    {
+        "gt": "一无所求",
+        "pred": "一无所有",
+        "emoji_rep": "1️⃣🈚🔒⚽",
+        "inference_chain": "1️⃣ represents '一' (one), 🈚 represents '无' (none), 🔒 represents '所' (phonetic match: 'suo' is similar to '锁'), ⚽ represents '有' (semantic match: 'ball' can imply possession or having something)"
+    },
+    {
+        "gt": "一无所知",
+        "pred": "一无所有",
+        "emoji_rep": "1️⃣🈚🔒🧀",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one); 🈚 (nothing) semantically matches '无' (without); 🔒 (lock) phonetically matches '所' (suo); 🧀 (cheese) phonetically matches '有' (you, similar to 'cheese' pronunciation 'nǎi lào' but focusing on 'lào' sounding like 'yǒu')."
+    },
+    {
+        "gt": "一无所获",
+        "pred": "一无所有",
+        "emoji_rep": "1️⃣🈚🔒🔥",
+        "inference_chain": "1️⃣ represents '一' (one), 🈚 represents '无' (none), 🔒 represents '所' (place), and 🔥 represents '有' (have). The emojis sequentially match the characters in the idiom '一无所有' (having nothing at all)."
+    },
+    {
+        "gt": "一无所长",
+        "pred": "一无所有",
+        "emoji_rep": "1️⃣🈚🔒🦒",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one); 🈚 (no) semantically matches '无' (no); 🔒 (lock) phonetically matches '所' (suo); 🦒 (giraffe) phonetically resembles '有' (you) via '鹿' (lu) as a partial match."
+    },
+    {
+        "gt": "一无是处",
+        "pred": "一无是处",
+        "emoji_rep": "1️⃣🈚✔️➗",
+        "inference_chain": "1️⃣ represents '一' (one), 🈚 represents '无' (none), ✔️ represents '是' (correct), ➗ represents '处' (place). The emojis sequentially match the characters in the idiom '一无是处', where each emoji either semantically or phonetically corresponds to the respective character."
+    },
+    {
+        "gt": "一日三秋",
+        "pred": "一日三秋",
+        "emoji_rep": "1️⃣☀️3️⃣🍂",
+        "inference_chain": "1️⃣ (one) semantically matches '一' (one); ☀️ (sun) semantically matches '日' (day); 3️⃣ (three) semantically matches '三' (three); 🍂 (autumn) semantically matches '秋' (autumn). The idiom '一日三秋' means 'one day apart feels like three years', describing deep longing."
+    },
+    {
+        "gt": "一日千里",
+        "pred": "一日千里",
+        "emoji_rep": "1️⃣☀️💰🎁",
+        "inference_chain": "1️⃣ represents '一' (one), ☀️ represents '日' (sun/day), 💰 represents '千' (thousand, as '钱' sounds like '千'), 🎁 represents '里' (inside, as '礼' sounds like '里')"
+    }
+]
