@@ -2,13 +2,13 @@ import re
 import random
 import json
 
+
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-# Initialize OpenAI client
 client = OpenAI(api_key=os.getenv("DS_API_KEY"), base_url=os.getenv("DS_URL"))
 
 def count_json_objects(file_path):
@@ -37,6 +37,7 @@ def filter_idioms_randomly(input_file, output_file, sample_size=3000):
     sample_size = min(sample_size, len(four_char_idioms))
     
     random.seed(42) 
+
     sampled_idioms = random.sample(four_char_idioms, sample_size)
     
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -138,37 +139,34 @@ def filter_idioms_by_popularity(input_file):
     print(f"Popular idioms: {popular_count} | Unpopular idioms: {unpopular_count}")
 
 
-import json
 
 def fix_json_file(input_file, output_file):
+    records = []
     with open(input_file, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
-    
-    fixed_json = '[' + ','.join(line.strip() for line in lines) + ']'
-    
-    try:
-        data = json.loads(fixed_json)
-    except json.JSONDecodeError as e:
-        print(f"JSON decoding error: {e}")
-        return
-    
+        for lineno, line in enumerate(f, start=1):
+            s = line.strip()
+            if not s:
+                continue
+            try:
+                obj = json.loads(s)
+            except json.JSONDecodeError as e:
+                print(f"[第 {lineno} 行] JSON 解析失败: {e}")
+                continue
+            records.append(obj)
+
     with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-    
-    print(f"JSON saved at: {output_file}")
+        json.dump(records, f, ensure_ascii=False, indent=4)
+
+    print(f"共写入 {len(records)} 条记录到 {output_file}")
 
 
 
 if __name__ == '__main__':
-    # input_file = '/data/tianyu_data/appendix/GuessBenchmark/experiment/output/idiom_emoji_1_500_by_ds_fixed_by_ds.json' 
-    # output_file = '/data/tianyu_data/appendix/GuessBenchmark/experiment/output/idiom_emoji_1_500_by_ds_fixed_by_ds_2.json'  
-    # fix_json_file(input_file, output_file)
-
-    file_path = './idiom.json'  
+    file_path = '/data/tianyu_data/appendix/GuessBenchmark/data_generation/pop_idioms_emoji_pair/idiom_emoji_by_ds_merged.json'  
     object_count = count_json_objects(file_path)
     print(f"[{object_count}] objects in {file_path}")
 
-    filter_idioms_by_popularity(file_path)
+    # filter_idioms_by_popularity(file_path)
 
     # input_json = './idiom.json'  
     # output_json = './sampled_3000_idioms.json'  

@@ -15,9 +15,14 @@ client = OpenAI(api_key=os.getenv("DS_API_KEY"), base_url=os.getenv("DS_URL"))
 # compliant_output_file = "./pop_idioms_emoji_pair/idiom_emoji_1_500_by_ds.json"  
 # error_output_file = "./pop_idioms_emoji_pair/idiom_emoji_1_500_by_ds_error.json" 
  
-input_file = "/data/tianyu_data/appendix/GuessBenchmark/data_generation/pop_idioms_merged.json"  
-compliant_output_file = "./pop_idioms_emoji_pair/idiom_emoji_merged_by_ds.json"  
-error_output_file = "./pop_idioms_emoji_pair/idiom_emoji_merged_by_ds_error.json" 
+# input_file = "/data/tianyu_data/appendix/GuessBenchmark/data_generation/pop_idioms_merged.json"  
+# compliant_output_file = "./pop_idioms_emoji_pair/idiom_emoji_merged_by_ds.json"  
+# error_output_file = "./pop_idioms_emoji_pair/idiom_emoji_merged_by_ds_error.json" 
+
+input_file = "/data/tianyu_data/appendix/GuessBenchmark/data_generation/pop_parted_idioms_origin/pop_idioms_merged.json"  
+compliant_output_file = "./idiom_emoji_merged_by_ds.json"  
+error_output_file = "./idiom_emoji_merged_by_ds_error.json" 
+
 
 # Regular expression pattern to extract JSON from response
 json_pattern = re.compile(r'```json\s*({.*?})\s*```', re.DOTALL)
@@ -26,7 +31,7 @@ def process_response(idiom, response_content):
     """Process the API response and save to appropriate file based on content."""
     # Try to extract JSON from the response
     json_match = json_pattern.search(response_content)
-    
+
     if json_match:
         try:
             # Parse the JSON to validate it
@@ -39,10 +44,10 @@ def process_response(idiom, response_content):
                     "inference_chain": response_json["inference_chain"]
                 }
                 # Valid format found
-                with open(compliant_output_file, 'a', encoding='utf-8') as f:
-                    json.dump(compliant_data, f, ensure_ascii=False)
-                    f.write('\n') 
-                return True
+                # with open(compliant_output_file, 'a', encoding='utf-8') as f:
+                #     json.dump(compliant_data, f, ensure_ascii=False)
+                #     f.write('\n') 
+                return True, compliant_data
         except json.JSONDecodeError:
             pass
     
@@ -51,17 +56,15 @@ def process_response(idiom, response_content):
         "idiom": idiom,
         "response": response_content
     }
-    with open(error_output_file, 'a', encoding='utf-8') as f:
-        json.dump(fail_data, f, ensure_ascii=False)
-        f.write('\n')  
-    return False
+
+    return False, fail_data
 
 def main():
     # Read idioms from file
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
             data = json.load(f)  
-            data = data[5115:]
+            data = data[:5]
             print(f"===Total idioms to process: {len(data)}===")
             idioms = [item['word'] for item in data if 'word' in item]  
     except FileNotFoundError:
@@ -74,6 +77,10 @@ def main():
         print(f"Error: Some entries in '{input_file}' are missing the 'word' field.")
         return
     
+    success_data_list = []
+    fail_data_list = []
+    
+    
     # Process each idiom with progress tracking
     for index, idiom in enumerate(idioms, start=1):
         try:
@@ -82,27 +89,6 @@ def main():
             
             response = client.chat.completions.create(
                 model="deepseek-chat",
-            #     messages=[
-            #         {
-            #             "role": "system", 
-            #             "content": (
-            #                 "You are a helpful assistant, capable of generating emoji representation sets for Chinese idioms. "
-            #                 "Each set must contain exactly four emojis, with each emoji strictly corresponding to one character in the idiom IN SEQUENTIAL ORDER. "
-            #                 "The corresponding emojis can follow either of these two rules: 1) The emoji represents a meaning that aligns with the character's meaning, or "
-            #                 "2) The emoji represents an object whose Chinese pronunciation (pinyin) is identical or very similar to the character's pronunciation. "
-            #                 "You must apply ONE of these two rules INDEPENDENTLY for each individual character in the idiom. "
-            #                 "Additionally, your output must include both the final emoji result and the reasoning process behind generating the emoji set. "
-            #                 "The output must be a single JSON object containing only the JSON and no additional text. "
-            #                 "The JSON format should be: {\"emoji_rep\": \"xxxx\", \"inference_chain\": \"...\"}."
-            #             )
-            #         },
-            #         {
-            #             "role": "user", 
-            #             "content": f"Please generate a set of emojis for the idiom '{idiom}'"
-            #         },
-            #     ],
-            #     stream=False
-            # )
                 messages=[
                     {
                         "role": "system", 
@@ -123,18 +109,18 @@ def main():
                 stream=False
             )           
             # Process the response
+            
             response_content = response.choices[0].message.content
-            success = process_response(idiom, response_content)
+            print(f"Response content: {response_content}")
+            success, generate_data = process_response(idiom, response_content)
             print(f"Success: {success}")
             
             # Flush writes to ensure data is saved
             if success:
-                with open(compliant_output_file, 'a', encoding='utf-8') as f:
-                    f.flush()
+                success_data_list.append(generate_data)
             else:
-                with open(error_output_file, 'a', encoding='utf-8') as f:
-                    f.flush()
-            
+                fail_data_list.append(generate_data)
+
         except Exception as e:
             print(f"Error: {str(e)}")
             # Save the error case
@@ -142,10 +128,13 @@ def main():
                 "idiom": idiom,
                 "response": f"Error: {str(e)}"
             }
-            with open(error_output_file, 'a', encoding='utf-8') as f:
-                json.dump(fail_data, f, ensure_ascii=False)
-                f.write('\n')
-                f.flush()
+            fail_data_list.append(generate_data)
+
+    with open(compliant_output_file, 'w', encoding='utf-8') as f:    
+        json.dump(success_data_list, f, ensure_ascii=False, indent=4,  ) 
+
+    with open(error_output_file, 'w', encoding='utf-8') as f:    
+        json.dump(fail_data_list, f, ensure_ascii=False, indent=4,  ) 
 
 if __name__ == "__main__":
     try:
