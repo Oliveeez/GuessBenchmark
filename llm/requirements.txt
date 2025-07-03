@@ -1,0 +1,14 @@
+# 图片 LLM API 调用所需的依赖包
+
+# 核心依赖
+requests>=2.31.0          # HTTP 请求库
+Pillow>=10.0.0           # 图片处理库
+pathlib>=1.0.1           # 路径处理
+
+# 可选依赖（用于其他 LLM 服务）
+openai>=1.0.0            # OpenAI 官方客户端（可选）
+anthropic>=0.3.0         # Anthropic Claude API（可选）
+
+# 实用工具
+python-dotenv>=1.0.0     # 环境变量管理
+tqdm>=4.65.0            # 进度条显示
