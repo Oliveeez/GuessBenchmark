@@ -1,0 +1,67 @@
+{
+  "airplane.png": {
+    "success": true,
+    "response": "飞机",
+    "usage": {
+      "prompt_tokens": 61,
+      "completion_tokens": 2,
+      "total_tokens": 63,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "model": "qwen-vl-plus"
+  },
+  "apple.png": {
+    "success": true,
+    "response": "这是一个红色的苹果表情符号。",
+    "usage": {
+      "prompt_tokens": 61,
+      "completion_tokens": 8,
+      "total_tokens": 69,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "model": "qwen-vl-plus"
+  },
+  "bird.png": {
+    "success": true,
+    "response": "鸟头",
+    "usage": {
+      "prompt_tokens": 61,
+      "completion_tokens": 3,
+      "total_tokens": 64,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "model": "qwen-vl-plus"
+  },
+  "black_large_square.png": {
+    "success": true,
+    "response": "黑方块",
+    "usage": {
+      "prompt_tokens": 61,
+      "completion_tokens": 4,
+      "total_tokens": 65,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "model": "qwen-vl-plus"
+  },
+  "blue_heart.png": {
+    "success": true,
+    "response": "蓝色的心形表情符号。",
+    "usage": {
+      "prompt_tokens": 61,
+      "completion_tokens": 7,
+      "total_tokens": 68,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "model": "qwen-vl-plus"
+  }
+}

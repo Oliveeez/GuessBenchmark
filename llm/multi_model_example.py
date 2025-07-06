@@ -17,7 +17,7 @@ def example_single_image():
         print()
         
         # 指定图片路径和提示词
-        image_path = "../data/emoji_source/apple.png"  # 使用项目中的 emoji 图片
+        image_path = "./data/emoji_source/apple.png"  # 使用项目中的 emoji 图片
         prompt = "请描述这张图片显示的是什么物品或符号？"
         
         if not os.path.exists(image_path):
@@ -49,7 +49,7 @@ def example_batch_processing():
         client = create_client_from_config()
         
         # 批量处理文件夹中的图片
-        image_folder = "../data/emoji_source"
+        image_folder = "./data/test"
         prompt = "这是什么 emoji 表情或符号？请用中文简洁回答。"
         output_file = "emoji_analysis_results.json"
         
@@ -126,7 +126,7 @@ def test_api_connection():
         client = create_client_from_config()
         
         # 使用一个简单的测试图片
-        test_image = "../data/emoji_source/apple.png"
+        test_image = "./data/emoji_source/apple.png"
         if os.path.exists(test_image):
             print("正在测试 API 连接...")
             result = client.send_image_with_prompt(test_image, "这是什么？")
