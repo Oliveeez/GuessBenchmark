@@ -1,14 +1,42 @@
-# 图片 LLM API 调用所需的依赖包
+# GuessBenchmark 项目依赖包
+# 用于成语图片识别、LLM API调用和数据处理
 
 # 核心依赖
 requests>=2.31.0          # HTTP 请求库
 Pillow>=10.0.0           # 图片处理库
-pathlib>=1.0.1           # 路径处理
+pathlib>=1.0.1           # 路径处理 (Python 3.4+ 内置)
 
-# 可选依赖（用于其他 LLM 服务）
-openai>=1.0.0            # OpenAI 官方客户端（可选）
-anthropic>=0.3.0         # Anthropic Claude API（可选）
+# LLM API 客户端
+openai>=1.0.0            # OpenAI 官方客户端
+anthropic>=0.3.0         # Anthropic Claude API
+zhipuai>=2.0.0           # 智谱AI GLM 系列模型
 
-# 实用工具
+# 数据处理
+json                     # JSON 数据处理 (Python 内置)
+re                       # 正则表达式 (Python 内置)
+
+# 环境配置和工具
 python-dotenv>=1.0.0     # 环境变量管理
 tqdm>=4.65.0            # 进度条显示
+
+# 机器学习和NLP (用于实验部分)
+transformers>=4.30.0     # Hugging Face Transformers (用于本地模型)
+torch>=2.0.0            # PyTorch (transformers 依赖)
+tiktoken>=0.5.0         # OpenAI 的分词器 (用于token计数)
+
+# 系统和时间处理
+datetime                 # 日期时间处理 (Python 内置)
+time                     # 时间工具 (Python 内置)
+os                       # 操作系统接口 (Python 内置)
+sys                      # 系统相关 (Python 内置)
+base64                   # Base64 编码 (Python 内置)
+io                       # 输入输出流 (Python 内置)
+collections              # 集合数据类型 (Python 内置)
+typing                   # 类型注解 (Python 内置)
+
+# 可选依赖 (根据使用的API服务)
+# dashscope              # 阿里云 DashScope API (按需安装)
+# together               # Together AI API (按需安装)
+
+# 开发和调试
+traceback                # 错误追踪 (Python 内置)
