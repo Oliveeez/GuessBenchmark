@@ -8,20 +8,14 @@ def remove_tone(pinyin):
 # 1. 读取idiom.json，筛选四字成语
 idioms = []
 with open('idiom.json', encoding='utf-8') as f:
-    for line in f:
-        line = line.strip().rstrip(',')
-        if not line:
-            continue
-        try:
-            obj = json.loads(line)
-            word = obj.get('word', '')
-            if len(word) == 4:
-                pinyin = obj.get('pinyin', '')
-                # 只保留字母和空格
-                pinyin_no_tone = ' '.join([remove_tone(s) for s in pinyin.split()])
-                idioms.append({'word': word, 'pinyin': pinyin_no_tone})
-        except Exception as e:
-            print(f"跳过异常行: {line[:30]}... 错误: {e}")
+    data = json.load(f)  # 一次性读入整个数组
+    for obj in data:
+        word = obj.get('word', '')
+        if len(word) == 4:
+            pinyin = obj.get('pinyin', '')
+            # 只保留字母和空格
+            pinyin_no_tone = ' '.join([remove_tone(s) for s in pinyin.split()])
+            idioms.append({'word': word, 'pinyin': pinyin_no_tone})
 
 # 2. 生成成语表
 with open('idiom_table.txt', 'w', encoding='utf-8') as f:

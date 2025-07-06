@@ -7,10 +7,10 @@
 #include <unordered_map>
 #define BLOCK_SIZE 4096
 #define M 58
-#define L 48
+#define L 36
 
 struct Value {
-    char emoji[8];
+    char emoji[32];
     char hanzi[8];
     int index;
     Value() { emoji[0]=0; hanzi[0]=0; index=0; }
@@ -204,7 +204,7 @@ public:
     }
 };
 
-#pragma pack(push, 1)
+// #pragma pack(push, 1)
 template<class Key, class Value>
 struct BPTNode {
     bool is_leaf;
@@ -230,9 +230,9 @@ struct BPTNode {
         memset(&leaf_entries, 0, sizeof(leaf_entries));
     }
 };
-#pragma pack(pop)
+// #pragma pack(pop)
 
-static_assert(sizeof(BPTNode<char[64], int>) <= BLOCK_SIZE, "BPTNode size exceeds BLOCK_SIZE!");
+static_assert(sizeof(BPTNode<char[64], Value>) <= BLOCK_SIZE, "BPTNode<Value> size exceeds BLOCK_SIZE!");
 
 template<class Key, class Value>
 class BPT {
@@ -653,15 +653,16 @@ int main() {
             char index_buf[64] = {0};
             strncpy(index_buf, index.c_str(), 64);
             Value v;
-            strncpy(v.emoji, emoji.c_str(), 8);
+            strncpy(v.emoji, emoji.c_str(), 32);
             strncpy(v.hanzi, hanzi.c_str(), 8);
             v.index = idx;
             tree.insert(index_buf, v);
-        } else if (cmd == "find") {
+        } 
+        else if (cmd == "find") {
             std::cin >> index;
             char index_buf[64] = {0};
             strncpy(index_buf, index.c_str(), 64);
-            Value values[300000];
+            Value values[3000];
             int count = 0;
             tree.find(index_buf, values, count);
             sort(values, values + count);
@@ -672,12 +673,13 @@ int main() {
                 std::cout << "null";
             }
             std::cout << std::endl;
-        } else if (cmd == "delete") {
+        } 
+        else if (cmd == "delete") {
             std::cin >> index >> emoji >> hanzi >> idx;
             char index_buf[64] = {0};
             strncpy(index_buf, index.c_str(), 64);
             Value v;
-            strncpy(v.emoji, emoji.c_str(), 8);
+            strncpy(v.emoji, emoji.c_str(), 32);
             strncpy(v.hanzi, hanzi.c_str(), 8);
             v.index = idx;
             tree.remove(index_buf, v);

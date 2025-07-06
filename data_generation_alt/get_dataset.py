@@ -39,8 +39,7 @@ for entry in data:
 total_files = 1
 per_file = (len(lines) + total_files - 1) // total_files
 
-os.makedirs("insert_data_id", exist_ok=True)
 for i in range(total_files):
     chunk = lines[i*per_file : (i+1)*per_file]
-    with open(f"insert_data_id/insert_data_id.in", "w", encoding="utf-8") as f:
+    with open(f"insert_data_id.in", "w", encoding="utf-8") as f:
         f.write("\n".join(chunk) + ("\n" if chunk else ""))

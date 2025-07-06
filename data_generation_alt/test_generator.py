@@ -1,11 +1,24 @@
 import subprocess
 import tempfile
 import re
+import regex
+
+def extract_emoji_sequence(s):
+    # 提取第一个完整 emoji 序列（包括被拆开的合成 emoji）
+    clusters = regex.findall(r'\X', s)
+    result = []
+    started = False
+    for c in clusters:
+        # 判断是否为 emoji 或 ZWJ/VS16
+        if (any('\U0001F300' <= ch <= '\U0001FAFF' or ch in '\u200d\ufe0f\u2640\u2642' for ch in c)):
+            result.append(c)
+            started = True
+        elif started:
+            break
+    return ''.join(result) if result else s
 
 def extract_emoji(s):
-    # 匹配第一个 emoji（宽松匹配，支持多 codepoint，遇到汉字/字母/空格就停）
-    m = re.match(r'^([\W_]+?)([一-龥]|[a-zA-Z0-9]|\s|$)', s)
-    return m.group(1) if m else s
+    return extract_emoji_sequence(s)
 
 def query_emojis_by_pinyin(pinyin):
     # 1. 写 query_data.in
@@ -45,7 +58,6 @@ with open('idiom_table.txt', encoding='utf-8') as f:
         if len(parts) == 2 and len(parts[0]) == 4:
             idioms.append({'word': parts[0], 'pinyin': parts[1]})
 
-idioms = idioms[:1000]
 from itertools import islice, product
 
 MAX_PER_GROUP = 1000

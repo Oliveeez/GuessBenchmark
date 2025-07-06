@@ -133,14 +133,12 @@ def get_dataset(emoji: str, response: str, file_path: str = "emoji_hanzi.txt"):
 if __name__ == "__main__":
     model = ChatModel().init_model()
     all_emojis = list(emoji.EMOJI_DATA.keys())
-    all_emojis = all_emojis[5030:]
-    print(all_emojis)
     message_lst = []
     cnt = 0
     for _, e in enumerate(all_emojis):
         message = [
             {"role": "system", "content": "你是一个中国人，懂汉字。"},
-            {"role": "user", "content": f"{e}请根据这个emoji联想**一个汉字**，可以通过1.本身意思2.联想意思，给5-20个可能性，请保证更直观的在前面，太牵强的不输出。**重要**：你只能按照以下格式输出：1.（一个汉字）\n2.（一个汉字）\n...，且除此之外**不能输出任何其它内容**。"}
+            {"role": "user", "content": f"{e}请根据这个emoji联想**一个汉字**，可以通过1.本身意思2.联想意思，给5个可能性，请保证更直观的在前面，太牵强的不输出。**重要**：你只能按照以下格式输出：1.（一个汉字）\n2.（一个汉字）\n...，且除此之外**不能输出任何其它内容**。"}
         ]
         message_lst.append(message)
         if _ % 20 == 19:
