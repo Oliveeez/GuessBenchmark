@@ -40,3 +40,8 @@ typing                   # 类型注解 (Python 内置)
 
 # 开发和调试
 traceback                # 错误追踪 (Python 内置)
+
+# 数据生成
+cairosvg>=2.5.2          # SVG 转 PNG (用于生成成语图片)
+cairocffi>=0.9.0          # Cairo CFFI 绑定 (cairosvg 依赖)
+regex>=2023.3.23          # 正则表达式库
