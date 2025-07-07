@@ -741,8 +741,13 @@ class SequentialVariantGenerator:
                 
                 print(f"✅ Completed processing: {idiom}")
                 
+                # 处理完当前成语后立即清理临时文件
+                self.cleanup_temp_files()
+                
             except Exception as e:
                 print(f"❌ Failed to process idiom '{idiom}': {e}")
+                # 即使处理失败也清理临时文件
+                self.cleanup_temp_files()
                 continue
         
         print(f"\n{'='*60}")
@@ -752,6 +757,34 @@ class SequentialVariantGenerator:
         print(f"📁 Output directory: {os.path.abspath(output_base_dir)}")
         
         return all_results
+
+    def cleanup_temp_files(self):
+        """
+        清理工作目录中所有以temp_emoji开头的临时文件
+        """
+        try:
+            current_dir = os.getcwd()
+            temp_files = []
+            
+            # 查找所有temp_emoji开头的png文件
+            for filename in os.listdir(current_dir):
+                if filename.startswith("temp_emoji_") and filename.endswith(".png"):
+                    temp_files.append(filename)
+            
+            if temp_files:
+                print(f"  🧹 清理 {len(temp_files)} 个临时文件...")
+                for temp_file in temp_files:
+                    try:
+                        file_path = os.path.join(current_dir, temp_file)
+                        os.remove(file_path)
+                        print(f"    ✅ 删除: {temp_file}")
+                    except Exception as e:
+                        print(f"    ⚠️  无法删除 {temp_file}: {e}")
+                print(f"  🧹 临时文件清理完成")
+            # 如果没有临时文件，不显示消息（避免输出过多）
+                
+        except Exception as e:
+            print(f"  ⚠️  清理临时文件时出错: {e}")
 
 
 def main():
@@ -836,6 +869,13 @@ Example usage:
     except Exception as e:
         print(f"❌ Error: {e}")
         return 1
+    
+    # 最终清理任何可能遗留的临时文件
+    try:
+        temp_generator = SequentialVariantGenerator()
+        temp_generator.cleanup_temp_files()
+    except:
+        pass  # 静默失败，避免影响主要流程
     
     return 0
 
