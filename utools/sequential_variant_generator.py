@@ -580,99 +580,94 @@ class SequentialVariantGenerator:
         
         return image
     
-    def generate_all_variants_for_idiom(self, idiom: str, emoji_sequence: str, output_dir: str,
-                                      layout_types: Optional[List[str]] = None,
-                                      include_guide_lines: bool = True,
-                                      include_numbers: bool = True) -> Dict[str, str]:
+    def generate_variants_for_emoji_set(self, idiom: str, emoji_set: str, output_dir: str) -> Dict[str, str]:
         """
-        Generate all variants for a specific idiom
+        Generate all variants for a specific emoji set according to the new structure
         
         Args:
             idiom: The idiom name
-            emoji_sequence: String containing emoji sequence
-            output_dir: Output directory for this idiom
-            layout_types: List of layout types to generate (None for all)
-            include_guide_lines: Whether to generate variants with guide lines
-            include_numbers: Whether to generate variants with numbers
+            emoji_set: String containing emoji sequence
+            output_dir: Output directory for this emoji set
             
         Returns:
             Dictionary mapping variant names to file paths
         """
-        if layout_types is None:
-            layout_types = self.LAYOUT_TYPES
-        
-        # Validate layout types
-        invalid_layouts = [lt for lt in layout_types if lt not in self.LAYOUT_TYPES]
-        if invalid_layouts:
-            raise ValueError(f"Invalid layout types: {invalid_layouts}. Valid types: {self.LAYOUT_TYPES}")
-        
-        # Create output directory
+        # Create output directory and subdirectories
         os.makedirs(output_dir, exist_ok=True)
+        pure_dir = os.path.join(output_dir, "seq_varients_pure")
+        guidance_dir = os.path.join(output_dir, "seq_varients_with_guideance")
+        os.makedirs(pure_dir, exist_ok=True)
+        os.makedirs(guidance_dir, exist_ok=True)
         
         generated_files = {}
-        variant_count = 0
+        variant_count = 1
         
-        # Generate combinations
-        guide_options = [False, True] if include_guide_lines else [False]
-        number_options = [False, True] if include_numbers else [False]
-        
-        for layout in layout_types:
-            for guide in guide_options:
-                for numbers in number_options:
+        try:
+            # 1. Generate base horizontal image (no guide, no numbers)
+            print(f"    Generating base horizontal image...")
+            base_image = self.generate_single_variant(emoji_set, 'horizontal', False, False)
+            base_filename = f"{idiom}_base_v{variant_count:03d}.png"
+            base_filepath = os.path.join(output_dir, base_filename)
+            base_image.save(base_filepath)
+            generated_files['base_horizontal'] = base_filepath
+            print(f"    ✅ Generated base: {base_filename}")
+            variant_count += 1
+            
+            # 2. Generate pure variants (no guide, no numbers) for other layouts
+            other_layouts = ['vertical', 'diagonal', 'circular', 'grid', 'zigzag', 'star']
+            for layout in other_layouts:
+                try:
+                    print(f"    Generating pure variant: {layout}")
+                    image = self.generate_single_variant(emoji_set, layout, False, False)
+                    filename = f"{idiom}_{layout}_v{variant_count:03d}.png"
+                    filepath = os.path.join(pure_dir, filename)
+                    image.save(filepath)
+                    generated_files[f'pure_{layout}'] = filepath
+                    print(f"    ✅ Generated pure: {filename}")
+                    variant_count += 1
+                except Exception as e:
+                    print(f"    ❌ Failed to generate pure {layout}: {e}")
+                    continue
+            
+            # 3. Generate guidance variants (3 combinations for each layout)
+            # Combinations: guide_only, numbers_only, guide+numbers
+            guidance_combinations = [
+                ('guide_only', True, False),
+                ('numbers_only', False, True),
+                ('guide_and_numbers', True, True)
+            ]
+            
+            for layout in other_layouts:
+                for combo_name, guide, numbers in guidance_combinations:
                     try:
-                        print(f"    Generating variant: {layout}, guide={guide}, numbers={numbers}")
-                        
-                        # Generate variant
-                        image = self.generate_single_variant(
-                            emoji_sequence, layout, guide, numbers
-                        )
-                        
-                        # Create filename with idiom name
-                        filename_parts = [idiom, layout]
-                        if guide:
-                            filename_parts.append("guide")
-                        if numbers:
-                            filename_parts.append("numbers")
-                        filename_parts.append(f"v{variant_count:03d}.png")
-                        
-                        filename = "_".join(filename_parts)
-                        # Clean filename
-                        filename = "".join(c for c in filename if c.isalnum() or c in "._-")
-                        
-                        # Save image
-                        filepath = os.path.join(output_dir, filename)
+                        print(f"    Generating guidance variant: {layout}_{combo_name}")
+                        image = self.generate_single_variant(emoji_set, layout, guide, numbers)
+                        filename = f"{idiom}_{layout}_{combo_name}_v{variant_count:03d}.png"
+                        filepath = os.path.join(guidance_dir, filename)
                         image.save(filepath)
-                        
-                        # Record generated file
-                        variant_name = f"{layout}_guide={guide}_numbers={numbers}"
-                        generated_files[variant_name] = filepath
-                        
-                        print(f"    ✅ Generated: {filename}")
+                        generated_files[f'guidance_{layout}_{combo_name}'] = filepath
+                        print(f"    ✅ Generated guidance: {filename}")
                         variant_count += 1
-                        
                     except Exception as e:
-                        print(f"    ❌ Failed to generate variant {variant_count}: {e}")
+                        print(f"    ❌ Failed to generate guidance {layout}_{combo_name}: {e}")
                         continue
+            
+        except Exception as e:
+            print(f"    ❌ Failed to generate variants: {e}")
         
-        print(f"  🎉 Generated {len(generated_files)} variants for '{idiom}'")
+        print(f"  🎉 Generated {len(generated_files)} variants for emoji set")
         return generated_files
     
-    def process_idioms_from_json(self, json_path: str, output_base_dir: str,
-                               layout_types: Optional[List[str]] = None,
-                               include_guide_lines: bool = True,
-                               include_numbers: bool = True) -> Dict[str, Dict[str, str]]:
+    def process_idioms_from_json(self, json_path: str, output_base_dir: str) -> Dict[str, Dict[str, Dict[str, str]]]:
         """
         Process all idioms from JSON file and generate sequential variants
         
         Args:
             json_path: Path to JSON file containing idioms data
             output_base_dir: Base output directory
-            layout_types: List of layout types to generate (None for all)
-            include_guide_lines: Whether to generate variants with guide lines
-            include_numbers: Whether to generate variants with numbers
             
         Returns:
-            Dictionary mapping idiom names to their generated files
+            Dictionary mapping idiom names to their emoji sets and generated files
         """
         # Read JSON file
         try:
@@ -682,38 +677,66 @@ class SequentialVariantGenerator:
         except Exception as e:
             raise RuntimeError(f"Failed to read JSON file {json_path}: {e}")
         
-        # Create base sequential directory
-        sequential_base_dir = os.path.join(output_base_dir, "sequential")
-        os.makedirs(sequential_base_dir, exist_ok=True)
-        print(f"📁 Created output directory: {sequential_base_dir}")
+        # Create base output directory
+        os.makedirs(output_base_dir, exist_ok=True)
+        print(f"📁 Created output directory: {output_base_dir}")
         
         all_results = {}
         successful_count = 0
+        total_emoji_sets = 0
         
         # Process each idiom
         for i, item in enumerate(idioms_data):
             try:
+                idiom_index = item.get("idiom_index", i+1)
                 idiom = item.get("idiom", "")
-                emoji_rep = item.get("emoji_rep", "")
+                emoji_rep_list = item.get("emoji_rep", [])
                 
-                if not idiom or not emoji_rep:
+                if not idiom or not emoji_rep_list:
                     print(f"⚠️  Skipping item {i+1}: missing idiom or emoji_rep")
                     continue
                 
                 print(f"\n{'='*60}")
-                print(f"Processing {i+1}/{len(idioms_data)}: {idiom}")
-                print(f"Emoji sequence: {emoji_rep}")
+                print(f"Processing {i+1}/{len(idioms_data)}: {idiom} (index: {idiom_index})")
+                print(f"Found {len(emoji_rep_list)} emoji sets")
                 
-                # Create output directory for this idiom
-                idiom_output_dir = os.path.join(sequential_base_dir, idiom)
+                # Create idiom directory: {idiom_index}_{idiom}
+                idiom_dir_name = f"{idiom_index}_{idiom}"
+                idiom_output_dir = os.path.join(output_base_dir, idiom_dir_name)
                 
-                # Generate variants for this idiom
-                generated_files = self.generate_all_variants_for_idiom(
-                    idiom, emoji_rep, idiom_output_dir, layout_types,
-                    include_guide_lines, include_numbers
-                )
+                idiom_results = {}
                 
-                all_results[idiom] = generated_files
+                # Process each emoji set in the list
+                for emoji_set_data in emoji_rep_list:
+                    try:
+                        set_index = emoji_set_data.get("index", 1)
+                        emoji_set = emoji_set_data.get("emoji_set", "")
+                        homophonic_num = emoji_set_data.get("homophonic_num", 0)
+                        
+                        if not emoji_set:
+                            print(f"  ⚠️  Skipping emoji set {set_index}: missing emoji_set")
+                            continue
+                        
+                        print(f"  Processing emoji set {set_index}: {emoji_set} (homophonic: {homophonic_num})")
+                        
+                        # Create output directory for this emoji set: {index}
+                        set_output_dir = os.path.join(idiom_output_dir, str(set_index))
+                        
+                        # Generate variants for this emoji set
+                        generated_files = self.generate_variants_for_emoji_set(
+                            idiom, emoji_set, set_output_dir
+                        )
+                        
+                        idiom_results[str(set_index)] = generated_files
+                        total_emoji_sets += 1
+                        
+                        print(f"  ✅ Completed emoji set {set_index}")
+                        
+                    except Exception as e:
+                        print(f"  ❌ Failed to process emoji set {set_index}: {e}")
+                        continue
+                
+                all_results[idiom] = idiom_results
                 successful_count += 1
                 
                 print(f"✅ Completed processing: {idiom}")
@@ -725,7 +748,8 @@ class SequentialVariantGenerator:
         print(f"\n{'='*60}")
         print(f"🎉 Processing complete!")
         print(f"📊 Successfully processed: {successful_count}/{len(idioms_data)} idioms")
-        print(f"📁 Output directory: {os.path.abspath(sequential_base_dir)}")
+        print(f"📊 Total emoji sets processed: {total_emoji_sets}")
+        print(f"📁 Output directory: {os.path.abspath(output_base_dir)}")
         
         return all_results
 
@@ -738,7 +762,7 @@ def main():
         epilog="""
 Example usage:
   %(prog)s --datapath idioms.json --outputfolder ./output
-  %(prog)s --datapath data.json --outputfolder /path/to/output --layouts horizontal vertical circular
+  %(prog)s --datapath data.json --outputfolder /path/to/output
         """
     )
     
@@ -747,15 +771,6 @@ Example usage:
                        help='Path to JSON file containing idioms data')
     parser.add_argument('--outputfolder', required=True,
                        help='Output base directory')
-    
-    # Layout options
-    parser.add_argument('--layouts', '-l', nargs='+', 
-                       choices=SequentialVariantGenerator.LAYOUT_TYPES,
-                       help='Layout types to generate (default: all)')
-    parser.add_argument('--no-guide-lines', action='store_true',
-                       help='Disable guide line variants')
-    parser.add_argument('--no-numbers', action='store_true',
-                       help='Disable number variants')
     
     # Appearance options
     parser.add_argument('--emoji-size', type=int, default=128,
@@ -800,18 +815,23 @@ Example usage:
         # Process all idioms from JSON
         all_results = generator.process_idioms_from_json(
             json_path=args.datapath,
-            output_base_dir=args.outputfolder,
-            layout_types=args.layouts,
-            include_guide_lines=not args.no_guide_lines,
-            include_numbers=not args.no_numbers
+            output_base_dir=args.outputfolder
         )
         
         # Summary statistics
-        total_files = sum(len(files) for files in all_results.values())
+        total_files = 0
+        total_emoji_sets = 0
+        for idiom_results in all_results.values():
+            total_emoji_sets += len(idiom_results)
+            for set_files in idiom_results.values():
+                total_files += len(set_files)
+        
         print(f"\n📈 Final Summary:")
         print(f"   Total idioms processed: {len(all_results)}")
+        print(f"   Total emoji sets processed: {total_emoji_sets}")
         print(f"   Total files generated: {total_files}")
-        print(f"   Average files per idiom: {total_files/len(all_results):.1f}")
+        if total_emoji_sets > 0:
+            print(f"   Average files per emoji set: {total_files/total_emoji_sets:.1f}")
         
     except Exception as e:
         print(f"❌ Error: {e}")

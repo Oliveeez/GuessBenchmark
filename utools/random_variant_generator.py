@@ -321,10 +321,6 @@ class RandomVariantGenerator:
         
         return img
     
-
-    
-
-    
     def generate_adjacent_swap(self, emoji_sequence: str) -> Image.Image:
         """
         Generate variant with two adjacent emojis swapped
@@ -506,81 +502,104 @@ class RandomVariantGenerator:
         
         return positions
     
-    def generate_all_random_variants_for_idiom(self, idiom: str, emoji_sequence: str, 
+    def generate_random_variants_for_emoji_set(self, idiom: str, emoji_set: str, 
                                              output_dir: str, rand_gen_num: int = 5) -> Dict[str, str]:
         """
-        Generate all random variants for a specific idiom
+        Generate all random variants for a specific emoji set according to the new structure
         
         Args:
             idiom: The idiom name
-            emoji_sequence: String containing emoji sequence
-            output_dir: Output directory for this idiom
-            rand_gen_num: Number of scattered variants to generate
+            emoji_set: String containing emoji sequence
+            output_dir: Output directory for this emoji set
+            rand_gen_num: Number of scattered variants to generate (default: 5)
             
         Returns:
             Dictionary mapping variant names to file paths
         """
+        # Create output directory and subdirectories
         os.makedirs(output_dir, exist_ok=True)
+        random_dir = os.path.join(output_dir, "random_varients")
+        os.makedirs(random_dir, exist_ok=True)
+        
         generated_files = {}
+        variant_count = 1
         
         try:
-            # 1. Adjacent swap variant
-            print(f"  Generating adjacent swap variant for {idiom}...")
-            swap_image = self.generate_adjacent_swap(emoji_sequence)
-            swap_filename = f"{idiom}_adjacent_swap.png"
-            swap_path = os.path.join(output_dir, swap_filename)
+            # 1. Generate base horizontal image (no guide, no numbers)
+            print(f"    Generating base horizontal image...")
+            emojis = self.emoji_agent.parse_emoji_sequence(emoji_set)
+            base_image = self._generate_layout_image(emojis, 'horizontal')
+            base_filename = f"{idiom}_base_v{variant_count:03d}.png"
+            base_filepath = os.path.join(output_dir, base_filename)
+            base_image.save(base_filepath)
+            generated_files['base_horizontal'] = base_filepath
+            print(f"    ✅ Generated base: {base_filename}")
+            variant_count += 1
+            
+        except Exception as e:
+            print(f"    ❌ Failed to generate base image: {e}")
+        
+        try:
+            # 2. Adjacent swap variant
+            print(f"    Generating adjacent swap variant...")
+            swap_image = self.generate_adjacent_swap(emoji_set)
+            swap_filename = f"{idiom}_adjacent_swap_v{variant_count:03d}.png"
+            swap_path = os.path.join(random_dir, swap_filename)
             swap_image.save(swap_path)
             generated_files["adjacent_swap"] = swap_path
-            print(f"  ✅ Generated: {swap_filename}")
+            print(f"    ✅ Generated: {swap_filename}")
+            variant_count += 1
             
         except Exception as e:
-            print(f"  ❌ Failed to generate adjacent swap for {idiom}: {e}")
+            print(f"    ❌ Failed to generate adjacent swap: {e}")
         
         try:
-            # 2. Full shuffle variant  
-            print(f"  Generating full shuffle variant for {idiom}...")
-            shuffle_image = self.generate_full_shuffle(emoji_sequence)
-            shuffle_filename = f"{idiom}_full_shuffle.png"
-            shuffle_path = os.path.join(output_dir, shuffle_filename)
+            # 3. Full shuffle variant
+            print(f"    Generating full shuffle variant...")
+            shuffle_image = self.generate_full_shuffle(emoji_set)
+            shuffle_filename = f"{idiom}_full_shuffle_v{variant_count:03d}.png"
+            shuffle_path = os.path.join(random_dir, shuffle_filename)
             shuffle_image.save(shuffle_path)
             generated_files["full_shuffle"] = shuffle_path
-            print(f"  ✅ Generated: {shuffle_filename}")
+            print(f"    ✅ Generated: {shuffle_filename}")
+            variant_count += 1
             
         except Exception as e:
-            print(f"  ❌ Failed to generate full shuffle for {idiom}: {e}")
+            print(f"    ❌ Failed to generate full shuffle: {e}")
         
-        # 3. Scattered variants
-        print(f"  Generating {rand_gen_num} scattered variants for {idiom}...")
+        # 4. Scattered variants (5 total: cycle through distribution methods)
+        print(f"    Generating {rand_gen_num} scattered variants...")
         for i in range(rand_gen_num):
             try:
                 # Cycle through different distribution methods
                 method = self.DISTRIBUTION_METHODS[i % len(self.DISTRIBUTION_METHODS)]
                 
-                scattered_image = self.generate_scattered(emoji_sequence, method)
-                scattered_filename = f"{idiom}_scattered_{method}_{i+1:02d}.png"
-                scattered_path = os.path.join(output_dir, scattered_filename)
+                scattered_image = self.generate_scattered(emoji_set, method)
+                scattered_filename = f"{idiom}_scattered_{method}_v{variant_count:03d}.png"
+                scattered_path = os.path.join(random_dir, scattered_filename)
                 scattered_image.save(scattered_path)
-                generated_files[f"scattered_{i+1}"] = scattered_path
-                print(f"  ✅ Generated: {scattered_filename}")
+                generated_files[f"scattered_{method}_{i+1}"] = scattered_path
+                print(f"    ✅ Generated: {scattered_filename}")
+                variant_count += 1
                 
             except Exception as e:
-                print(f"  ❌ Failed to generate scattered variant {i+1} for {idiom}: {e}")
+                print(f"    ❌ Failed to generate scattered variant {i+1}: {e}")
         
-        print(f"  🎉 Generated {len(generated_files)} variants for '{idiom}'")
+        print(f"  🎉 Generated {len(generated_files)} variants for emoji set")
         return generated_files
     
     def process_idioms_from_json(self, json_path: str, output_base_dir: str, 
-                                rand_gen_num: int = 5) -> Dict[str, Dict[str, str]]:
+                                rand_gen_num: int = 5) -> Dict[str, Dict[str, Dict[str, str]]]:
         """
         Process all idioms from JSON file and generate random variants
         
         Args:
             json_path: Path to JSON file containing idioms data
             output_base_dir: Base output directory
-            rand_gen_num: Number of scattered variants to generate for each idiom
+            rand_gen_num: Number of scattered variants to generate for each emoji set
             
         Returns:
-            Dictionary mapping idiom names to their generated files
+            Dictionary mapping idiom names to their emoji sets and generated files
         """
         # Read JSON file
         try:
@@ -590,37 +609,66 @@ class RandomVariantGenerator:
         except Exception as e:
             raise RuntimeError(f"Failed to read JSON file {json_path}: {e}")
         
-        # Create base random directory
-        random_base_dir = os.path.join(output_base_dir, "random")
-        os.makedirs(random_base_dir, exist_ok=True)
-        print(f"📁 Created output directory: {random_base_dir}")
+        # Create base output directory
+        os.makedirs(output_base_dir, exist_ok=True)
+        print(f"📁 Created output directory: {output_base_dir}")
         
         all_results = {}
         successful_count = 0
+        total_emoji_sets = 0
         
         # Process each idiom
         for i, item in enumerate(idioms_data):
             try:
+                idiom_index = item.get("idiom_index", i+1)
                 idiom = item.get("idiom", "")
-                emoji_rep = item.get("emoji_rep", "")
+                emoji_rep_list = item.get("emoji_rep", [])
                 
-                if not idiom or not emoji_rep:
+                if not idiom or not emoji_rep_list:
                     print(f"⚠️  Skipping item {i+1}: missing idiom or emoji_rep")
                     continue
                 
                 print(f"\n{'='*60}")
-                print(f"Processing {i+1}/{len(idioms_data)}: {idiom}")
-                print(f"Emoji sequence: {emoji_rep}")
+                print(f"Processing {i+1}/{len(idioms_data)}: {idiom} (index: {idiom_index})")
+                print(f"Found {len(emoji_rep_list)} emoji sets")
                 
-                # Create output directory for this idiom
-                idiom_output_dir = os.path.join(random_base_dir, idiom)
+                # Create idiom directory: {idiom_index}_{idiom}
+                idiom_dir_name = f"{idiom_index}_{idiom}"
+                idiom_output_dir = os.path.join(output_base_dir, idiom_dir_name)
                 
-                # Generate variants for this idiom
-                generated_files = self.generate_all_random_variants_for_idiom(
-                    idiom, emoji_rep, idiom_output_dir, rand_gen_num
-                )
+                idiom_results = {}
                 
-                all_results[idiom] = generated_files
+                # Process each emoji set in the list
+                for emoji_set_data in emoji_rep_list:
+                    try:
+                        set_index = emoji_set_data.get("index", 1)
+                        emoji_set = emoji_set_data.get("emoji_set", "")
+                        homophonic_num = emoji_set_data.get("homophonic_num", 0)
+                        
+                        if not emoji_set:
+                            print(f"  ⚠️  Skipping emoji set {set_index}: missing emoji_set")
+                            continue
+                        
+                        print(f"  Processing emoji set {set_index}: {emoji_set} (homophonic: {homophonic_num})")
+                        
+                        # Create output directory for this emoji set: {index}
+                        set_output_dir = os.path.join(idiom_output_dir, str(set_index))
+                        
+                        # Generate variants for this emoji set
+                        generated_files = self.generate_random_variants_for_emoji_set(
+                            idiom, emoji_set, set_output_dir, rand_gen_num
+                        )
+                        
+                        idiom_results[str(set_index)] = generated_files
+                        total_emoji_sets += 1
+                        
+                        print(f"  ✅ Completed emoji set {set_index}")
+                        
+                    except Exception as e:
+                        print(f"  ❌ Failed to process emoji set {set_index}: {e}")
+                        continue
+                
+                all_results[idiom] = idiom_results
                 successful_count += 1
                 
                 print(f"✅ Completed processing: {idiom}")
@@ -632,7 +680,8 @@ class RandomVariantGenerator:
         print(f"\n{'='*60}")
         print(f"🎉 Processing complete!")
         print(f"📊 Successfully processed: {successful_count}/{len(idioms_data)} idioms")
-        print(f"📁 Output directory: {os.path.abspath(random_base_dir)}")
+        print(f"📊 Total emoji sets processed: {total_emoji_sets}")
+        print(f"📁 Output directory: {os.path.abspath(output_base_dir)}")
         
         return all_results
 
@@ -645,7 +694,7 @@ def main():
         epilog="""
 Example usage:
   %(prog)s --datapath idioms.json --outputfolder ./output
-  %(prog)s --datapath data.json --outputfolder /path/to/output --rand-gen-num 10
+  %(prog)s --datapath data.json --outputfolder /path/to/output --rand-gen-num 3
         """
     )
     
@@ -657,7 +706,7 @@ Example usage:
     
     # Random generation options
     parser.add_argument('--rand-gen-num', type=int, default=5,
-                       help='Number of scattered variants to generate per idiom (default: 5)')
+                       help='Number of scattered variants to generate per emoji set (default: 5)')
     
     # Appearance options
     parser.add_argument('--emoji-size', type=int, default=128,
@@ -707,11 +756,19 @@ Example usage:
         )
         
         # Summary statistics
-        total_files = sum(len(files) for files in all_results.values())
+        total_files = 0
+        total_emoji_sets = 0
+        for idiom_results in all_results.values():
+            total_emoji_sets += len(idiom_results)
+            for set_files in idiom_results.values():
+                total_files += len(set_files)
+        
         print(f"\n📈 Final Summary:")
         print(f"   Total idioms processed: {len(all_results)}")
+        print(f"   Total emoji sets processed: {total_emoji_sets}")
         print(f"   Total files generated: {total_files}")
-        print(f"   Average files per idiom: {total_files/len(all_results):.1f}")
+        if total_emoji_sets > 0:
+            print(f"   Average files per emoji set: {total_files/total_emoji_sets:.1f}")
         
     except Exception as e:
         print(f"❌ Error: {e}")
