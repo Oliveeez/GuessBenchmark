@@ -4,7 +4,10 @@
 convert_idiom_txt_to_json.py
 
 Convert all txt files in idiom_emoji_questions to unified JSON format.
-Reads txt files and creates a single JSON file with idiom-emoji pairs.
+Read    # 检查输入目录
+    if not input_dir.exists():
+        print(f"❌ 目录不存在: {input_dir.absolute()}")
+        returnt files and creates a single JSON file with idiom-emoji pairs.
 """
 
 import json
@@ -14,7 +17,7 @@ import random
 from pathlib import Path
 from typing import List, Dict, Tuple
 
-def parse_txt_file(file_path: Path) -> List[Dict[str, str]]:
+def parse_txt_file(file_path: Path) -> List[Dict[str, any]]:
     """
     解析单个 txt 文件，提取成语和表情符号对
     
@@ -22,7 +25,7 @@ def parse_txt_file(file_path: Path) -> List[Dict[str, str]]:
         file_path: txt 文件路径，文件名是成语，内容是表情符号
         
     Returns:
-        成语-表情符号对的列表
+        成语-表情符号对的列表，包含谐音数量信息
     """
     idiom_emoji_pairs = []
     
@@ -42,12 +45,23 @@ def parse_txt_file(file_path: Path) -> List[Dict[str, str]]:
         # 按行分割内容
         lines = content.strip().split('\n')
         
+        current_homophonic_count = 0  # 当前的谐音数量
+        
         for line in lines:
             line = line.strip()
             if not line:
                 continue
             
-            # 跳过标题行（包含"==="的行）
+            # 检查是否是谐音分组标题行
+            if '===' in line and '个谐音' in line:
+                # 提取谐音数量
+                import re
+                match = re.search(r'(\d+)\s*个谐音', line)
+                if match:
+                    current_homophonic_count = int(match.group(1))
+                continue
+            
+            # 跳过其他标题行
             if '===' in line:
                 continue
             
@@ -57,7 +71,8 @@ def parse_txt_file(file_path: Path) -> List[Dict[str, str]]:
             if emoji_rep:  # 只添加有效的表情符号
                 idiom_emoji_pairs.append({
                     "idiom": idiom,
-                    "emoji_rep": emoji_rep
+                    "emoji_rep": emoji_rep,
+                    "homophonic_count": current_homophonic_count
                 })
     
     except Exception as e:
@@ -154,11 +169,15 @@ def convert_all_txt_to_json():
     """
     print("🚀 开始转换 idiom_emoji_questions 中的所有 txt 文件...")
     
-    # 设置路径
-    project_root = Path(__file__).parent.parent  # 从 utools 回到项目根目录
+    # 设置路径 - 直接指定项目根目录
+    project_root = Path("C:/Users/weiyi/Desktop/GuessBenchmark")
     input_dir = project_root / "data_generation_alt" / "idiom_emoji_questions"
     output_dir = project_root / "data_generation"
     output_file = output_dir / "chinese_idiom_complete.json"
+    
+    print(f"📁 项目根目录: {project_root.absolute()}")
+    print(f"📂 输入目录: {input_dir.absolute()}")
+    print(f"📂 输出目录: {output_dir.absolute()}")
     
     # 检查输入目录
     if not input_dir.exists():
@@ -194,13 +213,46 @@ def convert_all_txt_to_json():
                 print(f"  ❌ 没有找到包含4个表情符号的组合: {txt_file.name}")
                 continue
             
-            # 随机挑选最多5个表情组合
-            if len(valid_pairs) > 5:
-                selected_pairs = random.sample(valid_pairs, 5)
-                print(f"  🎲 从 {len(valid_pairs)} 个有效表情组合中随机选择了 5 个")
-            else:
-                selected_pairs = valid_pairs
-                print(f"  ✅ 使用全部 {len(valid_pairs)} 个有效表情组合")
+            # 按谐音数量排序，优先选择谐音数量少的
+            valid_pairs.sort(key=lambda x: x['homophonic_count'])
+            
+            # 按谐音数量分组
+            homophonic_groups = {}
+            for pair in valid_pairs:
+                count = pair['homophonic_count']
+                if count not in homophonic_groups:
+                    homophonic_groups[count] = []
+                homophonic_groups[count].append(pair)
+            
+            # 按谐音数量从少到多，每种取一个，直到补齐5个
+            selected_pairs = []
+            sorted_counts = sorted(homophonic_groups.keys())
+            
+            # 第一轮：每种谐音数量取一个
+            for count in sorted_counts:
+                if len(selected_pairs) >= 5:
+                    break
+                group = homophonic_groups[count]
+                # 从每组随机选一个
+                selected_pairs.append(random.choice(group))
+            
+            # 如果还没有5个，继续从最少谐音数量的组中补充
+            while len(selected_pairs) < 5:
+                for count in sorted_counts:
+                    if len(selected_pairs) >= 5:
+                        break
+                    group = homophonic_groups[count]
+                    # 排除已选择的项目
+                    available = [pair for pair in group if pair not in selected_pairs]
+                    if available:
+                        selected_pairs.append(random.choice(available))
+                    
+                # 如果所有组都用完了，退出循环
+                if all(len([pair for pair in homophonic_groups[count] if pair not in selected_pairs]) == 0 
+                       for count in sorted_counts):
+                    break
+            
+            print(f"  🎯 从 {len(valid_pairs)} 个有效表情组合中按谐音数量梯度选择 {len(selected_pairs)} 个")
             
             # 获取成语名称
             idiom_name = selected_pairs[0]['idiom']
@@ -216,14 +268,16 @@ def convert_all_txt_to_json():
             for idx, pair in enumerate(selected_pairs, 1):
                 # 验证表情符号数量
                 emoji_count = count_emojis(pair['emoji_rep'])
+                # 使用实际的谐音数量
+                homophonic_count = pair['homophonic_count']
                 
                 emoji_entry = {
                     "index": idx,
                     "emoji_set": pair['emoji_rep'],
-                    "homophonic_num": emoji_count
+                    "homophonic_num": homophonic_count
                 }
                 idiom_entry["emoji_rep"].append(emoji_entry)
-                print(f"  ✅ {idiom_name}: {pair['emoji_rep']} (包含{emoji_count}个表情)")
+                print(f"  ✅ {idiom_name}: {pair['emoji_rep']} (谐音数:{homophonic_count}, 表情数:{emoji_count})")
             
             idiom_dict[idiom_name] = idiom_entry
             idiom_index += 1
@@ -264,11 +318,14 @@ def preview_txt_files():
     """
     预览 txt 文件内容，帮助理解文件格式
     """
-    project_root = Path(__file__).parent.parent
+    project_root = Path("C:/Users/weiyi/Desktop/GuessBenchmark")
     input_dir = project_root / "data_generation_alt" / "idiom_emoji_questions"
     
+    print(f"📁 项目根目录: {project_root.absolute()}")
+    print(f"📂 输入目录: {input_dir.absolute()}")
+    
     if not input_dir.exists():
-        print(f"❌ 目录不存在: {input_dir}")
+        print(f"❌ 目录不存在: {input_dir.absolute()}")
         return
     
     txt_files = list(input_dir.glob("*.txt"))[:3]  # 预览前3个文件
@@ -282,11 +339,23 @@ def preview_txt_files():
             pairs = parse_txt_file(txt_file)
             print(f"找到 {len(pairs)} 个表情符号组合:")
             
-            for i, pair in enumerate(pairs[:5]):  # 只显示前5个
-                print(f"  {i+1}. {pair['emoji_rep']}")
+            # 按谐音数量分组显示
+            homophonic_groups = {}
+            for pair in pairs[:10]:  # 只显示前10个
+                count = pair['homophonic_count']
+                if count not in homophonic_groups:
+                    homophonic_groups[count] = []
+                homophonic_groups[count].append(pair)
             
-            if len(pairs) > 5:
-                print(f"  ... 还有 {len(pairs) - 5} 个")
+            # 按谐音数量排序显示
+            for count in sorted(homophonic_groups.keys()):
+                group = homophonic_groups[count]
+                print(f"  {count}个谐音:")
+                for i, pair in enumerate(group[:3]):  # 每组最多显示3个
+                    print(f"    - {pair['emoji_rep']}")
+            
+            if len(pairs) > 10:
+                print(f"  ... 还有 {len(pairs) - 10} 个")
                     
         except Exception as e:
             print(f"  ❌ 读取失败: {e}")
