@@ -49,7 +49,7 @@ os.makedirs('idiom_emoji_questions', exist_ok=True)
 
 # 读取idiom_table.txt里的成语和拼音
 idioms = []
-with open('idiom_table.txt', encoding='utf-8') as f:
+with open('idiom_table_new.txt', encoding='utf-8') as f:
     for line in f:
         line = line.strip()
         if not line:
