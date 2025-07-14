@@ -10,7 +10,7 @@ output_file = "llm_idiom_guess_results.txt"
 files = [f for f in os.listdir(question_dir) if f.endswith(".txt")]
 
 BATCH_SIZE = 20
-MAX_TEST = 500
+MAX_TEST = 50000
 test_count = 0
 
 # 读取已问过的成语集合

@@ -125,7 +125,9 @@ for idiom in idioms:
     with open(f'idiom_emoji_questions/{word}.txt', 'w', encoding='utf-8') as f:
         for i, group in enumerate(groups):
             f.write(f'=== {i} 个谐音 ===\n')
-            for combo in group:
+            # Sort combinations by the sum of difficulty indices (lower is simpler)
+            sorted_combos = sorted(group, key=lambda combo: sum(eh[2] for eh in combo))
+            for combo in sorted_combos:
                 f.write(''.join(extract_emoji(eh[0]) for eh in combo) + '\n')
             f.write('\n')
 

@@ -20,7 +20,7 @@ class ChatModel:
     """
     def __init__(
         self,
-        model: str = "deepseek-v3",
+        model: str = "qwen2.5-72b-instruct",
         temperature: float = 0.5,   # medium-high diversity and medium-high quality
         base_url: Optional[str] = "http://123.129.219.111:3000/v1",
         api_key: Optional[str] = "sk-LwyvquF9WxkHAtHXF0UpEYPD7t3CQq1ApWOoK8ETTxBr84gj",
@@ -32,7 +32,7 @@ class ChatModel:
         self.client = None
 
     def init_model(self):
-        if self.model.startswith("gpt"):
+        if self.model.startswith("qwen"):
             from utils.llm_client.openai import OpenAIClient
             self.client = OpenAIClient(api_key=self.api_key, base_url=self.base_url)
         elif self.model.startswith("deepseek"):
