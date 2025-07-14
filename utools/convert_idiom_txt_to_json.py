@@ -82,7 +82,7 @@ def parse_txt_file(file_path: Path) -> List[Dict[str, any]]:
 
 def extract_emojis_from_line(line: str) -> str:
     """
-    基于emoji_hanzi.txt文件中实际emoji的范围检测
+    基于emoji_hanzi.txt文件的完整emoji范围检测
     """
     result = ""
     i = 0
@@ -91,23 +91,29 @@ def extract_emojis_from_line(line: str) -> str:
         char = line[i]
         code_point = ord(char)
         
-        # 基于实际emoji文件的完整范围
+        # 基于emoji_hanzi.txt的完整emoji范围
         is_emoji = (
-            # 主要emoji范围
-            0x1F600 <= code_point <= 0x1F64F or  # 表情符号 😀-🙏
-            0x1F300 <= code_point <= 0x1F5FF or  # 杂项符号和象形文字 🌀-🗿
-            0x1F680 <= code_point <= 0x1F6FF or  # 交通和地图符号 🚀-🛿
+            # 基本emoji范围
+            0x1F600 <= code_point <= 0x1F64F or  # 😀-🙏 表情符号
+            0x1F300 <= code_point <= 0x1F5FF or  # 🌀-🗿 杂项符号和象形文字
+            0x1F680 <= code_point <= 0x1F6FF or  # 🚀-🛿 交通和地图符号
             0x1F700 <= code_point <= 0x1F77F or  # 炼金术符号
             0x1F780 <= code_point <= 0x1F7FF or  # 几何形状扩展
             0x1F800 <= code_point <= 0x1F8FF or  # 补充箭头-C
-            0x1F900 <= code_point <= 0x1F9FF or  # 补充符号和象形文字 🤀-🧿
+            0x1F900 <= code_point <= 0x1F9FF or  # 🤀-🧿 补充符号和象形文字
             0x1FA00 <= code_point <= 0x1FA6F or  # 棋类符号
-            0x1FA70 <= code_point <= 0x1FAFF or  # 符号和象形文字扩展-A 🩰-🫿
+            0x1FA70 <= code_point <= 0x1FAFF or  # 🩰-🫿 符号和象形文字扩展-A
             0x1FB00 <= code_point <= 0x1FBFF or  # 符号和象形文字扩展-B
             
-            # 传统符号范围 (包含很多重要emoji)
-            0x2600 <= code_point <= 0x26FF or    # 杂项符号 ☀-⛿ (包含⌨️, ♈-♓, ⚛, ⚗, ⛑等)
-            0x2700 <= code_point <= 0x27BF or    # 装饰符号 ✀-➿
+            # 传统符号范围
+            0x2600 <= code_point <= 0x26FF or    # ☀-⛿ 杂项符号 (包含⌨️, ♈-♓等)
+            0x2700 <= code_point <= 0x27BF or    # ✀-➿ 装饰符号
+            
+            # 方块字母和标志符号 (重要！🆚🆗🆔等都在这里)
+            0x1F170 <= code_point <= 0x1F251 or  # 🅰-🈹 方块拉丁字母和中文字符
+            
+            # 数字键盘emoji
+            0x1F1E6 <= code_point <= 0x1F1FF or  # 🇦-🇿 区域指示符号
             
             # 特定重要符号
             0x2B50 <= code_point <= 0x2B55 or    # ⭐⭕
@@ -117,8 +123,8 @@ def extract_emojis_from_line(line: str) -> str:
             0x3299 == code_point or              # ㊙️
             
             # 箭头和几何图形
-            0x2190 <= code_point <= 0x21FF or    # 箭头 ←→↑↓等
-            0x25A0 <= code_point <= 0x25FF or    # 几何图形 ■□▲▼等
+            0x2190 <= code_point <= 0x21FF or    # ←→↑↓等箭头
+            0x25A0 <= code_point <= 0x25FF or    # ■□▲▼等几何图形
             0x2B00 <= code_point <= 0x2BFF or    # 杂项符号和箭头
             
             # 播放控制和技术符号
@@ -135,7 +141,7 @@ def extract_emojis_from_line(line: str) -> str:
             0x2757 == code_point or              # ❗
             0x2795 <= code_point <= 0x2797 or    # ➕➖➗
             
-            # 心形和感叹号
+            # 心形和其他符号
             0x2763 == code_point or              # ❣️
             0x2764 == code_point or              # ❤️
             0x27A1 == code_point or              # ➡️
@@ -161,9 +167,6 @@ def extract_emojis_from_line(line: str) -> str:
             0x2721 == code_point or              # ✡️
             0x262A == code_point or              # ☪️
             
-            # 区域指示符号 (国旗)
-            0x1F1E6 <= code_point <= 0x1F1FF or  # 🇦-🇿
-            
             # 数字和字母 (用于组合emoji)
             0x30 <= code_point <= 0x39 or        # 数字 0-9
             0x41 <= code_point <= 0x5A or        # 大写字母 A-Z
@@ -181,7 +184,38 @@ def extract_emojis_from_line(line: str) -> str:
             0x231A <= code_point <= 0x231B or    # ⌚⌛
             0x24C2 == code_point or              # Ⓜ️
             0x1F004 == code_point or             # 🀄 (麻将)
-            0x1F0CF == code_point                # 🃏 (小丑牌)
+            0x1F0CF == code_point or             # 🃏 (小丑牌)
+            
+            # 额外的重要范围 (从文件中发现的)
+            0x1F100 <= code_point <= 0x1F1FF or  # 方块字母数字补充
+            0x1F200 <= code_point <= 0x1F2FF or  # 方块中日韩字符补充
+            
+            # 特殊星座符号范围
+            0x2648 <= code_point <= 0x2653 or    # ♈-♓ 十二星座
+            
+            # 扑克牌花色
+            0x2660 <= code_point <= 0x2667 or    # ♠♡♢♣♤♥♦♧
+            
+            # 特殊箭头和符号
+            0x2934 <= code_point <= 0x2935 or    # ⤴️⤵️
+            0x21A9 <= code_point <= 0x21AA or    # ↩️↪️
+            
+            # 其他零散重要符号
+            0x26CE == code_point or              # ⛎ 蛇夫座
+            0x267E == code_point or              # ♾️ 无穷大
+            0x267F == code_point or              # ♿ 轮椅符号
+            0x269C == code_point or              # ⚜️ 百合花
+            0x26A0 <= code_point <= 0x26A1 or    # ⚠️⚡ 警告和闪电
+            0x26AA <= code_point <= 0x26AB or    # ⚪⚫ 白黑圆圈
+            0x26BD <= code_point <= 0x26BE or    # ⚽⚾ 球类
+            0x26C4 <= code_point <= 0x26C5 or    # ⛄⛅ 雪人和云
+            0x26C8 == code_point or              # ⛈️ 雷雨
+            0x26CF <= code_point <= 0x26D1 or    # ⛏️⛐⛑️ 工具
+            0x26D3 <= code_point <= 0x26D4 or    # ⛓️⛔ 链条和禁止
+            0x26E9 <= code_point <= 0x26EA or    # ⛩️⛪ 神社和教堂
+            0x26F0 <= code_point <= 0x26F5 or    # ⛰️-⛵ 山和船
+            0x26F7 <= code_point <= 0x26FA or    # ⛷️-⛺ 滑雪到帐篷
+            0x26FD == code_point                 # ⛽ 加油站
         )
         
         if is_emoji:
