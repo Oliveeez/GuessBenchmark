@@ -82,74 +82,206 @@ def parse_txt_file(file_path: Path) -> List[Dict[str, any]]:
 
 def extract_emojis_from_line(line: str) -> str:
     """
-    从单行内容中提取表情符号，忽略中文字符、数字、等号等
-    
-    Args:
-        line: 单行内容
-        
-    Returns:
-        提取出的表情符号字符串
+    基于emoji_hanzi.txt文件中实际emoji的范围检测
     """
-    # 移除所有中文字符
-    content_no_chinese = re.sub(r'[\u4e00-\u9fff]', '', line)
+    result = ""
+    i = 0
     
-    # 移除数字、等号、标点符号和空白字符
-    content_cleaned = re.sub(r'[0-9=，。！？：；、\s\n\r\t]', '', content_no_chinese)
+    while i < len(line):
+        char = line[i]
+        code_point = ord(char)
+        
+        # 基于实际emoji文件的完整范围
+        is_emoji = (
+            # 主要emoji范围
+            0x1F600 <= code_point <= 0x1F64F or  # 表情符号 😀-🙏
+            0x1F300 <= code_point <= 0x1F5FF or  # 杂项符号和象形文字 🌀-🗿
+            0x1F680 <= code_point <= 0x1F6FF or  # 交通和地图符号 🚀-🛿
+            0x1F700 <= code_point <= 0x1F77F or  # 炼金术符号
+            0x1F780 <= code_point <= 0x1F7FF or  # 几何形状扩展
+            0x1F800 <= code_point <= 0x1F8FF or  # 补充箭头-C
+            0x1F900 <= code_point <= 0x1F9FF or  # 补充符号和象形文字 🤀-🧿
+            0x1FA00 <= code_point <= 0x1FA6F or  # 棋类符号
+            0x1FA70 <= code_point <= 0x1FAFF or  # 符号和象形文字扩展-A 🩰-🫿
+            0x1FB00 <= code_point <= 0x1FBFF or  # 符号和象形文字扩展-B
+            
+            # 传统符号范围 (包含很多重要emoji)
+            0x2600 <= code_point <= 0x26FF or    # 杂项符号 ☀-⛿ (包含⌨️, ♈-♓, ⚛, ⚗, ⛑等)
+            0x2700 <= code_point <= 0x27BF or    # 装饰符号 ✀-➿
+            
+            # 特定重要符号
+            0x2B50 <= code_point <= 0x2B55 or    # ⭐⭕
+            0x3030 == code_point or              # 〰️
+            0x303D == code_point or              # 〽️  
+            0x3297 == code_point or              # ㊗️
+            0x3299 == code_point or              # ㊙️
+            
+            # 箭头和几何图形
+            0x2190 <= code_point <= 0x21FF or    # 箭头 ←→↑↓等
+            0x25A0 <= code_point <= 0x25FF or    # 几何图形 ■□▲▼等
+            0x2B00 <= code_point <= 0x2BFF or    # 杂项符号和箭头
+            
+            # 播放控制和技术符号
+            0x23E9 <= code_point <= 0x23F3 or    # ⏩⏪⏫⏬⏭⏮⏯⏰⏱⏲⏳
+            0x23CF == code_point or              # ⏏️
+            0x2328 == code_point or              # ⌨️
+            
+            # 星号和数学符号
+            0x2733 == code_point or              # ✳️
+            0x2734 == code_point or              # ✴️
+            0x274C == code_point or              # ❌
+            0x274E == code_point or              # ❎
+            0x2753 <= code_point <= 0x2755 or    # ❓❔❕
+            0x2757 == code_point or              # ❗
+            0x2795 <= code_point <= 0x2797 or    # ➕➖➗
+            
+            # 心形和感叹号
+            0x2763 == code_point or              # ❣️
+            0x2764 == code_point or              # ❤️
+            0x27A1 == code_point or              # ➡️
+            0x27B0 == code_point or              # ➰
+            0x27BF == code_point or              # ➿
+            
+            # 版权等符号
+            0x00A9 == code_point or              # ©️
+            0x00AE == code_point or              # ®️
+            0x203C == code_point or              # ‼️
+            0x2049 == code_point or              # ⁉️
+            0x2122 == code_point or              # ™️
+            0x2139 == code_point or              # ℹ️
+            
+            # 宗教和文化符号
+            0x262E == code_point or              # ☮️
+            0x262F == code_point or              # ☯️ 
+            0x2638 == code_point or              # ☸️
+            0x2694 == code_point or              # ⚔️
+            0x269B == code_point or              # ⚛️
+            0x26D4 == code_point or              # ⛔
+            0x271D == code_point or              # ✝️
+            0x2721 == code_point or              # ✡️
+            0x262A == code_point or              # ☪️
+            
+            # 区域指示符号 (国旗)
+            0x1F1E6 <= code_point <= 0x1F1FF or  # 🇦-🇿
+            
+            # 数字和字母 (用于组合emoji)
+            0x30 <= code_point <= 0x39 or        # 数字 0-9
+            0x41 <= code_point <= 0x5A or        # 大写字母 A-Z
+            0x61 <= code_point <= 0x7A or        # 小写字母 a-z
+            0x23 == code_point or                 # # (用于 #️⃣)
+            0x2A == code_point or                 # * (用于 *️⃣)
+            
+            # emoji修饰符和组合字符
+            0xFE00 <= code_point <= 0xFE0F or    # 变体选择器
+            code_point == 0x20E3 or              # 组合键盘符号 ⃣
+            0x1F3FB <= code_point <= 0x1F3FF or  # 肤色修饰符 🏻🏼🏽🏾🏿
+            code_point == 0x200D or              # 零宽连接符 (用于组合emoji)
+            
+            # 其他重要符号
+            0x231A <= code_point <= 0x231B or    # ⌚⌛
+            0x24C2 == code_point or              # Ⓜ️
+            0x1F004 == code_point or             # 🀄 (麻将)
+            0x1F0CF == code_point                # 🃏 (小丑牌)
+        )
+        
+        if is_emoji:
+            result += char
+        
+        i += 1
     
-    # 进一步清理：只保留表情符号范围的Unicode字符
-    emoji_chars = []
-    for char in content_cleaned:
-        code = ord(char)
-        # 保留表情符号和相关Unicode范围，但排除数字和等号
-        if (0x1F600 <= code <= 0x1F64F or  # 表情
-            0x1F300 <= code <= 0x1F5FF or  # 杂项符号
-            0x1F680 <= code <= 0x1F6FF or  # 交通符号
-            0x1F1E6 <= code <= 0x1F1FF or  # 区域指示符
-            0x2600 <= code <= 0x26FF or   # 杂项符号
-            0x2700 <= code <= 0x27BF or   # 装饰符号
-            0x1F900 <= code <= 0x1F9FF or  # 补充符号
-            0x1FA70 <= code <= 0x1FAFF or  # 扩展A
-            0xFE00 <= code <= 0xFE0F or   # 变体选择器
-            0x20E3 == code):               # 组合键盘符号（但不包含数字本身）
-            emoji_chars.append(char)
-    
-    return ''.join(emoji_chars)
+    return result
 
 def count_emojis(emoji_text: str) -> int:
     """
-    计算字符串中表情符号的数量
-    
-    Args:
-        emoji_text: 包含表情符号的字符串
-        
-    Returns:
-        表情符号的数量
+    更准确的emoji计数，基于实际emoji特征
     """
-    emoji_count = 0
+    if not emoji_text:
+        return 0
+    
+    count = 0
     i = 0
+    
     while i < len(emoji_text):
         char = emoji_text[i]
-        code = ord(char)
+        code_point = ord(char)
         
-        # 检查是否是表情符号
-        if (0x1F600 <= code <= 0x1F64F or  # 表情
-            0x1F300 <= code <= 0x1F5FF or  # 杂项符号
-            0x1F680 <= code <= 0x1F6FF or  # 交通符号
-            0x1F1E6 <= code <= 0x1F1FF or  # 区域指示符
-            0x2600 <= code <= 0x26FF or   # 杂项符号
-            0x2700 <= code <= 0x27BF or   # 装饰符号
-            0x1F900 <= code <= 0x1F9FF or  # 补充符号
-            0x1FA70 <= code <= 0x1FAFF):  # 扩展A
-            emoji_count += 1
+        # 检查是否是主要emoji字符（非修饰符）
+        is_main_emoji = (
+            # 主要emoji范围
+            0x1F600 <= code_point <= 0x1F64F or  # 表情
+            0x1F300 <= code_point <= 0x1F5FF or  # 杂项符号
+            0x1F680 <= code_point <= 0x1F6FF or  # 交通
+            0x1F700 <= code_point <= 0x1F77F or  # 炼金术
+            0x1F780 <= code_point <= 0x1F7FF or  # 几何
+            0x1F800 <= code_point <= 0x1F8FF or  # 箭头
+            0x1F900 <= code_point <= 0x1F9FF or  # 补充符号
+            0x1FA00 <= code_point <= 0x1FA6F or  # 棋类
+            0x1FA70 <= code_point <= 0x1FAFF or  # 扩展A
             
-            # 跳过可能的修饰符
-            if i + 1 < len(emoji_text):
-                next_code = ord(emoji_text[i + 1])
-                if 0xFE00 <= next_code <= 0xFE0F:  # 变体选择器
-                    i += 1
-        i += 1
+            # 传统符号
+            0x2600 <= code_point <= 0x26FF or    # 杂项符号
+            0x2700 <= code_point <= 0x27BF or    # 装饰符号
+            
+            # 特定重要符号
+            0x2B50 <= code_point <= 0x2B55 or    # ⭐⭕
+            code_point == 0x3030 or              # 〰️
+            code_point == 0x303D or              # 〽️
+            code_point == 0x3297 or              # ㊗️
+            code_point == 0x3299 or              # ㊙️
+            
+            # 箭头
+            0x2190 <= code_point <= 0x21FF or    # 基本箭头
+            0x2B00 <= code_point <= 0x2BFF or    # 补充箭头
+            
+            # 几何图形
+            0x25A0 <= code_point <= 0x25FF or    # 基本几何
+            
+            # 播放控制
+            0x23E9 <= code_point <= 0x23F3 or    # 播放按钮
+            code_point == 0x23CF or              # ⏏️
+            code_point == 0x2328 or              # ⌨️
+            
+            # 数字组合 (如1️⃣)
+            (0x30 <= code_point <= 0x39) or      # 0-9
+            code_point == 0x23 or                # #
+            code_point == 0x2A or                # *
+            
+            # 区域指示符
+            0x1F1E6 <= code_point <= 0x1F1FF or  # 🇦-🇿
+            
+            # 其他重要单个emoji
+            code_point == 0x00A9 or              # ©️
+            code_point == 0x00AE or              # ®️
+            code_point == 0x203C or              # ‼️
+            code_point == 0x2049 or              # ⁉️
+            code_point == 0x2122 or              # ™️
+            code_point == 0x2139 or              # ℹ️
+            code_point == 0x231A or              # ⌚
+            code_point == 0x231B or              # ⌛
+            code_point == 0x24C2 or              # Ⓜ️
+            code_point == 0x1F004 or             # 🀄
+            code_point == 0x1F0CF                # 🃏
+        )
+        
+        if is_main_emoji:
+            count += 1
+            
+            # 跳过后续的修饰符
+            j = i + 1
+            while j < len(emoji_text):
+                next_code = ord(emoji_text[j])
+                if (0xFE00 <= next_code <= 0xFE0F or  # 变体选择器
+                    next_code == 0x20E3 or            # ⃣
+                    0x1F3FB <= next_code <= 0x1F3FF or # 肤色修饰符
+                    next_code == 0x200D):             # 零宽连接符
+                    j += 1
+                else:
+                    break
+            i = j
+        else:
+            i += 1
     
-    return emoji_count
+    return count
 
 def is_valid_idiom(text: str) -> bool:
     """检查是否是有效的四字成语"""
@@ -170,7 +302,7 @@ def convert_all_txt_to_json():
     print("🚀 开始转换 idiom_emoji_questions 中的所有 txt 文件...")
     
     # 设置路径 - 直接指定项目根目录
-    project_root = Path("C:/Users/weiyi/Desktop/GuessBenchmark")
+    project_root = Path("C:\\Users\\weiyi\\Documents\\GuessBenchmark")
     input_dir = project_root / "data_generation_alt" / "idiom_emoji_questions"
     output_dir = project_root / "data_generation"
     output_file = output_dir / "chinese_idiom_complete.json"
@@ -233,24 +365,33 @@ def convert_all_txt_to_json():
                 if len(selected_pairs) >= 5:
                     break
                 group = homophonic_groups[count]
-                # 从每组随机选一个
-                selected_pairs.append(random.choice(group))
-            
+                # 从每组选第一个有效的（包含4个表情符号的）
+                valid_in_group = [pair for pair in group if count_emojis(pair['emoji_rep']) == 4]
+                if valid_in_group:
+                    selected_pairs.append(valid_in_group[0])
+
             # 如果还没有5个，继续从最少谐音数量的组中补充
             while len(selected_pairs) < 5:
+                added_any = False
                 for count in sorted_counts:
                     if len(selected_pairs) >= 5:
                         break
                     group = homophonic_groups[count]
-                    # 排除已选择的项目
-                    available = [pair for pair in group if pair not in selected_pairs]
+                    # 排除已选择的项目，并确保有4个表情符号
+                    available = [pair for pair in group 
+                               if pair not in selected_pairs and count_emojis(pair['emoji_rep']) == 4]
                     if available:
-                        selected_pairs.append(random.choice(available))
-                    
-                # 如果所有组都用完了，退出循环
-                if all(len([pair for pair in homophonic_groups[count] if pair not in selected_pairs]) == 0 
-                       for count in sorted_counts):
+                        selected_pairs.append(available[0])
+                        added_any = True
+                
+                # 如果这一轮没有添加任何项目，退出循环
+                if not added_any:
                     break
+            
+            # 如果选择的组合数量不足，跳过这个成语
+            if len(selected_pairs) == 0:
+                print(f"  ❌ 未能选择到有效的表情组合: {txt_file.name}")
+                continue
             
             print(f"  🎯 从 {len(valid_pairs)} 个有效表情组合中按谐音数量梯度选择 {len(selected_pairs)} 个")
             
@@ -264,7 +405,7 @@ def convert_all_txt_to_json():
                 "emoji_rep": []
             }
             
-            # 添加表情组合
+            # 添加表情组合 - 重新编号索引
             for idx, pair in enumerate(selected_pairs, 1):
                 # 验证表情符号数量
                 emoji_count = count_emojis(pair['emoji_rep'])
@@ -277,7 +418,7 @@ def convert_all_txt_to_json():
                     "homophonic_num": homophonic_count
                 }
                 idiom_entry["emoji_rep"].append(emoji_entry)
-                print(f"  ✅ {idiom_name}: {pair['emoji_rep']} (谐音数:{homophonic_count}, 表情数:{emoji_count})")
+                # print(f"  ✅ {idiom_name}: {pair['emoji_rep']} (谐音数:{homophonic_count}, 表情数:{emoji_count})")
             
             idiom_dict[idiom_name] = idiom_entry
             idiom_index += 1
@@ -359,6 +500,31 @@ def preview_txt_files():
                     
         except Exception as e:
             print(f"  ❌ 读取失败: {e}")
+
+def safe_emoji_processing(text):
+    """安全的emoji处理"""
+    # 保持原始字符，不进行任何标准化
+    return text
+
+# 完整的转换流程
+def txt_to_json_with_emoji(txt_file, json_file):
+    try:
+        # 使用utf-8-sig处理BOM
+        with open(txt_file, 'r', encoding='utf-8-sig') as f:
+            content = f.read()
+        
+        # 不对emoji进行任何处理
+        data = {"content": content}
+        
+        # 确保输出时不转义unicode
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+            
+    except Exception as e:
+        print(f"Error: {e}")
+
+# 使用示例
+txt_to_json_with_emoji('input.txt', 'output.json')
 
 if __name__ == "__main__":
     import argparse
