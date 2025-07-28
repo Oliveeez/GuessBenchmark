@@ -1,3 +1,23 @@
 [
-     {"idiom": "一槌定音", "emoji_rep": "1️⃣🔨🤝🎵"}
+  {
+    "idiom_index": 1,
+    "idiom": "一槌定音", 
+    "emoji_rep":[
+     {
+          "index": 1,
+          "emoji_set": "1️⃣🔨🤝🎵",
+          "homophonic_num": 4
+     },
+     {
+          "index": 2,
+          "emoji_set": "1️⃣🔨🤝🎶",
+          "homophonic_num": 4
+     },
+     {
+          "index": 3,
+          "emoji_set": "1️⃣🔨🤝🎤",
+          "homophonic_num": 4
+     }
+     ]
+  }
 ]

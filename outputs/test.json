@@ -1,0 +1,26 @@
+{
+  "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/一槌定音_base_v001.png",
+  "image_name": "一槌定音_base_v001.png",
+  "prompt_version": "v001 (default sequential order)",
+  "analysis_result": {
+    "success": true,
+    "response": "```json\n{\"idiom\": \"一板一眼\", \"inference_chain\": \"1️⃣ represents '一' (one); 🔨 represents '板' (board/rigid, phonetically 'ban'); 🤝 represents '一' (one); 🎵 represents '眼' (eye, phonetically 'yan'). The idiom '一板一眼' means doing things in an orderly and meticulous manner.\"}\n```",
+    "usage": {
+      "prompt_tokens": 914,
+      "completion_tokens": 91,
+      "total_tokens": 1005,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "model": "gpt-4o-2024-08-06"
+  },
+  "timestamp": "2025-07-14T15:10:23.573924"
+}

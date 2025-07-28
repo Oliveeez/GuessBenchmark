@@ -1,0 +1,1892 @@
+{
+  "idiom_folder": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音",
+  "idiom_name": "1_一槌定音",
+  "images": {
+    "1": {
+      "一槌定音_base_v001.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/一槌定音_base_v001.png",
+        "image_type": "base",
+        "prompt_version": "v001 (default sequential order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一手一足\", \"inference_chain\": \"The first emoji represents 'one', which matches the character '一'. The second emoji is a hammer, which in Chinese can be '手锤' (hand hammer), matching '手'. The third emoji represents a handshake, which involves hands and can be associated with the concept of '一手'. The fourth emoji represents a musical note, which can be interpreted as '足音' (footstep sound), matching '足'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 914,
+            "completion_tokens": 109,
+            "total_tokens": 1023,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_v006.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_pure/一槌定音_zigzag_v006.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v006 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n    \"idiom\": \"一唱一和\",\n    \"inference_chain\": \"The emojis are arranged in a rectangular pattern. 1️⃣ corresponds to '一' (one) via semantic match. 🎵 corresponds to '唱' (sing) via semantic match. 🤝 corresponds to '和' (harmonize, respond) via semantic match. This forms the idiom '一唱一和', which means one sings, the other follows in harmony.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 102,
+            "total_tokens": 1042,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_v002.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_pure/一槌定音_vertical_v002.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v002 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"The first emoji is '1', which is a numeric representation for '一' (one). The second emoji is a hammer, which makes a '拍' (pāi, sound of hitting) sound when used. The third emoji is a handshake, representing '合' (hé, to unite or come together). The fourth emoji is a musical note, representing '即' (jí, meaning immediately, as in music being immediate). Thus, the idiom is '一拍即合', meaning to reach an agreement quickly and easily.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 131,
+            "total_tokens": 1071,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_v004.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_pure/一槌定音_circular_v004.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v004 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一唱一和\",\n  \"inference_chain\": \"The emojis are arranged in a square with the number '1', musical note, handshake, and hammer. The idiom '一唱一和' aligns with these emojis: '一' (one) corresponds to the number emoji, '唱' (sing) corresponds to the musical note, '和' (harmonize) can be symbolized by a handshake, and the phonetic match for '和' (pronounced 'hé') can sound similar to 'hammer'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 122,
+            "total_tokens": 1062,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_v003.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_pure/一槌定音_diagonal_v003.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v003 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are arranged diagonally from top-left to bottom-right, suggesting a sequence. The first emoji is '1', which matches semantically with '一' (one). The second emoji is a 'hammer', which phonetically resembles '唱' (chàng) as 'hammer' in Chinese is '锤子' (chuízi). The third emoji is a 'handshake', which semantically matches with '和' (harmony). The fourth emoji is a 'music note', which matches semantically with '唱' (sing). Therefore, the idiom is '一唱一和'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 147,
+            "total_tokens": 1087,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_v005.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_pure/一槌定音_grid_v005.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v005 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一拍即合\",\n  \"inference_chain\": \"The emojis are arranged in a square with potential diagonal reading. 1️⃣ matches 一 (one) semantically. 🔨 resembles 拍 (to beat or tap) phonetic match with 'pai'. 🤝 aligns with 合 (to fit, join, or unite) semantically, and 🎵 suggests 即 (immediate or instant) as music can be instantaneously recognized, completing the idiom 一拍即合, meaning a perfect match or instant agreement.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 118,
+            "total_tokens": 1058,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_v007.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_pure/一槌定音_star_v007.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v007 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are mapped as follows: 🔨 (hammer) phonetically matches '和' (he) due to 'hammer' sounding like 'he'; 🤝 (handshake) semantically matches '唱' (sing) as both imply cooperation and harmony; 1️⃣ (number one) matches '一' (yi) semantically; 🎵 (music note) semantically matches '唱' (sing) due to music and singing association. The emojis are arranged in a triangular pattern, starting from 1️⃣ (top), 🎵 (bottom left), 🤝 (bottom right), and 🔨 (top).\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 149,
+            "total_tokens": 1089,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_guide_and_numbers_v025.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_star_guide_and_numbers_v025.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v025 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一锤定音\",\n  \"inference_chain\": \"1️⃣ represents '一' (one), which matches the number in the emoji. 🔨 represents '锤' (hammer), which matches the emoji of a hammer. 🤝 represents '定' (to set/to decide), as a handshake can signify an agreement or decision. 🎵 represents '音' (sound), which can be associated with music. Therefore, the idiom is '一锤定音'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 112,
+            "total_tokens": 1040,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_numbers_only_v009.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_vertical_numbers_only_v009.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v009 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一拍即合\",\n  \"inference_chain\": \"1️⃣ The number 'one' corresponds to '一' (yi), which means 'one'. 2️⃣ The hammer emoji corresponds to '拍' (pai), meaning 'strike'. 3️⃣ The handshake emoji represents '即' (ji), meaning 'immediately' or 'at once'. 4️⃣ The music note emoji corresponds to '合' (he), meaning 'harmony'. Together, these form the idiom '一拍即合', which describes two parties reaching agreement quickly and harmoniously.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 129,
+            "total_tokens": 1057,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_numbers_only_v012.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_diagonal_numbers_only_v012.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v012 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ The '1' emoji represents '一' (yī), a numerical match. 2️⃣ The 'hammer' emoji can be interpreted as '敲' (qiāo), phonetically matching with '唱' (chàng), meaning to 'sing' or 'knock'. 3️⃣ The 'handshake' emoji represents '和' (hé), meaning 'harmony' or 'together'. 4️⃣ The 'musical note' emoji represents '唱' (chàng), meaning 'sing'. Therefore, the idiom is '一唱一和', which means to echo or to sing in harmony.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 153,
+            "total_tokens": 1081,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_guide_only_v023.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_star_guide_only_v023.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v023 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The sequence follows from the number 1 emoji to the hammer emoji, then to the handshake emoji, and finally to the music note emoji. The idiom '一唱一和' is formed by: 1 (一, meaning 'one'), hammer (唱, phonetic match with 'chàng'), handshake (和, phonetic match with 'hé'), music note (和, semantic match meaning 'harmony').\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 106,
+            "total_tokens": 1034,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_numbers_only_v015.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_circular_numbers_only_v015.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v015 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ The emoji '1' represents the character '一' (one). 2️⃣ The hammer emoji represents the character '锤' (hammer). 3️⃣ The handshake emoji represents the character '定', as shaking hands often signifies 'settling' or 'deciding', which matches the meaning of '定' (to decide). 4️⃣ The music note emoji represents the character '音' (sound), as they both relate to music or sound. Thus, the idiom derived from the emojis is '一锤定音'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 135,
+            "total_tokens": 1063,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_guide_and_numbers_v016.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_circular_guide_and_numbers_v016.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v016 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一鸣惊人\", \"inference_chain\": \"The sequence of emojis follows the numbered order: 1️⃣ (one) - 🛠️ (hammer) - 🤝 (handshake) - 🎵 (musical note). 1️⃣ maps to '一' (one) by semantic match. 🛠️ maps to '鸣' (to sound) through phonetic similarity ('hammer' -> 'ming'). 🤝 maps to '惊' (shock) by semantic match, as a handshake can be surprising. 🎵 maps to '人' (person) through phonetic similarity ('music' -> 'ren'). Thus, the idiom is '一鸣惊人'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 153,
+            "total_tokens": 1081,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_guide_and_numbers_v022.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_zigzag_guide_and_numbers_v022.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v022 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n    \"idiom\": \"一锤定音\",\n    \"inference_chain\": \"1️⃣ represents '一' (one) – semantic match; 🔨 represents '锤' (hammer) – semantic match; 🤝 represents '定' (to decide, to set) – semantic match; 🎵 represents '音' (sound, music) – semantic match. The sequence forms the idiom '一锤定音', meaning to make a final decision or to settle an issue definitively.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 111,
+            "total_tokens": 1039,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_guide_and_numbers_v019.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_grid_guide_and_numbers_v019.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v019 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"The sequence of emojis is: 1️⃣ (one) -> 🔨 (hammer) -> 🤝 (handshake) -> 🎵 (music note). The idiom '一拍即合' translates to 'to hit it off immediately' or 'to be in perfect harmony'. The reasoning is as follows: 1️⃣ corresponds to '一' (one), 🔨 corresponds phonetically to '拍' (to hit or beat), 🤝 corresponds to '合' (to fit or match), and 🎵 corresponds to '即' (immediately), indicating a harmonious or immediate agreement.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 144,
+            "total_tokens": 1072,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_guide_only_v020.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_zigzag_guide_only_v020.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v020 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣: The emoji is the number 'one', which semantically matches the character '一' (yī). 🔨: The hammer emoji signifies the act of 'working together' or 'harmonizing', which semantically matches the character '和' (hé). 🤝: The handshake emoji represents agreement or cooperation, matching the character '和' (hé) in meaning. 🎵: The music note emoji represents singing, which matches the character '唱' (chàng) in meaning.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 124,
+            "total_tokens": 1052,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_guide_only_v017.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_grid_guide_only_v017.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v017 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ corresponds to '一' (one) semantically, 🔨 corresponds to '锤' (hammer) semantically, 🤝 corresponds to '定' (to set, decide) semantically, 🎵 corresponds to '音' (sound) semantically. Thus, the idiom is '一锤定音'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 92,
+            "total_tokens": 1020,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_guide_and_numbers_v010.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_vertical_guide_and_numbers_v010.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v010 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"1️⃣ corresponds to the character '一' (one) through a semantic match, as the emoji represents the number one. 🔨 corresponds to the character '拍' (to clap or tap) through a semantic match, as a hammer taps or hits. 🤝 corresponds to the character '合' (to combine or join) through a semantic match, as a handshake represents joining or agreement. 🎵 corresponds to the character '即' (immediately) through a phonetic match, as its pronunciation 'jí' sounds similar to 'ji' in 'music.' Therefore, the idiom is '一拍即合' (to hit it off instantly).\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 155,
+            "total_tokens": 1083,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_guide_only_v014.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_circular_guide_only_v014.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v014 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ represents '一' (one) as a semantic match; 🎵 represents '唱' (sing) as a semantic match; 🤝 represents '和' (harmonize or agree) as a semantic match; 🔨 represents another '一' (one) as a semantic match. The emojis follow the sequence: 1️⃣🎵🤝🔨, which corresponds to the idiom '一唱一和'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 111,
+            "total_tokens": 1039,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_numbers_only_v018.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_grid_numbers_only_v018.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v018 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ The emoji with the number 'one' corresponds to the character '一' (yī), which means 'one'. 2️⃣ The hammer emoji semantically matches the character '锤' (chuí), meaning 'hammer'. 3️⃣ The handshake emoji suggests agreement or decision, matching the character '定' (dìng), which means 'to decide' or 'to fix'. 4️⃣ The musical note emoji semantically suggests 'sound' or 'music', which aligns with '音' (yīn), meaning 'sound'. The idiom '一锤定音' means 'to decide with one hammer blow', metaphorically indicating a final decision or conclusion.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 162,
+            "total_tokens": 1090,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_guide_only_v011.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_diagonal_guide_only_v011.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v011 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"1️⃣ -> 一 (one), 🔨 -> 拍 (hammer semantically suggests hitting or striking, which can be '拍' in Chinese), 🤝 -> 即 (handshake, suggesting immediate agreement or connection), 🎵 -> 合 (music note implies harmony or agreement, matching 合 in meaning). Therefore, the idiom is 一拍即合.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 93,
+            "total_tokens": 1021,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_numbers_only_v024.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_star_numbers_only_v024.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v024 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ represents '一' (one) as a semantic match. 🔨 represents '锤' (hammer) as a semantic match. 🤝 represents '定' (settle) as a semantic match due to the idea of agreement or fixing something in place. 🎵 represents '音' (sound) as a semantic match because of music notes.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 95,
+            "total_tokens": 1023,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_guide_only_v008.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_vertical_guide_only_v008.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v008 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1: 一 (semantic match - number '1'); Hammer: 锤 (semantic match - tool used for hammering); Handshake: 定 (phonetic match - 'ding' for '定' is similar to 'ding' sound of a handshake sealing a deal); Music Note: 音 (semantic match - music note represents sound).\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 91,
+            "total_tokens": 1019,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_guide_and_numbers_v013.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_diagonal_guide_and_numbers_v013.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v013 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"1️⃣ corresponds to '一' (one) semantically. 2️⃣ Hammer's pinyin 'pāo' closely resembles '拍' (to clap). 3️⃣ Handshake corresponds to '合' (to combine) semantically. 4️⃣ Music note's pinyin 'jí' closely resembles '即' (instant).\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 91,
+            "total_tokens": 1019,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_numbers_only_v021.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/1/seq_varients_with_guideance/一槌定音_zigzag_numbers_only_v021.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v021 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ The '1' emoji corresponds to the character '一' (meaning one) as a semantic match. 2️⃣ The hammer emoji corresponds to the character '唱' (chàng) as a phonetic match because 'chàng' sounds like 'chāng'. 3️⃣ The handshake emoji corresponds to the character '和' (hé) as a semantic match, symbolizing agreement or harmony. 4️⃣ The musical note emoji corresponds to the character '唱' (chàng) as a semantic match, representing singing. The idiom is '一唱一和', meaning one sings and the other follows, like a duet.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 153,
+            "total_tokens": 1081,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      }
+    },
+    "2": {
+      "一槌定音_base_v001.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/一槌定音_base_v001.png",
+        "image_type": "base",
+        "prompt_version": "v001 (default sequential order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一鼓作气\", \"inference_chain\": \"The first emoji is '1', which semantically matches '一' (one). The second emoji is a 'hammer', which phonetically aligns with '鼓' (gǔ, drum) as the hammer can be used to strike a drum. The third emoji is a 'handshake', which semantically represents the action '作' (to make, to do) as a handshake signifies an agreement or action. The fourth emoji is 'musical notes', which phonetically matches '气' (qì, energy) as music notes can be seen as energetic or inspiring.\"}\n```",
+          "usage": {
+            "prompt_tokens": 914,
+            "completion_tokens": 141,
+            "total_tokens": 1055,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_v006.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_pure/一槌定音_zigzag_v006.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v006 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一唱一和\",\n  \"inference_chain\": \"The emojis are arranged in a rectangular pattern starting from the top left and moving clockwise. The first emoji is a '1', which semantically matches the character '一' (yi1, meaning 'one'). The second emoji is a hammer, pronounced as '锤' (chui2), phonetically matching '唱' (chang4, meaning 'sing'). The third emoji is a musical note, semantically matching '唱' (chang4, meaning 'sing'). The fourth emoji is a handshake, semantically matching '和' (he2, meaning 'harmony'). Thus, the idiom is '一唱一和'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 156,
+            "total_tokens": 1096,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_v002.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_pure/一槌定音_vertical_v002.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v002 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The sequence of emojis is arranged in a vertical line: '1️⃣' (one), '🔨' (hammer), '🤝' (handshake), '🎶' (music notes). The idiom '一唱一和' can be inferred through semantic and phonetic matches: '1️⃣' corresponds to '一' (one) semantically, '🎶' corresponds to '唱' (sing) semantically, '🤝' corresponds to '和' (harmony/agreement) semantically, and '🔨' can be phonetic for '和' as it sounds like 'hé' (hammer) in some dialects.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 157,
+            "total_tokens": 1097,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_v004.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_pure/一槌定音_circular_v004.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v004 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are arranged in a circular pattern: 1️⃣ (一), 🎵 (唱), 🤝 (和), 🔨 (一). The first emoji represents 'one' which relates to the character '一', the music note 🎵 represents 'sing', corresponding to '唱', the handshake 🤝 symbolizes 'harmony', matching '和', and the hammer 🔨 is phonetically similar to '一' (pronounced 'yī'). Thus, the idiom is 一唱一和.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 125,
+            "total_tokens": 1065,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_v003.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_pure/一槌定音_diagonal_v003.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v003 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一唱一和\",\n  \"inference_chain\": \"The set of emojis consists of a '1' emoji, a 'hammer' emoji, a 'handshake' emoji, and a 'music notes' emoji. To derive the correct idiom: 1) The '1' emoji semantically represents the character '一' meaning 'one'. 2) The 'hammer' emoji phonetically resembles '和' (hé), meaning 'to harmonize'. 3) The 'handshake' emoji semantically suggests cooperation, aligning with '和' (hé), meaning 'to echo'. 4) The 'music notes' emoji semantically represents '唱' (chàng), meaning 'sing'. Thus, the idiom is '一唱一和' which means 'to sing in harmony'. The pattern follows a logical sequence connecting the emojis with the idiom's meaning.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 194,
+            "total_tokens": 1134,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_v005.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_pure/一槌定音_grid_v005.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v005 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are arranged in a square pattern. Starting from the top left and moving clockwise: 1️⃣ represents '一' (one) as a semantic match; 🔨 resembles '唱' (sing) phonetically as 'chàng' (hammer in Chinese is 'chuí'); 🎵 represents '和' (harmony) as a semantic match, since music notes can symbolize harmony; 🤝 represents '一' (one) again as a semantic match for unity or agreement.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 121,
+            "total_tokens": 1061,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_v007.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_pure/一槌定音_star_v007.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v007 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are arranged in a square. The top emoji is a hammer, which in Chinese is pronounced 'chuí'. The left emoji is musical notes, representing '唱' (chàng, meaning to sing). The bottom emoji is the number one, representing '一' (yī, meaning one). The right emoji is a handshake, which can be phonetically associated with '和' (hé, meaning harmony or to harmonize). Together, this forms the idiom '一唱一和', meaning to sing in harmony or to echo each other.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 135,
+            "total_tokens": 1075,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_guide_and_numbers_v025.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_star_guide_and_numbers_v025.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v025 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ '1' represents '一' meaning 'one'. 2️⃣ Hammer represents '敲' pronounced as 'qiāo', which is similar to '唱' pronounced as 'chàng'. 3️⃣ Handshake represents '和' meaning 'harmony'. 4️⃣ Music notes represent '唱' meaning 'sing'. Therefore, the idiom is '一唱一和'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 103,
+            "total_tokens": 1031,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_numbers_only_v009.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_vertical_numbers_only_v009.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v009 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ corresponds to '一' (one), as it directly depicts the number one. 🔨 corresponds to '锤' (hammer), as the hammer emoji semantically matches the character. 🤝 corresponds to '定' (to set or determine), as shaking hands can symbolize agreement or setting terms. 🎵 corresponds to '音' (sound), as the music notes emoji semantically matches the idea of sound or music.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 109,
+            "total_tokens": 1037,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_numbers_only_v012.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_diagonal_numbers_only_v012.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v012 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"1️⃣ 'one' emoji represents 一 (yī), meaning 'one'. 2️⃣ 'hammer' emoji represents 拍 (pāi), which can mean 'to strike' or 'to clap', aligning with the action of a hammer. 3️⃣ 'handshake' emoji represents 合 (hé), meaning 'to join' or 'to unite', similar to a handshake as a gesture of agreement. 4️⃣ 'music notes' emoji represents 即 (jí), implying 'immediate' or 'instant', as music flows seamlessly and instantly. Thus, the idiom 一拍即合, meaning 'to be in perfect agreement instantly', is formed.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 156,
+            "total_tokens": 1084,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_guide_only_v023.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_star_guide_only_v023.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v023 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一唱一和\",\n  \"inference_chain\": \"1️⃣ (一, yi) - Semantic Match: Represents the number one. 🎤 (唱, chang) - Phonetic Match: The emoji represents singing, which phonetically matches 'chang'. 🤝 (和, he) - Semantic Match: Represents harmony or agreement, similar to a handshake. 1️⃣ (一, yi) - Semantic Match: Represents the number one. The idiom 一唱一和 refers to the act of one person singing and another person harmonizing or agreeing, often used metaphorically for cooperation.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 134,
+            "total_tokens": 1062,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_numbers_only_v015.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_circular_numbers_only_v015.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v015 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一鸣惊人\", \"inference_chain\": \"The emojis represent the sequence: 1️⃣ (one) ➡️ 🔨 (hammer) ➡️ 🤝 (handshake) ➡️ 🎵 (music). '1️⃣' matches '一' (one), '🔨' matches '鸣' (hammer hitting makes a sound), '🤝' matches '惊' (shake hands can be surprising), '🎵' matches '人' (music is created by people). Therefore, the idiom is '一鸣惊人', meaning 'to amaze the world with a single brilliant act'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 139,
+            "total_tokens": 1067,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_guide_and_numbers_v016.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_circular_guide_and_numbers_v016.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v016 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一手遮天\", \"inference_chain\": \"The sequence of emojis is: 1️⃣ (Number One) -> 🔨 (Hammer) -> 🤝 (Handshake) -> 🎶 (Musical Notes). 1️⃣ represents '一' (one) through a semantic match. 🔨 represents '手' (hand) as hammers are typically used by hand, a semantic match. 🤝 represents '遮' (cover) as a handshake involves hands covering each other, a semantic match. 🎶 represents '天' (sky/heaven) as music is often associated with the heavens, a semantic match. Therefore, the idiom is '一手遮天' which means to hide the truth from the masses or to cover the sky with one hand.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 167,
+            "total_tokens": 1095,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_guide_and_numbers_v022.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_zigzag_guide_and_numbers_v022.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v022 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一拍即合\",\n  \"inference_chain\": \"1️⃣ represents 'one' (一, yī); 🔨 is a hammer used to 'tap' (拍, pāi); 🤝 symbolizes 'agreeing' or 'fitting together' (合, hé); 🎵 is music indicating 'immediate' (即, jí) harmony. Together, they form the idiom 一拍即合, meaning to quickly find agreement or harmony.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 106,
+            "total_tokens": 1034,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_guide_and_numbers_v019.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_grid_guide_and_numbers_v019.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v019 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ The first emoji is a number '1', which directly translates to '一' (yī) meaning 'one'. 2️⃣ The second emoji is a hammer, which phonetically matches '唱' (chàng) meaning 'sing', as 'hammer' is '锤子' (chuízi) in Chinese, thus the initial 'ch' sound matches. 3️⃣ The third emoji is a handshake, which can semantically relate to '和' (hé) meaning 'harmony' or 'to harmonize', as a handshake signifies agreement. 4️⃣ The fourth emoji is musical notes, which semantically matches '和' (hé) as it relates to 'harmony' in music. Therefore, the idiom '一唱一和' is formed, meaning to sing in harmony or to echo each other.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 195,
+            "total_tokens": 1123,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_guide_only_v020.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_zigzag_guide_only_v020.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v020 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emoji sequence follows: 1️⃣ -> 🔨 -> 🤝 -> 🎵. The number '1️⃣' corresponds to the character '一' (one). The hammer '🔨' phonetically matches '唱' (chàng), which means to sing, as 'hammer' in Chinese is '锤' (chuí), sharing a similar 'ch' sound. The handshake '🤝' semantically matches '和' (hé), meaning harmony or agreement. Finally, the music notes '🎵' semantically match '和' (hé), representing harmony in music. Therefore, the idiom is '一唱一和', meaning one sings and one follows, indicating a harmonious collaboration.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 167,
+            "total_tokens": 1095,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_guide_only_v017.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_grid_guide_only_v017.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v017 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一鸣惊人\", \"inference_chain\": \"The sequence follows 1️⃣ (one) -> 🔨 (hammer, sounds like 'ming') -> 🤝 (handshake, sounds like 'jing') -> 🎵 (music notes, related to sound, 'ren'). Therefore, the idiom is 一鸣惊人 (one sound that surprises people).\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 84,
+            "total_tokens": 1012,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_guide_and_numbers_v010.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_vertical_guide_and_numbers_v010.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v010 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一锤定音\",\n  \"inference_chain\": \"1️⃣ '1' emoji represents '一' (semantic match), 🔨 hammer emoji represents '锤' (semantic match), 🤝 handshake emoji represents '定' which means 'to settle' (semantic match), 🎵 music notes emoji represent '音' which means 'sound' or 'tone' (semantic match).\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 93,
+            "total_tokens": 1021,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_guide_only_v014.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_circular_guide_only_v014.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v014 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一唱一和\",\n  \"inference_chain\": \"1️⃣ corresponds to '一' (one); 🎶 corresponds to '唱' (sing) semantically; 🤝 corresponds to '和' (harmony) semantically; 🔨 corresponds to '和' (harmony) phonetically as 'hè' in '和' can mean to echo or agree in context of the idiom. Therefore, the idiom is '一唱一和', meaning to echo each other.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 115,
+            "total_tokens": 1043,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_numbers_only_v018.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_grid_numbers_only_v018.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v018 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n    \"idiom\": \"一鸣惊人\",\n    \"inference_chain\": \"1️⃣ The emoji for 'one' (1️⃣) semantically matches the character '一' (yī), meaning 'one'. 2️⃣ The hammer emoji (🔨) can phonetically resemble '鸣' (míng), as 'hammer' sounds like 'mǎdào' and the 'míng' starts similarly with 'm'. 3️⃣ The handshake emoji (🤝) represents agreement or surprise, which aligns with '惊' (jīng), meaning surprise. 4️⃣ The music notes emoji (🎶) semantically matches '人' (rén) as it represents people and expressions, completing '一鸣惊人', meaning 'to make a stunning achievement with a single effort'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 176,
+            "total_tokens": 1104,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_guide_only_v011.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_diagonal_guide_only_v011.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v011 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1 -> 一 (Semantic Match), Hammer -> 唱 (Phonetic Match: 'chui' sounds like 'chang'), Handshake -> 和 (Semantic Match), Music Notes -> 和 (Semantic Match)\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 63,
+            "total_tokens": 991,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_numbers_only_v024.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_star_numbers_only_v024.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v024 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ corresponds to '一' (one); 2️⃣ hammer corresponds to '锤', which sounds like '唱' (sing); 3️⃣ handshake corresponds to '和' (harmony/agreement); 4️⃣ musical notes correspond to '和' (harmony/music). Therefore, the idiom is '一唱一和', meaning to sing in harmony or work together in agreement.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 103,
+            "total_tokens": 1031,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_guide_only_v008.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_vertical_guide_only_v008.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v008 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"The sequence of emojis is: 1️⃣, 🔨, 🤝, 🎵. '1️⃣' represents '一' (one), which is a semantic match. '🔨' is a hammer, which can be associated with '拍' (pāi) because of the action of striking or pounding. '🤝' represents '合' (hé) which means to combine or cooperate, indicated by the handshake emoji. '🎵' represents '音' (yīn), but in idiomatic usage, here it refers to '合' as a perfect match or harmony. Thus, the idiom is '一拍即合' which means to hit it off immediately or be in perfect harmony.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 168,
+            "total_tokens": 1096,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_guide_and_numbers_v013.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_diagonal_guide_and_numbers_v013.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v013 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一拍即合\", \"inference_chain\": \"1️⃣ The first emoji is the number '1', which corresponds to the Chinese character '一' (yi1), meaning 'one'. 2️⃣ The second emoji is a hammer, which can be associated with the action of 'hitting' or 'striking', corresponding to the Chinese character '拍' (pai1), meaning 'pat' or 'clap'. 3️⃣ The third emoji is a handshake, which represents the concept of 'agreement' or 'joining', matching the Chinese character '合' (he2), meaning 'combine' or 'join'. 4️⃣ The fourth emoji is a musical note, which doesn't directly match a specific character here but fits the idiom contextually as the idiom '一拍即合' means 'to hit it off immediately', where '拍' and '合' together imply coordination, as in music.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 198,
+            "total_tokens": 1126,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_numbers_only_v021.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/2/seq_varients_with_guideance/一槌定音_zigzag_numbers_only_v021.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v021 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一鸣惊人\", \"inference_chain\": \"1️⃣ The first emoji is '1' which is the semantic match for '一' meaning 'one'. 2️⃣ The second emoji is a hammer, which phonetically resembles '鸣' (míng) for its sound-related aspect, as hammers are tools that create noise. 3️⃣ The third emoji is a handshake, representing agreement or impact, which semantically matches '惊' (jīng) meaning 'surprise'. 4️⃣ The fourth emoji is musical notes, which is a semantic match for '人' (rén) in the context of someone producing sound or music. Combined, these represent the idiom 一鸣惊人, meaning 'to amaze others with a single brilliant performance'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 169,
+            "total_tokens": 1097,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      }
+    },
+    "3": {
+      "一槌定音_base_v001.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/一槌定音_base_v001.png",
+        "image_type": "base",
+        "prompt_version": "v001 (default sequential order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emoji sequence is: 1️⃣ (one), 🔨 (hammer), 🤝 (handshake), 🎤 (microphone). The idiom '一唱一和' can be inferred: The '1️⃣' emoji semantically matches '一' (one), the '🎤' emoji semantically matches '唱' (sing, microphone), '🤝' emoji semantically matches '和' (harmony, cooperation), and '🔨' emoji is not a direct match but can conceptually evoke the action-related aspect in '和' (harmonizing as an action). The idiom '一唱一和' means harmonizing or echoing each other, often used to describe people who work well together.\"}\n```",
+          "usage": {
+            "prompt_tokens": 914,
+            "completion_tokens": 171,
+            "total_tokens": 1085,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_v006.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_pure/一槌定音_zigzag_v006.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v006 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are arranged diagonally from top left to bottom right and then from bottom left to top right, forming a cross pattern. The '1️⃣' emoji matches semantically with '一' (meaning 'one'). The '🎤' emoji represents singing, matching semantically with '唱' (meaning 'sing'). The '🤝' emoji represents cooperation or agreement, matching semantically with '和' (meaning 'harmony' or 'together'). The '🔨' emoji is not used in deriving the meaning of the idiom. Thus, the idiom is '一唱一和'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 146,
+            "total_tokens": 1086,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_v002.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_pure/一槌定音_vertical_v002.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v002 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are arranged vertically: 1️⃣ (one), 🔨 (hammer), 🤝 (handshake), 🎤 (microphone). The idiom '一唱一和' can be derived from this sequence through semantic and phonetic matches: 1️⃣ corresponds to '一' meaning 'one', 🎤 corresponds to '唱' meaning 'sing', 🤝 corresponds to '和' meaning 'harmony' or 'accord'. The idiomatic expression '一唱一和' literally means 'singing in harmony', and is used to describe cooperation or agreement between parties.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 140,
+            "total_tokens": 1080,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_v004.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_pure/一槌定音_circular_v004.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v004 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"Start from the '1' emoji, which represents '一' (one). The microphone emoji represents '唱' (sing), as microphones are used for singing. The handshake emoji represents '和' (harmonize), as shaking hands can symbolize agreement or harmony. The hammer emoji represents '一' (one) again, completing the pattern. The idiom '一唱一和' means one sings and the other harmonizes, indicating cooperation or agreement.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 114,
+            "total_tokens": 1054,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_v003.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_pure/一槌定音_diagonal_v003.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v003 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一唱一和\",\n  \"inference_chain\": \"The emojis are arranged in a diagonal line, starting from top left to bottom right: '1️⃣' (one), '🎤' (sing), '🤝' (harmonize), '🔨' (hammer). The first emoji '1️⃣' represents '一' (one), the second emoji '🎤' semantically represents '唱' (sing), the third emoji '🤝' semantically represents '和' (harmonize), and the fourth emoji '🔨' is phonetic for '和' (hammer). The idiom '一唱一和' means one sings, one harmonizes.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 154,
+            "total_tokens": 1094,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_v005.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_pure/一槌定音_grid_v005.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v005 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The emojis are arranged in a diagonal pattern. Start with the '1' emoji (top left) representing '一' (yi), followed by the 'microphone with notes' emoji (bottom right) representing '唱' (chang), then the 'handshake' emoji (bottom left) representing '和' (he), and finally the 'hammer' emoji (top right) also representing '一' (yi). The idiom '一唱一和' means to echo each other in agreement or to sing in harmony, matching the emojis semantically.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 134,
+            "total_tokens": 1074,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_v007.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_pure/一槌定音_star_v007.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v007 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n    \"idiom\": \"一唱一和\",\n    \"inference_chain\": \"Starting from the top, the emojis follow a circular pattern. The number '1' matches the character '一' semantically. The microphone emoji represents singing, matching '唱' semantically. The handshake emoji represents cooperation or agreement, matching '和' semantically. The hammer emoji does not directly contribute but follows the pattern of cooperation. The idiom '一唱一和' describes a situation where one person sings and another harmonizes or cooperates.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 116,
+            "total_tokens": 1056,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_guide_and_numbers_v025.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_star_guide_and_numbers_v025.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v025 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一言为定\", \"inference_chain\": \"1️⃣ represents '一' (one), 🔨 represents '言' (hammer has a semantic link to speech or words in some idiomatic expressions meaning decisive or final), 🤝 represents '为' (handshake signifies agreement or acting as), 🎤 represents '定' (microphone symbolizes making an announcement or decision).\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 87,
+            "total_tokens": 1015,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_numbers_only_v009.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_vertical_numbers_only_v009.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v009 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一锤定音\",\n  \"inference_chain\": \"The sequence of emojis is: 1️⃣ (one) -> 🔨 (hammer) -> 🤝 (handshake/sound) -> 🎤 (sound). The first emoji, '1️⃣', corresponds to '一' (one). The second emoji, '🔨', corresponds to '锤' (hammer). The third emoji, '🤝', can represent '定', which can mean 'to decide' as in reaching an agreement. The fourth emoji, '🎤', represents '音' (sound). Thus, the idiom is '一锤定音', which means reaching a final decision with one decisive action or 'to take decisive action'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 163,
+            "total_tokens": 1091,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_numbers_only_v012.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_diagonal_numbers_only_v012.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v012 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一手遮天\",\n  \"inference_chain\": \"1️⃣ The emoji is a number '1', representing the character '一' (yī), meaning 'one'. 2️⃣ The hammer emoji represents '手' (shǒu), meaning 'hand', as a hammer is held in a hand. 3️⃣ The handshake emoji represents '遮' (zhē), meaning 'to cover', as a handshake involves covering each other's hand. 4️⃣ The microphone emoji represents '天' (tiān), meaning 'sky', because a microphone is used to project voice over a wide area, metaphorically 'covering the sky'. Therefore, the idiom is '一手遮天', meaning 'to hide the truth from the public'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 167,
+            "total_tokens": 1095,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_guide_only_v023.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_star_guide_only_v023.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v023 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣: '一' (one) matches the number emoji representing 'one'. 🔨: '锤' (hammer) matches the hammer emoji. 🤝: '定' (to decide, settle) can be associated with a handshake as a gesture of agreement. 🎤: '音' (sound) matches the microphone emoji.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 92,
+            "total_tokens": 1020,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_numbers_only_v015.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_circular_numbers_only_v015.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v015 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一手遮天\",\n  \"inference_chain\": \"The sequence of emojis is 1️⃣ (one), 🔨 (hammer), 🤝 (handshake), 🎤 (microphone). The first emoji 1️⃣ corresponds to the character '一' (yī), meaning 'one'. The second emoji 🔨 represents a tool used by hand, matching the character '手' (shǒu), meaning 'hand'. The third emoji 🤝 shows hands shaking, which is a semantic match for '遮' (zhē), meaning 'to cover' or 'to block'. The final emoji 🎤 is used for speech, phonetic match with '天' (tiān), meaning 'heaven'. The final idiom is '一手遮天'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 171,
+            "total_tokens": 1099,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_guide_and_numbers_v016.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_circular_guide_and_numbers_v016.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v016 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ (一) - Numeric 'one' matches the character '一'; 2️⃣ (🔨) - Phonetic 'hammer' sounds like 'chàng', matching '唱'; 3️⃣ (🤝) - Semantic 'handshake' matches '和', meaning 'harmony'; 4️⃣ (🎤) - Phonetic 'microphone' (mài) sounds like 'hé', matching '和'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 112,
+            "total_tokens": 1040,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_guide_and_numbers_v022.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_zigzag_guide_and_numbers_v022.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v022 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一臂之力\", \"inference_chain\": \"1️⃣ The number 'one' (1) emoji corresponds semantically to '一' (yī), meaning 'one'. 2️⃣ The hammer emoji is often associated with 'arm' or 'strength', semantically matching '臂' (bì), meaning 'arm'. 3️⃣ The handshake emoji represents 'help' or 'assistance', which semantically matches '力' (lì), meaning 'power' or 'strength'. 4️⃣ The microphone emoji is associated with 'sound' or 'voice', which is a phonetic match for '之' (zhī), a possessive particle. Combining these, the idiom '一臂之力' translates to 'the power of one arm', indicating assistance or support.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 176,
+            "total_tokens": 1104,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_guide_and_numbers_v019.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_grid_guide_and_numbers_v019.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v019 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ represents '一', meaning 'one'; 🔨 represents '锤', meaning 'hammer'; 🤝 represents '定', meaning 'set' or 'decide'; 🎤 represents '音', meaning 'sound'. The idiom 一锤定音 means 'to finalize or decide something with one decisive action', akin to 'the final word'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 96,
+            "total_tokens": 1024,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_guide_only_v020.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_zigzag_guide_only_v020.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v020 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ corresponds to 一 (yi) semantically as it represents 'one'. 🔨 corresponds to the character 唱 (chang) phonetic match as 'hammer' sounds like 'chang' in pinyin. 🤝 corresponds to 和 (he) semantically as handshake implies agreement or harmony. 🎤 corresponds to 唱 (chang) semantically as it represents singing. Thus, the idiom is 一唱一和.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 108,
+            "total_tokens": 1036,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_guide_only_v017.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_grid_guide_only_v017.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v017 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ represents '一' (one), 🔨 represents '锤' (hammer), 🤝 represents '定' (to set, fix, or agree), 🎤 represents '音' (sound or voice). The sequence follows the arrows: 1️⃣ -> 🔨 -> 🤝 -> 🎤, forming the idiom 一锤定音.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 96,
+            "total_tokens": 1024,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_guide_and_numbers_v010.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_vertical_guide_and_numbers_v010.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v010 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ The '1' emoji is mapped to the character '一' (yi), meaning 'one'. 2️⃣ The hammer emoji is mapped to the character '锤' (chui), meaning 'hammer'. 3️⃣ The handshake emoji is mapped phonetically to the character '定' (ding), as 'ding' sounds like 'deal' in handshake deals. 4️⃣ The microphone emoji is mapped semantically to the character '音' (yin), meaning 'sound' or 'voice'. Thus, the idiom is '一锤定音' (yi chui ding yin), meaning 'to settle things with one hammer blow, or to settle an issue once and for all.'\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 167,
+            "total_tokens": 1095,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_circular_guide_only_v014.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_circular_guide_only_v014.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v014 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"The sequence starts with the number '1', suggesting the character '一'. The microphone emoji signifies 'singing', which corresponds to the character '唱'. The handshake emoji implies agreement or harmony, matching '和'. The hammer emoji is not directly used here but reinforces the idea of hitting a beat in harmony, hence another '一' for repetition in the idiom '一唱一和'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 101,
+            "total_tokens": 1029,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_grid_numbers_only_v018.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_grid_numbers_only_v018.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v018 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一唱一和\", \"inference_chain\": \"1️⃣ The emoji '1' corresponds to the character '一' which means 'one'. 2️⃣ The hammer emoji can be phonetically linked to '唱', as 'hammer' sounds like 'chàng' in pinyin, which means 'sing', but the actual match here should be semantic, using musical notes in the next emoji. 3️⃣ The handshake emoji could be linked to '和', as 'hé' means 'and' or 'together' in Chinese. 4️⃣ The microphone with musical notes emoji suggests '唱', meaning 'sing'. Combining these, we get the idiom '一唱一和', which means to sing in harmony or to echo one another.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 164,
+            "total_tokens": 1092,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_guide_only_v011.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_diagonal_guide_only_v011.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v011 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一锤定音\", \"inference_chain\": \"1️⃣ represents '一' (one); 🔨 represents '锤' (hammer); 🤝 represents '定' (to set or decide); 🎤 represents '音' (sound). The idiom 一锤定音 means 'to set the tone with one decisive action'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 82,
+            "total_tokens": 1010,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_star_numbers_only_v024.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_star_numbers_only_v024.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v024 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一锤定音\",\n  \"inference_chain\": \"1️⃣ represents '一' as the number one. 🔨 represents '锤' as it is a hammer. 🤝 represents '定' as a handshake can signify a decision or agreement, which aligns with '定' meaning to settle or decide. 🎤 represents '音' as a microphone is used for sound, correlating with the meaning of '音' as sound.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 103,
+            "total_tokens": 1031,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_vertical_guide_only_v008.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_vertical_guide_only_v008.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v008 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一锤定音\",\n  \"inference_chain\": \"1: The emoji '1' matches the character '一' semantically as it represents the number one. Hammer: The emoji 'hammer' matches the character '锤' semantically as it is a type of tool that can be used for hammering. Handshake: The emoji 'handshake' matches the character '定' semantically as it represents agreement or decision, which is a form of setting or determining. Microphone with music notes: The emoji 'microphone with music notes' matches the character '音' semantically as it represents sound or voice, which is related to music and microphones. Together, these characters form the idiom '一锤定音', meaning to make a decision with finality.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 173,
+            "total_tokens": 1101,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_diagonal_guide_and_numbers_v013.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_diagonal_guide_and_numbers_v013.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v013 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一针见血\", \"inference_chain\": \"1️⃣: The number '1' emoji corresponds semantically to '一' (one). 2️⃣: The hammer emoji semantically represents '针' (needle), as both are tools used for penetrating or fixing. 3️⃣: The handshake emoji semantically aligns with '见' (see/meet), as a handshake is a form of meeting or greeting. 4️⃣: The microphone emoji semantically corresponds to '血' (blood), as microphones are used to amplify voices, akin to the vital role of blood in the body.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 132,
+            "total_tokens": 1060,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一槌定音_zigzag_numbers_only_v021.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/variants_test/sequential/1_一槌定音/3/seq_varients_with_guideance/一槌定音_zigzag_numbers_only_v021.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v021 (numerical sequence/arrow guidance)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一言为定\", \"inference_chain\": \"1️⃣ Semantic: '1' aligns with '一' (one). 2️⃣ Semantic: 'Hammer' aligns with '言' (speak), as a hammer represents action or decisiveness. 3️⃣ Semantic: 'Handshake' aligns with '定' (decide), as it represents agreement or finalization. 4️⃣ Semantic: 'Microphone' aligns with '为' (for), as it represents speaking or expression.\"}\n```",
+          "usage": {
+            "prompt_tokens": 928,
+            "completion_tokens": 111,
+            "total_tokens": 1039,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_images": 75,
+    "successful_analyses": 75,
+    "failed_analyses": 0
+  }
+}

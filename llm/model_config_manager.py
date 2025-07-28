@@ -47,8 +47,8 @@ class ModelConfigManager:
             return self._get_azure_config()
         elif provider == "anthropic":
             return self._get_anthropic_config()
-        elif provider == "custom":
-            return self._get_custom_config()
+        elif provider == "general":
+            return self._get_general_config()
         else:
             raise ValueError(f"不支持的模型提供商: {provider}")
     
@@ -93,13 +93,13 @@ class ModelConfigManager:
             "api_type": "anthropic"
         }
     
-    def _get_custom_config(self) -> Dict[str, Any]:
-        """获取自定义配置"""
+    def _get_general_config(self) -> Dict[str, Any]:
+        """获取通用配置"""
         return {
-            "provider": "custom",
-            "api_key": self.config.get("CUSTOM_API_KEY", ""),
-            "base_url": self.config.get("CUSTOM_BASE_URL", ""),
-            "model": self.config.get("CUSTOM_MODEL", ""),
+            "provider": "general",
+            "api_key": self.config.get("GENERAL_API_KEY", ""),
+            "base_url": self.config.get("GENERALBASE_URL", ""),
+            "model": self.config.get("GENERAL_MODEL", ""),
             "api_type": "openai_compatible"
         }
     
@@ -108,7 +108,7 @@ class ModelConfigManager:
         providers = {}
         
         # 检查每个提供商的配置
-        for provider in ["openai", "dashscope", "azure", "anthropic", "custom"]:
+        for provider in ["openai", "dashscope", "azure", "anthropic", "general"]:
             temp_provider = self.active_provider
             self.active_provider = provider
             try:

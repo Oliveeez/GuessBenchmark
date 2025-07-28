@@ -5,6 +5,7 @@ GuessBenchmark 项目专用图片分析脚本
 
 import os
 import json
+from dotenv import load_dotenv
 from image_llm_api import ImageLLMAPI
 from pathlib import Path
 
@@ -173,15 +174,19 @@ class GuessBenchmarkAnalyzer:
 
 def main():
     """主函数"""
+    load_dotenv()
+
     # API 配置
-    API_KEY = os.getenv("OPENAI_API_KEY", "your-api-key-here")
-    BASE_URL = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
-    MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
-    
-    if API_KEY == "your-api-key-here":
-        print("请设置环境变量 OPENAI_API_KEY 或修改代码中的 API_KEY")
-        print("Windows 示例: set OPENAI_API_KEY=sk-your-actual-key")
-        return
+    API_KEY = os.getenv("GENERAL_API_KEY", "")
+    print(f"API_KEY: {API_KEY}")
+    BASE_URL = os.getenv("GENERAL_BASE_URL", "")
+    print(f"BASE_URL: {BASE_URL}")
+    MODEL = os.getenv("GENERAL_MODEL", "gpt-4o")
+
+    # if API_KEY == "your-api-key-here":
+    #     print("请设置环境变量 OPENAI_API_KEY 或修改代码中的 API_KEY")
+    #     print("Windows 示例: set OPENAI_API_KEY=sk-your-actual-key")
+    #     return
     
     # 创建分析器
     analyzer = GuessBenchmarkAnalyzer(api_key=API_KEY, base_url=BASE_URL, model=MODEL)

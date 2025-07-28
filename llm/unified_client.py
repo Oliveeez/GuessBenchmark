@@ -19,7 +19,6 @@ class UnifiedImageLLMClient:
             provider: 指定使用的提供商，如果为 None 则使用配置文件中的设置
         """
         self.config_manager = ModelConfigManager(config_file)
-        
         if provider:
             # 切换到指定的提供商
             if not self.config_manager.switch_provider(provider):

@@ -13,6 +13,7 @@ import os
 import math
 import regex
 import argparse
+import random
 from typing import List, Tuple, Dict, Optional
 from PIL import Image, ImageDraw, ImageFont
 
@@ -175,7 +176,7 @@ class SequentialVariantGenerator:
     
     def __init__(self, emoji_size: int = 128, canvas_size: Tuple[int, int] = (1024, 1024),
                  background_color: str = 'white', guide_line_color: str = 'darkblue',
-                 agent_verbose: bool = False):
+                 agent_verbose: bool = False, sample_mode: bool = False, index_select: Optional[int] = None):
         """
         Initialize the generator
         
@@ -185,11 +186,15 @@ class SequentialVariantGenerator:
             background_color: Background color
             guide_line_color: Color for guide lines (default: darkblue)
             agent_verbose: Whether to enable verbose mode for EmojiProcessAgent
+            sample_mode: If True, generate only a subset of variants (default: False)
+            index_select: If specified, only process emoji sets with this index (default: None for all)
         """
         self.emoji_size = emoji_size
         self.canvas_size = canvas_size
         self.background_color = background_color
         self.guide_line_color = guide_line_color
+        self.sample_mode = sample_mode
+        self.index_select = index_select
         
         # Initialize emoji processing
         self.emoji_cache = {}
@@ -603,7 +608,7 @@ class SequentialVariantGenerator:
         variant_count = 1
         
         try:
-            # 1. Generate base horizontal image (no guide, no numbers)
+            # 1. Generate base horizontal image (no guide, no numbers) - always generated
             print(f"    Generating base horizontal image...")
             base_image = self.generate_single_variant(emoji_set, 'horizontal', False, False)
             base_filename = f"{idiom}_base_v{variant_count:03d}.png"
@@ -613,49 +618,105 @@ class SequentialVariantGenerator:
             print(f"    ✅ Generated base: {base_filename}")
             variant_count += 1
             
-            # 2. Generate pure variants (no guide, no numbers) for other layouts
+            # Layout configurations
             other_layouts = ['vertical', 'diagonal', 'circular', 'grid', 'zigzag', 'star']
-            for layout in other_layouts:
-                try:
-                    print(f"    Generating pure variant: {layout}")
-                    image = self.generate_single_variant(emoji_set, layout, False, False)
-                    filename = f"{idiom}_{layout}_v{variant_count:03d}.png"
-                    filepath = os.path.join(pure_dir, filename)
-                    image.save(filepath)
-                    generated_files[f'pure_{layout}'] = filepath
-                    print(f"    ✅ Generated pure: {filename}")
-                    variant_count += 1
-                except Exception as e:
-                    print(f"    ❌ Failed to generate pure {layout}: {e}")
-                    continue
             
-            # 3. Generate guidance variants (3 combinations for each layout)
-            # Combinations: guide_only, numbers_only, guide+numbers
-            guidance_combinations = [
-                ('guide_only', True, False),
-                ('numbers_only', False, True),
-                ('guide_and_numbers', True, True)
-            ]
-            
-            for layout in other_layouts:
-                for combo_name, guide, numbers in guidance_combinations:
+            if self.sample_mode:
+                print(f"    📦 Sample mode: selecting 2 random layouts")
+                # In sample mode, randomly select 2 layouts
+                selected_layouts = random.sample(other_layouts, 2)
+                print(f"    🎯 Selected layouts: {selected_layouts}")
+                
+                # Generate pure variants for selected layouts
+                selected_pure_variants = {}
+                for layout in selected_layouts:
                     try:
-                        print(f"    Generating guidance variant: {layout}_{combo_name}")
-                        image = self.generate_single_variant(emoji_set, layout, guide, numbers)
-                        filename = f"{idiom}_{layout}_{combo_name}_v{variant_count:03d}.png"
-                        filepath = os.path.join(guidance_dir, filename)
+                        print(f"    Generating pure variant: {layout}")
+                        image = self.generate_single_variant(emoji_set, layout, False, False)
+                        filename = f"{idiom}_{layout}_v{variant_count:03d}.png"
+                        filepath = os.path.join(pure_dir, filename)
                         image.save(filepath)
-                        generated_files[f'guidance_{layout}_{combo_name}'] = filepath
-                        print(f"    ✅ Generated guidance: {filename}")
+                        generated_files[f'pure_{layout}'] = filepath
+                        selected_pure_variants[layout] = variant_count
+                        print(f"    ✅ Generated pure: {filename}")
                         variant_count += 1
                     except Exception as e:
-                        print(f"    ❌ Failed to generate guidance {layout}_{combo_name}: {e}")
+                        print(f"    ❌ Failed to generate pure {layout}: {e}")
                         continue
+                
+                # Generate guidance variants for selected layouts
+                guidance_combinations = [
+                    ('guide_only', True, False),
+                    ('numbers_only', False, True),
+                    ('guide_and_numbers', True, True)
+                ]
+                
+                for layout in selected_layouts:
+                    if layout in selected_pure_variants:
+                        # Randomly select one guidance combination for this layout
+                        combo_name, guide, numbers = random.choice(guidance_combinations)
+                        print(f"    🎯 Selected guidance for {layout}: {combo_name}")
+                        
+                        try:
+                            print(f"    Generating guidance variant: {layout}_{combo_name}")
+                            image = self.generate_single_variant(emoji_set, layout, guide, numbers)
+                            filename = f"{idiom}_{layout}_{combo_name}_v{variant_count:03d}.png"
+                            filepath = os.path.join(guidance_dir, filename)
+                            image.save(filepath)
+                            generated_files[f'guidance_{layout}_{combo_name}'] = filepath
+                            print(f"    ✅ Generated guidance: {filename}")
+                            variant_count += 1
+                        except Exception as e:
+                            print(f"    ❌ Failed to generate guidance {layout}_{combo_name}: {e}")
+                            continue
+                
+                print(f"  🎉 Sample mode: Generated {len(generated_files)} variants (1 base + 2 pure + 2 guidance)")
+                
+            else:
+                print(f"    📦 Full mode: generating all variants")
+                # 2. Generate pure variants (no guide, no numbers) for other layouts
+                for layout in other_layouts:
+                    try:
+                        print(f"    Generating pure variant: {layout}")
+                        image = self.generate_single_variant(emoji_set, layout, False, False)
+                        filename = f"{idiom}_{layout}_v{variant_count:03d}.png"
+                        filepath = os.path.join(pure_dir, filename)
+                        image.save(filepath)
+                        generated_files[f'pure_{layout}'] = filepath
+                        print(f"    ✅ Generated pure: {filename}")
+                        variant_count += 1
+                    except Exception as e:
+                        print(f"    ❌ Failed to generate pure {layout}: {e}")
+                        continue
+                
+                # 3. Generate guidance variants (3 combinations for each layout)
+                # Combinations: guide_only, numbers_only, guide+numbers
+                guidance_combinations = [
+                    ('guide_only', True, False),
+                    ('numbers_only', False, True),
+                    ('guide_and_numbers', True, True)
+                ]
+                
+                for layout in other_layouts:
+                    for combo_name, guide, numbers in guidance_combinations:
+                        try:
+                            print(f"    Generating guidance variant: {layout}_{combo_name}")
+                            image = self.generate_single_variant(emoji_set, layout, guide, numbers)
+                            filename = f"{idiom}_{layout}_{combo_name}_v{variant_count:03d}.png"
+                            filepath = os.path.join(guidance_dir, filename)
+                            image.save(filepath)
+                            generated_files[f'guidance_{layout}_{combo_name}'] = filepath
+                            print(f"    ✅ Generated guidance: {filename}")
+                            variant_count += 1
+                        except Exception as e:
+                            print(f"    ❌ Failed to generate guidance {layout}_{combo_name}: {e}")
+                            continue
+                
+                print(f"  🎉 Full mode: Generated {len(generated_files)} variants")
             
         except Exception as e:
             print(f"    ❌ Failed to generate variants: {e}")
         
-        print(f"  🎉 Generated {len(generated_files)} variants for emoji set")
         return generated_files
     
     def process_idioms_from_json(self, json_path: str, output_base_dir: str) -> Dict[str, Dict[str, Dict[str, str]]]:
@@ -681,9 +742,21 @@ class SequentialVariantGenerator:
         os.makedirs(output_base_dir, exist_ok=True)
         print(f"📁 Created output directory: {output_base_dir}")
         
+        if self.sample_mode:
+            print(f"🎯 Running in SAMPLE MODE - generating subset of variants")
+        else:
+            print(f"📦 Running in FULL MODE - generating all variants")
+        
+        # Add index selection information
+        if self.index_select is not None:
+            print(f"🔢 INDEX SELECT MODE: only processing emoji sets with index {self.index_select}")
+        else:
+            print(f"🔢 Processing ALL emoji set indices")
+        
         all_results = {}
         successful_count = 0
         total_emoji_sets = 0
+        skipped_emoji_sets = 0
         
         # Process each idiom
         for i, item in enumerate(idioms_data):
@@ -717,6 +790,12 @@ class SequentialVariantGenerator:
                             print(f"  ⚠️  Skipping emoji set {set_index}: missing emoji_set")
                             continue
                         
+                        # Check if this emoji set should be processed based on index_select
+                        if self.index_select is not None and set_index != self.index_select:
+                            print(f"  ⏭️  Skipping emoji set {set_index}: not matching selected index {self.index_select}")
+                            skipped_emoji_sets += 1
+                            continue
+                        
                         print(f"  Processing emoji set {set_index}: {emoji_set} (homophonic: {homophonic_num})")
                         
                         # Create output directory for this emoji set: {index}
@@ -736,8 +815,9 @@ class SequentialVariantGenerator:
                         print(f"  ❌ Failed to process emoji set {set_index}: {e}")
                         continue
                 
-                all_results[idiom] = idiom_results
-                successful_count += 1
+                if idiom_results:  # Only add to results if we actually processed some emoji sets
+                    all_results[idiom] = idiom_results
+                    successful_count += 1
                 
                 print(f"✅ Completed processing: {idiom}")
                 
@@ -754,6 +834,8 @@ class SequentialVariantGenerator:
         print(f"🎉 Processing complete!")
         print(f"📊 Successfully processed: {successful_count}/{len(idioms_data)} idioms")
         print(f"📊 Total emoji sets processed: {total_emoji_sets}")
+        if self.index_select is not None:
+            print(f"📊 Emoji sets skipped (wrong index): {skipped_emoji_sets}")
         print(f"📁 Output directory: {os.path.abspath(output_base_dir)}")
         
         return all_results
@@ -795,7 +877,9 @@ def main():
         epilog="""
 Example usage:
   %(prog)s --datapath idioms.json --outputfolder ./output
-  %(prog)s --datapath data.json --outputfolder /path/to/output
+  %(prog)s --datapath data.json --outputfolder /path/to/output --sample
+  %(prog)s --datapath idioms.json --outputfolder ./output --indexselect 1
+  %(prog)s --datapath idioms.json --outputfolder ./output --sample --verbose --indexselect 2
         """
     )
     
@@ -804,6 +888,14 @@ Example usage:
                        help='Path to JSON file containing idioms data')
     parser.add_argument('--outputfolder', required=True,
                        help='Output base directory')
+    
+    # Index selection option
+    parser.add_argument('--indexselect', type=int, default=None,
+                       help='Select specific emoji set index to process (default: None, process all indices)')
+    
+    # Sample mode option
+    parser.add_argument('--sample', action='store_true', default=False,
+                       help='Enable sample mode: generate only a subset of variants (default: False)')
     
     # Appearance options
     parser.add_argument('--emoji-size', type=int, default=128,
@@ -836,13 +928,29 @@ Example usage:
                 print(f"❌ Error: Cannot create output directory {args.outputfolder}: {e}")
                 return 1
         
+        # Validate index selection
+        if args.indexselect is not None and args.indexselect < 1:
+            print(f"❌ Error: indexselect must be a positive integer (got: {args.indexselect})")
+            return 1
+        
+        # Display mode information
+        if args.sample:
+            print(f"🎯 Sample mode enabled: will generate 5 variants per emoji set (1 base + 2 pure + 2 guidance)")
+        else:
+            print(f"📦 Full mode: will generate 25 variants per emoji set")
+        
+        if args.indexselect is not None:
+            print(f"🔢 Index selection enabled: only processing emoji sets with index {args.indexselect}")
+        
         # Create generator
         generator = SequentialVariantGenerator(
             emoji_size=args.emoji_size,
             canvas_size=tuple(args.canvas_size),
             background_color=args.background,
             guide_line_color=args.guide_color,
-            agent_verbose=args.verbose
+            agent_verbose=args.verbose,
+            sample_mode=args.sample,
+            index_select=args.indexselect
         )
         
         # Process all idioms from JSON
@@ -860,11 +968,16 @@ Example usage:
                 total_files += len(set_files)
         
         print(f"\n📈 Final Summary:")
+        print(f"   Mode: {'Sample' if args.sample else 'Full'}")
+        if args.indexselect is not None:
+            print(f"   Index selection: Only processing index {args.indexselect}")
         print(f"   Total idioms processed: {len(all_results)}")
         print(f"   Total emoji sets processed: {total_emoji_sets}")
         print(f"   Total files generated: {total_files}")
         if total_emoji_sets > 0:
             print(f"   Average files per emoji set: {total_files/total_emoji_sets:.1f}")
+            expected_per_set = 5 if args.sample else 25
+            print(f"   Expected files per emoji set: {expected_per_set}")
         
     except Exception as e:
         print(f"❌ Error: {e}")
