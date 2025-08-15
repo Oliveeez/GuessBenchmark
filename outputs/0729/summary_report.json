@@ -1,0 +1,46 @@
+{
+  "total_idioms": 6,
+  "total_images": 26,
+  "total_successful": 26,
+  "total_failed": 0,
+  "prompt_version_stats": {
+    "v001 (default sequential order)": 6,
+    "v003 (self-determined reading order)": 5,
+    "v002 (self-determined reading order)": 5,
+    "v004 (self-determined reading order)": 5,
+    "v005 (self-determined reading order)": 5
+  },
+  "idiom_details": {
+    "1_一丘之貉": {
+      "total_images": 5,
+      "successful_analyses": 5,
+      "failed_analyses": 0
+    },
+    "test": {
+      "total_images": 1,
+      "successful_analyses": 1,
+      "failed_analyses": 0
+    },
+    "3_一丝不苟": {
+      "total_images": 5,
+      "successful_analyses": 5,
+      "failed_analyses": 0
+    },
+    "4_一举一动": {
+      "total_images": 5,
+      "successful_analyses": 5,
+      "failed_analyses": 0
+    },
+    "2_一丝一毫": {
+      "total_images": 5,
+      "successful_analyses": 5,
+      "failed_analyses": 0
+    },
+    "5_一举两得": {
+      "total_images": 5,
+      "successful_analyses": 5,
+      "failed_analyses": 0
+    }
+  },
+  "success_rate": 100.0
+}

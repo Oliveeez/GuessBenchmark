@@ -1,0 +1,138 @@
+{
+  "idiom_folder": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/1_一丘之貉",
+  "idiom_name": "1_一丘之貉",
+  "images": {
+    "1": {
+      "一丘之貉_base_v001.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/1_一丘之貉/1/一丘之貉_base_v001.png",
+        "image_type": "base",
+        "prompt_version": "v001 (default sequential order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一球入魂\",\n  \"inference_chain\": \"The first emoji is '1', which corresponds to '一' (yī) meaning 'one'. The second emoji is a baseball, corresponding to '球' (qiú), meaning 'ball'. The third emoji is a pointing finger representing '入' (rù), meaning 'to enter' or 'to go into'. The fourth emoji is an atom, which can be interpreted as '魂' (hún), meaning 'soul' or 'spirit'. Together, they form the idiom '一球入魂', which translates to 'one ball enters the soul'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 776,
+            "completion_tokens": 145,
+            "total_tokens": 921,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一丘之貉_vertical_v003.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/1_一丘之貉/1/seq_varients_pure/一丘之貉_vertical_v003.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v003 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一球成名\", \"inference_chain\": \"1️⃣ corresponds to '一' (one) via semantic match; ⚾️ corresponds to '球' (ball) via semantic match; ☝️ corresponds to '成' (to become) via phonetic match (pointing up gesture suggests achievement); 🪐 corresponds to '名' (fame) via semantic match (atom represents recognition). Reading top to bottom gives the idiom 一球成名, meaning 'to become famous with one strike'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 117,
+            "total_tokens": 1057,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一丘之貉_zigzag_v002.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/1_一丘之貉/1/seq_varients_pure/一丘之貉_zigzag_v002.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v002 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n    \"idiom\": \"一球成名\",\n    \"inference_chain\": \"The emojis are arranged in a rectangular pattern. Starting from the top-left and moving clockwise: '1' matches semantically with '一' meaning 'one'; 'baseball' matches semantically with '球' meaning 'ball'; 'atom' matches phonetically with '成' (chéng) which sounds similar to 'cheng'; 'pointing finger' matches semantically with '名' meaning 'name' or 'fame'. Thus, the idiom is '一球成名', meaning 'to become famous with one shot'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 136,
+            "total_tokens": 1076,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一丘之貉_zigzag_guide_and_numbers_v004.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/1_一丘之貉/1/seq_varients_with_guideance/一丘之貉_zigzag_guide_and_numbers_v004.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v004 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一球定音\", \"inference_chain\": \"The emojis are arranged in a clockwise pattern: 1️⃣ (one) corresponds to '一' (one), 🏐 (ball) corresponds to '球' (ball), ☝️ (finger pointing up) corresponds to '定' (to decide/settle), and ⚛️ (atom) corresponds to '音' (sound). The resulting idiom is '一球定音', which means 'One ball determines the result'.\"}\n```",
+          "usage": {
+            "prompt_tokens": 802,
+            "completion_tokens": 115,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一丘之貉_vertical_numbers_only_v005.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/1_一丘之貉/1/seq_varients_with_guideance/一丘之貉_vertical_numbers_only_v005.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v005 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一球指分\",\n  \"inference_chain\": \"1️⃣ (one) maps to '一' (yi, meaning 'one'), ⚾️ (ball) maps to '球' (qiu, meaning 'ball'), ☝️ (pointing hand) maps to '指' (zhi, meaning 'to point'), and ⚛️ (atom) is interpreted as '分' (fen, meaning 'divide' or 'part', semantically linked to atomic structure). The emojis are arranged vertically in sequence, forming the idiom '一球指分'.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 131,
+            "total_tokens": 1071,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_images": 5,
+    "successful_analyses": 5,
+    "failed_analyses": 0
+  }
+}

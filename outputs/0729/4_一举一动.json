@@ -1,0 +1,138 @@
+{
+  "idiom_folder": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/4_一举一动",
+  "idiom_name": "4_一举一动",
+  "images": {
+    "1": {
+      "一举一动_base_v001.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/4_一举一动/1/一举一动_base_v001.png",
+        "image_type": "base",
+        "prompt_version": "v001 (default sequential order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\"idiom\": \"一力承担\", \"inference_chain\": \"The first emoji '1' represents the character '一' meaning 'one'. The second emoji 'person lifting weights' semantically matches the character '力' meaning 'strength'. The third emoji '1' represents the character '单' which phonetically matches '担' as both are pronounced 'dan'. The fourth emoji 'coin' resembles a dish or pan, which phonetically matches '盘', however, in context of the idiom, it is adjusted to '承担' which means 'to undertake'. Collectively, these characters form the idiom 一力承担.\"}\n```",
+          "usage": {
+            "prompt_tokens": 914,
+            "completion_tokens": 138,
+            "total_tokens": 1052,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一举一动_star_v003.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/4_一举一动/1/seq_varients_pure/一举一动_star_v003.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v003 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一力承当\",\n  \"inference_chain\": \"The emojis are arranged in a diagonal pattern, starting from the top-left. The weightlifter emoji represents '力' (strength), the manhole cover represents '承' (to bear), and the two number one emojis represent '一' (one) and '当' (to take). The idiom '一力承当' means to take full responsibility for something.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 101,
+            "total_tokens": 1041,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一举一动_grid_v002.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/4_一举一动/1/seq_varients_pure/一举一动_grid_v002.png",
+        "image_type": "pure_variant",
+        "prompt_version": "v002 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一力承当\",\n  \"inference_chain\": \"The emojis represent: 1️⃣ (yi), 💪 (li), 1️⃣ (cheng), and 🕳️ (dang). The arrangement forms a circular pattern starting from the top left and moving clockwise. The semantic match is: 1️⃣ corresponds to '一' (one), 💪 corresponds to '力' (strength), 1️⃣ corresponds to '承' (bear), and 🕳️ corresponds to '当' (undertake). Thus, the idiom is '一力承当', meaning to undertake something single-handedly.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 139,
+            "total_tokens": 1079,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一举一动_star_guide_and_numbers_v005.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/4_一举一动/1/seq_varients_with_guideance/一举一动_star_guide_and_numbers_v005.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v005 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "```json\n{\n  \"idiom\": \"一力承担\",\n  \"inference_chain\": \"The emojis are arranged in a triangular pattern, starting from the top and moving clockwise. The first emoji is a '1', which phonetically matches the character '一' (yī), meaning 'one'. The second emoji is a person lifting weights, semantically matching '力' (lì), meaning 'strength/power'. The third emoji is another '1', phonetically matching '承' (chéng), which involves taking on responsibility or bearing. The fourth emoji is a hole, which semantically matches '担' (dān), meaning 'to bear'. Therefore, the idiom is 一力承担, which means to bear all responsibilities alone.\"\n}\n```",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 159,
+            "total_tokens": 1099,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      },
+      "一举一动_grid_guide_only_v004.png": {
+        "image_path": "/data/tianyu_data/appendix/GuessBenchmark/vtest/sequential/4_一举一动/1/seq_varients_with_guideance/一举一动_grid_guide_only_v004.png",
+        "image_type": "guided_variant",
+        "prompt_version": "v004 (self-determined reading order)",
+        "analysis_result": {
+          "success": true,
+          "response": "{\"idiom\": \"一力承担\", \"inference_chain\": \"The emojis are arranged in a Z pattern. The first emoji is '1', which corresponds to the character '一' meaning 'one'. The second emoji is a person lifting weights, representing '力', meaning 'strength'. The third emoji is a number '1', which corresponds again to '一', reinforcing the singular focus. The fourth emoji is a hole, which phonetically matches '担', pronounced 'dan', meaning 'to undertake'. Therefore, the idiom is '一力承担', meaning 'to take responsibility with full strength'.\"}",
+          "usage": {
+            "prompt_tokens": 940,
+            "completion_tokens": 127,
+            "total_tokens": 1067,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "model": "gpt-4o-2024-08-06"
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_images": 5,
+    "successful_analyses": 5,
+    "failed_analyses": 0
+  }
+}
