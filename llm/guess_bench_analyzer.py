@@ -1,536 +1,454 @@
 """
-GuessBenchmark 项目专用图片分析脚本
-针对成语图片、emoji 图片等进行 LLM 分析
+guess_bench_analyzer.py
+GuessBenchmark 推断执行器
+
+职责：
+- 根据图片版本号（v0 / v2-v7 / v8-v25）动态生成 prompt
+- 从 LLM 响应中解析成语（支持 JSON / 纯文本 / 正则多种格式）
+- 单图和批量推断，结果实时写入 JSON 文件
+- 只通过 unified_client 与 API 交互，不直接接触底层 API
+
+输出 JSON 格式：
+    [
+        {
+            "image_name": "一心一意_v0_001.png",
+            "gt": "一心一意",
+            "pred": "一心一意",
+            "inference_chain": "...",
+            "model": "gpt-4o",
+            "success": true
+        },
+        ...
+    ]
 """
 
-import os
 import json
+import logging
 import re
-import argparse
-from typing import Dict, Any, List, Optional
-from pathlib import Path
+import os
 from datetime import datetime
-from dotenv import load_dotenv
-from image_llm_api import ImageLLMAPI
+from pathlib import Path
+from typing import Optional
 
+from unified_client import UnifiedImageLLMClient, create_client
+
+logger = logging.getLogger(__name__)
+
+# ── Prompt 模板 ──────────────────────────────────────
+
+_BASE_PROMPT = (
+    "You are a linguistic expert tasked with identifying Chinese four-character idioms (成语) "
+    "based on a set of four emojis. {order_instruction} "
+    "Each emoji corresponds to one character in the idiom. The mapping can be either:\n"
+    "1) Semantic Match: The emoji's meaning aligns with the character's meaning.\n"
+    "2) Phonetic Match: The emoji's Chinese pronunciation (pinyin) matches or closely "
+    "resembles the character's pronunciation.\n\n"
+    "You MUST output a single JSON object with NO additional text:\n"
+    '{{"idiom": "四字成语", "inference_chain": "step-by-step reasoning..."}}'
+)
+
+_ORDER_INSTRUCTIONS = {
+    # v0：四个 emoji 水平顺序排列
+    "sequential": "Each emoji corresponds to one character in sequential order (left to right).",
+    # v2-v7：圆形/对角线/矩形等布局，模型需自判断读取顺序
+    "freeform": (
+        "The emojis may be arranged in circular, diagonal, rectangular, or other patterns. "
+        "You need to determine the appropriate reading order yourself."
+    ),
+    # v8-v25：图中有数字序号或箭头指示顺序
+    "guided": (
+        "Follow the numerical sequence or connecting arrows shown in the image "
+        "to determine the reading order of the emojis."
+    ),
+}
+
+_SYSTEM_PROMPT = (
+    "You are an expert in Chinese linguistics and culture. "
+    "Always respond with a single valid JSON object, no markdown, no extra text."
+)
+
+
+# ── 核心类 ───────────────────────────────────────────
 
 class GuessBenchmarkAnalyzer:
-    """GuessBenchmark 项目专用分析器"""
-    
-    def __init__(self, api_key: str, base_url: str = "https://api.openai.com/v1", model: str = "gpt-4o"):
-        """
-        初始化分析器
-        
-        Args:
-            api_key: API密钥
-            base_url: API基础URL
-            model: 使用的模型名称
-        """
-        self.client = ImageLLMAPI(api_key=api_key, base_url=base_url, model=model)
-        self.project_root = Path(__file__).parent.parent  # 项目根目录
+    """
+    GuessBenchmark 推断执行器
 
-    def prompt_generator(self, image_name: str) -> str:
-        """
-        根据图片版本生成相应的prompt
-        
-        Args:
-            image_name: 图片文件名
-            
-        Returns:
-            str: 相应版本的prompt
-        """
-        # 从文件名中提取版本号
-        version_match = re.search(r'v(\d+)', image_name)
-        if not version_match:
-            # 如果没有找到版本号，使用默认v000的prompt
-            version_num = 0
-        else:
-            version_num = int(version_match.group(1))
-        
-        # 基础prompt部分
-        base_prompt = (
-            "You are a linguistic expert tasked with identifying Chinese four-character idioms (成语) based on a set of four emojis. "
-            "Each emoji corresponds to one character in the idiom, {order_instruction}. The mapping can be either:\n"
-            "1) Semantic Match: The emoji's meaning aligns with the character's meaning.\n"
-            "2) Phonetic Match: The emoji's Chinese pronunciation (pinyin) matches or closely resembles the character's pronunciation.\n"
-            "Additionally, your output must include both the final idiom result and the reasoning process. "
-            "The output must be a single JSON object containing only the JSON and no additional text. "
-            "The JSON format should be: {{\"idiom\": \"xxxx\", \"inference_chain\": \"...\"}}."
+    使用示例：
+        analyzer = GuessBenchmarkAnalyzer(model="gpt-4o")
+
+        # 单张图片
+        result = analyzer.analyze_image("images/一心一意_v0_001.png", gt="一心一意")
+
+        # 批量推断（自动从文件名解析 gt）
+        analyzer.analyze_batch(
+            image_dir="images/",
+            output_file="results/gpt4o_results.json",
         )
-        
-        # 根据版本号确定顺序指令
-        if version_num == 0:
-            order_instruction = "in sequential order"
-        elif 2 <= version_num <= 7:
-            order_instruction = ("You need to determine the appropriate method and order to read the emojis "
-                               "(which may be arranged in circular, diagonal, rectangular borders, or other patterns)")
-        elif 8 <= version_num <= 25:
-            order_instruction = "You can read the emojis according to the numerical sequence or connecting arrows indicated in the image"
+
+        # 切换模型继续推断
+        analyzer.switch_model("gemini-2.5-flash")
+        analyzer.analyze_batch(...)
+    """
+
+    def __init__(
+        self,
+        model: str = "gpt-4o",
+        provider: Optional[str] = None,
+        config_file: str = "config.env",
+        max_tokens: int = 512,
+        temperature: float = 0.2,
+    ):
+        """
+        Args:
+            model:        使用的模型名称
+            provider:     指定 provider（None 则用 config.env 中的设置）
+            config_file:  配置文件路径
+            max_tokens:   生成最大 token 数
+            temperature:  采样温度（推断任务建议用低温度）
+        """
+        self.client: UnifiedImageLLMClient = create_client(
+            model=model,
+            provider=provider,
+            config_file=config_file,
+        )
+        self.max_tokens = max_tokens
+        self.temperature = temperature
+
+        logger.info(f"GuessBenchmarkAnalyzer 初始化完成: {self.client}")
+
+    # ── Prompt 生成 ──────────────────────────────────
+
+    @staticmethod
+    def get_version_num(image_name: str) -> int:
+        """从图片文件名提取版本号，例如 '一心一意_v3_001.png' → 3"""
+        m = re.search(r"v(\d+)", image_name)
+        return int(m.group(1)) if m else 0
+
+    @classmethod
+    def prompt_generator(cls, image_name: str) -> tuple[str, str]:
+        """
+        根据图片版本号生成对应的 (prompt, system_prompt)。
+
+        版本策略：
+            v0          → 顺序排列（sequential）
+            v2  – v7    → 自由布局（freeform），模型自判断顺序
+            v8  – v25   → 有引导标记（guided），按数字/箭头读取
+            其他        → 默认 sequential
+
+        Returns:
+            (prompt, system_prompt)
+        """
+        v = cls.get_version_num(image_name)
+
+        if v == 0:
+            order_key = "sequential"
+        elif 2 <= v <= 7:
+            order_key = "freeform"
+        elif 8 <= v <= 25:
+            order_key = "guided"
         else:
-            # 对于其他版本号，使用默认的sequential order
-            order_instruction = "in sequential order"
-        
-        return base_prompt.format(order_instruction=order_instruction)
+            order_key = "sequential"
 
-    def analyze_single_image(self, image_path: str, output_dir: str) -> bool:
+        prompt = _BASE_PROMPT.format(
+            order_instruction=_ORDER_INSTRUCTIONS[order_key]
+        )
+        return prompt, _SYSTEM_PROMPT
+
+    # ── 响应解析 ─────────────────────────────────────
+
+    @staticmethod
+    def _extract_idiom_and_chain(response: str) -> tuple[Optional[str], Optional[str]]:
         """
-        分析单张图片
-        
-        Args:
-            image_path: 图片文件路径
-            output_dir: 输出目录
-            
+        从 LLM 响应中提取成语和推理链。
+
+        解析顺序：
+        1. 尝试直接 JSON 解析
+        2. 正则提取 ```json ... ``` 代码块
+        3. 正则提取 { ... } 内容
+        4. 回退：直接用正则提取四字成语
+
         Returns:
-            bool: 是否成功
+            (idiom, inference_chain)，无法解析时返回 (None, None)
         """
-        image_path = Path(image_path)
-        output_dir = Path(output_dir)
-        
-        if not image_path.exists():
-            print(f"❌ 图片文件不存在: {image_path}")
-            return False
-            
-        # 确保输出目录存在
-        output_dir.mkdir(parents=True, exist_ok=True)
-        
-        print(f"🔍 正在分析图片: {image_path.name}")
-        
-        # 根据图片名称生成相应的prompt
-        prompt = self.prompt_generator(image_path.name)
-        print(f"📝 使用prompt版本: {self._get_version_info(image_path.name)}")
-        
-        # 发送分析请求
-        result = self.client.send_image_with_prompt(str(image_path), prompt)
-        
-        # 准备输出数据
-        output_data = {
-            "image_path": str(image_path),
-            "image_name": image_path.name,
-            "prompt_version": self._get_version_info(image_path.name),
-            "analysis_result": result,
-            "timestamp": datetime.now().isoformat()
-        }
-        
-        # 保存结果
-        output_file = output_dir / "test.json"
-        try:
-            with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump(output_data, f, ensure_ascii=False, indent=2)
-            
-            if result.get("success"):
-                print(f"✅ 分析完成，结果保存到: {output_file}")
-                print(f"📊 分析结果预览:\n{result['response'][:200]}...")
-                return True
-            else:
-                print(f"❌ 分析失败: {result.get('error', '未知错误')}")
-                return False
-                
-        except Exception as e:
-            print(f"❌ 保存结果时出错: {e}")
-            return False
+        if not response:
+            return None, None
 
-    def analyze_batch_images(self, input_dir: str, output_dir: str) -> bool:
-        """
-        批量分析图片
-        
-        Args:
-            input_dir: 输入目录 (level1)
-            output_dir: 输出目录
-            
-        Returns:
-            bool: 是否成功
-        """
-        input_dir = Path(input_dir)
-        output_dir = Path(output_dir)
-        
-        if not input_dir.exists():
-            print(f"❌ 输入目录不存在: {input_dir}")
-            return False
-            
-        # 确保输出目录存在
-        output_dir.mkdir(parents=True, exist_ok=True)
-        
-        print(f"🚀 开始批量分析，输入目录: {input_dir}")
-        
-        # 遍历所有成语文件夹 (level2)
-        idiom_folders = [d for d in input_dir.iterdir() if d.is_dir()]
-        
-        if not idiom_folders:
-            print(f"❌ 在 {input_dir} 中未找到成语文件夹")
-            return False
-            
-        total_processed = 0
-        total_success = 0
-        
-        for idiom_folder in sorted(idiom_folders):
-            idiom_name = idiom_folder.name  # {index}_{idiom}
-            print(f"\n📁 处理成语文件夹: {idiom_name}")
-            
-            # 分析该成语的所有图片
-            idiom_results = self._analyze_idiom_folder(idiom_folder)
-            
-            if idiom_results:
-                # 保存结果
-                output_file = output_dir / f"{idiom_name}.json"
-                try:
-                    with open(output_file, 'w', encoding='utf-8') as f:
-                        json.dump(idiom_results, f, ensure_ascii=False, indent=2)
-                    
-                    print(f"✅ {idiom_name} 分析完成，结果保存到: {output_file}")
-                    total_success += 1
-                    
-                except Exception as e:
-                    print(f"❌ 保存 {idiom_name} 结果时出错: {e}")
-            
-            total_processed += 1
-        
-        print(f"\n🎉 批量分析完成!")
-        print(f"📊 总计处理: {total_processed} 个成语文件夹")
-        print(f"📊 成功处理: {total_success} 个成语文件夹")
-        print(f"📊 成功率: {(total_success/total_processed)*100:.1f}%")
-        
-        return total_success > 0
+        text = response.strip()
 
-    def _get_version_info(self, image_name: str) -> str:
-        """
-        从图片名称中获取版本信息
-        
-        Args:
-            image_name: 图片文件名
-            
-        Returns:
-            str: 版本信息描述
-        """
-        version_match = re.search(r'v(\d+)', image_name)
-        if not version_match:
-            return "v000 (default sequential order)"
-        
-        version_num = int(version_match.group(1))
-        
-        if version_num == 0:
-            return "v000 (sequential order)"
-        elif 2 <= version_num <= 7:
-            return f"v{version_num:03d} (self-determined reading order)"
-        elif 8 <= version_num <= 25:
-            return f"v{version_num:03d} (numerical sequence/arrow guidance)"
-        else:
-            return f"v{version_num:03d} (default sequential order)"
+        # 1. 去掉 markdown 代码块包裹
+        code_block = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL)
+        if code_block:
+            text = code_block.group(1)
 
-    def _analyze_idiom_folder(self, idiom_folder: Path) -> Optional[Dict[str, Any]]:
-        """
-        分析单个成语文件夹下的所有图片
-        
-        Args:
-            idiom_folder: 成语文件夹路径 (level2)
-            
-        Returns:
-            Dict: 分析结果字典
-        """
-        idiom_results = {
-            "idiom_folder": str(idiom_folder),
-            "idiom_name": idiom_folder.name,
-            "images": {},
-            "summary": {
-                "total_images": 0,
-                "successful_analyses": 0,
-                "failed_analyses": 0
-            }
-        }
-        
-        # 遍历数字文件夹 (level3)
-        number_folders = [d for d in idiom_folder.iterdir() if d.is_dir() and d.name.isdigit()]
-        
-        for number_folder in sorted(number_folders):
-            print(f"  📂 处理子文件夹: {number_folder.name}")
-            
-            # 处理该数字文件夹下的所有图片
-            folder_results = self._analyze_number_folder(number_folder)
-            
-            if folder_results:
-                idiom_results["images"][number_folder.name] = folder_results
-                
-                # 更新统计信息
-                for image_data in folder_results.values():
-                    idiom_results["summary"]["total_images"] += 1
-                    if image_data.get("analysis_result", {}).get("success"):
-                        idiom_results["summary"]["successful_analyses"] += 1
-                    else:
-                        idiom_results["summary"]["failed_analyses"] += 1
-        
-        return idiom_results if idiom_results["summary"]["total_images"] > 0 else None
-
-    def _analyze_number_folder(self, number_folder: Path) -> Dict[str, Any]:
-        """
-        分析数字文件夹下的所有图片
-        
-        Args:
-            number_folder: 数字文件夹路径 (level3)
-            
-        Returns:
-            Dict: 该文件夹下所有图片的分析结果
-        """
-        folder_results = {}
-        
-        # 1. 处理基准图片 (base图)
-        base_images = list(number_folder.glob("*_base_v*.png"))
-        for base_image in base_images:
-            print(f"    🖼️  分析基准图: {base_image.name}")
-            prompt = self.prompt_generator(base_image.name)
-            version_info = self._get_version_info(base_image.name)
-            print(f"    📝 使用prompt版本: {version_info}")
-            
-            result = self.client.send_image_with_prompt(str(base_image), prompt)
-            folder_results[base_image.name] = {
-                "image_path": str(base_image),
-                "image_type": "base",
-                "prompt_version": version_info,
-                "analysis_result": result
-            }
-        
-        # 2. 处理纯变体图片
-        pure_variants_dir = number_folder / "seq_varients_pure"
-        if pure_variants_dir.exists():
-            pure_images = list(pure_variants_dir.glob("*.png"))
-            for pure_image in pure_images:
-                print(f"    🖼️  分析纯变体图: {pure_image.name}")
-                prompt = self.prompt_generator(pure_image.name)
-                version_info = self._get_version_info(pure_image.name)
-                print(f"    📝 使用prompt版本: {version_info}")
-                
-                result = self.client.send_image_with_prompt(str(pure_image), prompt)
-                folder_results[pure_image.name] = {
-                    "image_path": str(pure_image),
-                    "image_type": "pure_variant",
-                    "prompt_version": version_info,
-                    "analysis_result": result
-                }
-        
-        # 3. 处理带指示的变体图片
-        guided_variants_dir = number_folder / "seq_varients_with_guideance"
-        if guided_variants_dir.exists():
-            guided_images = list(guided_variants_dir.glob("*.png"))
-            for guided_image in guided_images:
-                print(f"    🖼️  分析指示变体图: {guided_image.name}")
-                prompt = self.prompt_generator(guided_image.name)
-                version_info = self._get_version_info(guided_image.name)
-                print(f"    📝 使用prompt版本: {version_info}")
-                
-                result = self.client.send_image_with_prompt(str(guided_image), prompt)
-                folder_results[guided_image.name] = {
-                    "image_path": str(guided_image),
-                    "image_type": "guided_variant",
-                    "prompt_version": version_info,
-                    "analysis_result": result
-                }
-        
-        return folder_results
-
-    def generate_summary_report(self, output_dir: str) -> None:
-        """
-        生成汇总报告
-        
-        Args:
-            output_dir: 输出目录
-        """
-        output_dir = Path(output_dir)
-        
-        if not output_dir.exists():
-            print(f"❌ 输出目录不存在: {output_dir}")
-            return
-        
-        print("📋 正在生成汇总报告...")
-        
-        # 收集所有结果文件
-        result_files = list(output_dir.glob("*.json"))
-        
-        if not result_files:
-            print(f"❌ 在 {output_dir} 中未找到结果文件")
-            return
-        
-        summary = {
-            "total_idioms": len(result_files),
-            "total_images": 0,
-            "total_successful": 0,
-            "total_failed": 0,
-            "prompt_version_stats": {},
-            "idiom_details": {}
-        }
-        
-        for result_file in result_files:
+        # 2. 尝试直接解析 JSON（也处理首尾有多余文字的情况）
+        json_match = re.search(r"\{.*\}", text, re.DOTALL)
+        if json_match:
             try:
-                with open(result_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                
-                idiom_name = result_file.stem
-                
-                if "summary" in data:
-                    # 批量分析结果
-                    summary["total_images"] += data["summary"]["total_images"]
-                    summary["total_successful"] += data["summary"]["successful_analyses"]
-                    summary["total_failed"] += data["summary"]["failed_analyses"]
-                    summary["idiom_details"][idiom_name] = data["summary"]
-                    
-                    # 统计prompt版本使用情况
-                    if "images" in data:
-                        for folder_data in data["images"].values():
-                            for image_data in folder_data.values():
-                                prompt_version = image_data.get("prompt_version", "unknown")
-                                if prompt_version not in summary["prompt_version_stats"]:
-                                    summary["prompt_version_stats"][prompt_version] = 0
-                                summary["prompt_version_stats"][prompt_version] += 1
-                else:
-                    # 单图分析结果
-                    summary["total_images"] += 1
-                    if data.get("analysis_result", {}).get("success"):
-                        summary["total_successful"] += 1
-                    else:
-                        summary["total_failed"] += 1
-                    
-                    summary["idiom_details"][idiom_name] = {
-                        "total_images": 1,
-                        "successful_analyses": 1 if data.get("analysis_result", {}).get("success") else 0,
-                        "failed_analyses": 0 if data.get("analysis_result", {}).get("success") else 1
-                    }
-                    
-                    # 统计prompt版本使用情况
-                    prompt_version = data.get("prompt_version", "unknown")
-                    if prompt_version not in summary["prompt_version_stats"]:
-                        summary["prompt_version_stats"][prompt_version] = 0
-                    summary["prompt_version_stats"][prompt_version] += 1
-                    
-            except Exception as e:
-                print(f"⚠️  读取结果文件 {result_file} 时出错: {e}")
-        
-        # 计算成功率
-        if summary["total_images"] > 0:
-            summary["success_rate"] = (summary["total_successful"] / summary["total_images"]) * 100
-        else:
-            summary["success_rate"] = 0
-        
-        # 保存汇总报告
-        summary_file = output_dir / "summary_report.json"
-        try:
-            with open(summary_file, 'w', encoding='utf-8') as f:
-                json.dump(summary, f, ensure_ascii=False, indent=2)
-            
-            print(f"✅ 汇总报告已保存到: {summary_file}")
-            print(f"📊 总计分析 {summary['total_images']} 张图片")
-            print(f"📊 成功分析 {summary['total_successful']} 张")
-            print(f"📊 失败分析 {summary['total_failed']} 张")
-            print(f"📊 整体成功率: {summary['success_rate']:.2f}%")
-            print(f"📊 Prompt版本分布:")
-            for version, count in summary["prompt_version_stats"].items():
-                print(f"    {version}: {count} 张图片")
-            
-        except Exception as e:
-            print(f"❌ 保存汇总报告时出错: {e}")
+                data = json.loads(json_match.group())
+                idiom_raw = data.get("idiom", "")
+                chain = data.get("inference_chain", "")
+                # 提取纯汉字
+                idiom = "".join(re.findall(r"[\u4e00-\u9fff]", idiom_raw))[:4]
+                if len(idiom) == 4:
+                    return idiom, chain
+            except json.JSONDecodeError:
+                pass
 
+        # 3. 回退：在各汉字连续段中寻找长度恰好为4的段，或取末尾4字
+        logger.warning("JSON 解析失败，使用正则回退提取成语")
+        seqs = re.findall(r"[\u4e00-\u9fff]+", text)
+        for seq in seqs:
+            if len(seq) == 4:
+                return seq, None
+        # 最后兜底：取最长连续段末尾4字（末尾通常是成语）
+        if seqs:
+            longest = max(seqs, key=len)
+            if len(longest) >= 4:
+                return longest[-4:], None
+        return None, None
 
-def parse_arguments() -> argparse.Namespace:
-    """解析命令行参数"""
-    parser = argparse.ArgumentParser(
-        description="GuessBenchmark 项目图片分析工具",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-使用示例:
-  # 分析单张图片
-  python script.py --operate single --input /path/to/image.png --output /path/to/output/
+    # ── 单图推断 ─────────────────────────────────────
 
-  # 批量分析
-  python script.py --operate batch --input /path/to/input_folder/ --output /path/to/output/
+    def analyze_image(
+        self,
+        image_path: str,
+        gt: Optional[str] = None,
+    ) -> dict:
         """
-    )
-    
-    parser.add_argument(
-        "--operate",
-        choices=["single", "batch"],
-        default="single",
-        help="操作模式: single (分析单张图片) 或 batch (批量分析)"
-    )
-    
-    parser.add_argument(
-        "--input",
-        required=True,
-        help="输入路径: single模式为图片文件路径，batch模式为包含成语文件夹的目录"
-    )
-    
-    parser.add_argument(
-        "--output", 
-        required=True,
-        help="输出目录路径"
-    )
-    
-    parser.add_argument(
-        "--generate-summary",
-        action="store_true",
-        help="是否在批量分析后生成汇总报告"
-    )
-    
-    return parser.parse_args()
+        对单张图片进行推断。
 
+        Args:
+            image_path:  图片文件路径
+            gt:          ground truth 成语（可选，用于计算是否正确）
 
-def load_config() -> Dict[str, str]:
-    """加载配置"""
-    load_dotenv()
-    
-    config = {
-        "api_key": os.getenv("GENERAL_API_KEY", ""),
-        "base_url": os.getenv("GENERAL_BASE_URL", "https://api.openai.com/v1"),
-        "model": os.getenv("GENERAL_MODEL", "gpt-4o")
-    }
-    
-    if not config["api_key"]:
-        raise ValueError("未设置 GENERAL_API_KEY 环境变量")
-    
-    return config
+        Returns:
+            {
+                "image_name": str,
+                "gt": str | None,
+                "pred": str | None,
+                "inference_chain": str | None,
+                "model": str,
+                "success": bool,
+                "correct": bool | None,  # gt 为 None 时此字段也为 None
+            }
+        """
+        image_name = Path(image_path).name
+        prompt, system_prompt = self.prompt_generator(image_name)
 
-
-def main():
-    """主函数"""
-    try:
-        # 解析命令行参数
-        args = parse_arguments()
-        
-        # 加载配置
-        config = load_config()
-        
-        print("🚀 GuessBenchmark 图片分析工具启动")
-        print(f"📋 操作模式: {args.operate}")
-        print(f"📂 输入路径: {args.input}")
-        print(f"📁 输出目录: {args.output}")
-        print(f"🤖 使用模型: {config['model']}")
-        print(f"🌐 API地址: {config['base_url']}")
-        print("-" * 50)
-        
-        # 创建分析器
-        analyzer = GuessBenchmarkAnalyzer(
-            api_key=config["api_key"],
-            base_url=config["base_url"],
-            model=config["model"]
+        response = self.client.send_image(
+            image_path,
+            prompt,
+            system_prompt=system_prompt,
+            max_tokens=self.max_tokens,
+            temperature=self.temperature,
         )
-        
-        # 执行相应操作
-        if args.operate == "single":
-            success = analyzer.analyze_single_image(args.input, args.output)
-        elif args.operate == "batch":
-            success = analyzer.analyze_batch_images(args.input, args.output)
-            
-            # 如果需要生成汇总报告
-            if args.generate_summary and success:
-                analyzer.generate_summary_report(args.output)
-        
-        if success:
-            print("\n✅ 所有操作完成!")
-        else:
-            print("\n❌ 操作失败!")
-            return 1
-            
-    except Exception as e:
-        print(f"❌ 程序执行出错: {e}")
-        return 1
-    
-    return 0
 
+        pred, chain = self._extract_idiom_and_chain(response)
+        success = pred is not None
+        correct = (pred == gt) if (gt is not None and pred is not None) else None
+
+        return {
+            "image_name": image_name,
+            "gt": gt,
+            "pred": pred,
+            "inference_chain": chain,
+            "raw_response": response,
+            "model": self.client.current_model,
+            "success": success,
+            "correct": correct,
+        }
+
+    # ── 批量推断 ─────────────────────────────────────
+
+    @staticmethod
+    def _parse_gt_from_filename(image_name: str) -> Optional[str]:
+        """
+        从文件名解析 ground truth 成语。
+
+        支持格式：
+            一心一意_v0_001.png   → 一心一意
+            一心一意.png          → 一心一意
+            idiom_一心一意_v3.png → 一心一意
+        """
+        stem = Path(image_name).stem
+        # 取下划线分割后的第一段纯汉字
+        parts = stem.split("_")
+        for p in parts:
+            chinese = "".join(re.findall(r"[\u4e00-\u9fff]", p))
+            if len(chinese) == 4:
+                return chinese
+        return None
+
+    def analyze_batch(
+        self,
+        image_dir: str,
+        output_file: str,
+        gt_json: Optional[str] = None,
+        extensions: tuple = (".png", ".jpg", ".jpeg"),
+        resume: bool = True,
+    ) -> list[dict]:
+        """
+        批量推断目录下的所有图片。
+
+        Args:
+            image_dir:   图片目录
+            output_file: 结果输出 JSON 文件路径
+            gt_json:     可选，ground truth JSON 文件路径
+                         格式: [{"image_name": "xxx.png", "gt": "成语"}, ...]
+                         不提供则从文件名解析
+            extensions:  接受的图片扩展名
+            resume:      True 时跳过 output_file 中已存在的图片（断点续传）
+
+        Returns:
+            全部结果列表
+        """
+        image_dir = Path(image_dir)
+        output_file = Path(output_file)
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+
+        # 收集图片列表
+        all_images = sorted([
+            p for p in image_dir.iterdir()
+            if p.suffix.lower() in extensions
+        ])
+        if not all_images:
+            logger.warning(f"目录 {image_dir} 中没有找到图片")
+            return []
+
+        # 加载 gt 映射
+        gt_map: dict[str, str] = {}
+        if gt_json and Path(gt_json).exists():
+            with open(gt_json, "r", encoding="utf-8") as f:
+                for item in json.load(f):
+                    gt_map[item["image_name"]] = item.get("gt", "")
+            logger.info(f"已加载 ground truth: {len(gt_map)} 条")
+
+        # 断点续传：读取已完成的图片名
+        done_names: set[str] = set()
+        existing_results: list[dict] = []
+        if resume and output_file.exists():
+            try:
+                with open(output_file, "r", encoding="utf-8") as f:
+                    existing_results = json.load(f)
+                done_names = {r["image_name"] for r in existing_results}
+                logger.info(f"断点续传：跳过已完成的 {len(done_names)} 张图片")
+            except Exception:
+                logger.warning("无法读取已有结果文件，将从头开始")
+
+        # 过滤待处理列表
+        todo = [p for p in all_images if p.name not in done_names]
+        logger.info(
+            f"共 {len(all_images)} 张图片，待处理 {len(todo)} 张 "
+            f"（模型: {self.client.current_model}）"
+        )
+
+        results = list(existing_results)
+        correct_count = sum(1 for r in results if r.get("correct"))
+        total_with_gt = sum(1 for r in results if r.get("gt"))
+
+        # 实时写入回调
+        def on_result(idx: int, image_path: str, response: str):
+            pass  # 写入在下方统一处理
+
+        for idx, image_path in enumerate(todo, start=1):
+            image_name = image_path.name
+            gt = gt_map.get(image_name) or self._parse_gt_from_filename(image_name)
+
+            print(
+                f"[{idx}/{len(todo)}] {image_name}  gt={gt or '?'}",
+                end="  ",
+                flush=True,
+            )
+
+            record = self.analyze_image(str(image_path), gt=gt)
+            results.append(record)
+
+            status = "✓" if record["correct"] else ("✗" if record["correct"] is False else "?")
+            print(f"pred={record['pred'] or 'FAIL'}  {status}")
+
+            if record.get("correct"):
+                correct_count += 1
+            if record.get("gt"):
+                total_with_gt += 1
+
+            # 实时写入（防止中途崩溃丢失数据）
+            with open(output_file, "w", encoding="utf-8") as f:
+                json.dump(results, f, ensure_ascii=False, indent=2)
+
+        # 统计
+        success_count = sum(1 for r in results if r["success"])
+        acc = correct_count / total_with_gt * 100 if total_with_gt else 0
+        print(f"\n{'─' * 50}")
+        print(f"  总计        : {len(results)} 张")
+        print(f"  API 成功    : {success_count}")
+        print(f"  有 GT 样本  : {total_with_gt}")
+        print(f"  预测正确    : {correct_count}")
+        print(f"  准确率      : {acc:.2f}%")
+        print(f"  模型        : {self.client.current_model}")
+        print(f"  结果文件    : {output_file}")
+        print(f"{'─' * 50}\n")
+
+        return results
+
+    # ── 便捷接口 ─────────────────────────────────────
+
+    def switch_model(self, model: str) -> "GuessBenchmarkAnalyzer":
+        """切换模型（返回 self，支持链式调用）"""
+        self.client.switch_model(model)
+        return self
+
+    def switch_provider(self, provider: str) -> "GuessBenchmarkAnalyzer":
+        """切换 provider（返回 self，支持链式调用）"""
+        self.client.switch_provider(provider)
+        return self
+
+    def print_status(self):
+        """打印当前配置状态"""
+        self.client.print_status()
+
+    def __repr__(self):
+        return (
+            f"GuessBenchmarkAnalyzer("
+            f"model={self.client.current_model!r}, "
+            f"provider={self.client.current_provider!r})"
+        )
+
+
+# ── 命令行入口 ───────────────────────────────────────
 
 if __name__ == "__main__":
-    exit(main())
+    import argparse
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+    )
+
+    parser = argparse.ArgumentParser(description="GuessBenchmark 批量推断")
+    parser.add_argument("--image_dir",  required=True,  help="图片目录")
+    parser.add_argument("--output",     required=True,  help="输出 JSON 文件路径")
+    parser.add_argument("--model",      default="gpt-4o", help="模型名称")
+    parser.add_argument("--provider",   default=None,   help="API provider")
+    parser.add_argument("--gt_json",    default=None,   help="ground truth JSON 文件")
+    parser.add_argument("--config",     default="config.env", help="配置文件路径")
+    parser.add_argument("--no_resume",  action="store_true",  help="禁用断点续传")
+    parser.add_argument("--max_tokens", type=int, default=512, help="最大生成 token 数")
+    parser.add_argument("--temperature", type=float, default=0.2, help="采样温度")
+    args = parser.parse_args()
+
+    analyzer = GuessBenchmarkAnalyzer(
+        model=args.model,
+        provider=args.provider,
+        config_file=args.config,
+        max_tokens=args.max_tokens,
+        temperature=args.temperature,
+    )
+    analyzer.print_status()
+
+    analyzer.analyze_batch(
+        image_dir=args.image_dir,
+        output_file=args.output,
+        gt_json=args.gt_json,
+        resume=not args.no_resume,
+    )
