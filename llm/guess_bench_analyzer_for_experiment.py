@@ -19,8 +19,9 @@ GuessBenchmark 推断执行器
     总长度 ≤ 100 字符，便于后续对推理过程做定量分析。
 
 英文（--task en）：
-  - 1-shot 示例：📍🧑❤️🔥 → set one's heart ablaze
-    覆盖语义直接对应（❤️→heart、🔥→ablaze）和间接语义映射（📍→set、🧑→one's）。
+  - 1-shot 示例：💔 🧊 → break the ice
+    覆盖视觉隐喻映射（💔→break：碎裂的心代表打碎/破裂）
+    和语义直接对应（🧊→ice），示范 metaphor + semantic 两种映射方式。
   - 放宽 emoji 映射描述：允许逐词对应、整体意象、视觉隐喻三种映射方式。
   - 根据 GT 动态注入 word count hint，减少模型输出缩略形式或过长短语的情况。
   - 输出格式标准化（大小写、标点）由 _normalize_en 在计算准确率时统一处理，
@@ -196,8 +197,9 @@ _CH_SYSTEM_PROMPT = (
 # GT 的词数通过 gt_word_count 参数动态注入，帮助模型锁定长度范围。
 #
 # Few-shot 设计说明：
-#   示例选用 "set one's heart ablaze"，覆盖语义直接对应（❤️→heart、🔥→ablaze）
-#   和间接语义映射（📍→set、🧑→one's），同时示范期望的 inference_chain 格式。
+#   示例选用 "break the ice"，覆盖视觉隐喻映射（💔→break：碎裂的心代表打碎/破裂）
+#   和语义直接对应（🧊→ice），示范 metaphor + semantic 两种映射方式，
+#   同时示范期望的 inference_chain 格式。
 
 _EN_FEW_SHOT = (
     "Here is one example to illustrate the reasoning format:\n"
