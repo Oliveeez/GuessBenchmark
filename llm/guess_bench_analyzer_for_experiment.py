@@ -39,21 +39,36 @@ match_accuracy：模糊匹配（基于 SequenceMatcher 相似度）
 
 两个指标均记录在结果 JSON 中，方便对比分析。
 
+─── 参数说明 ────────────────────────────────────────────
+
+参数 1：--variant_set（仅 --task ch 有效，默认 all）
+  base   → 仅评测 v001 基础图（sequential prompt），每个成语 1 张
+  pure   → 仅评测 seq_varients_pure 中的 v002、v003（freeform prompt），每个成语 2 张
+  guided → 仅评测 seq_varients_with_guideance 中的 v004、v005（guided prompt），每个成语 2 张
+  all    → 全部五张（默认，保持原有行为）
+
+参数 2：--start_index / --end_index（ch 和 en 均有效）
+  --start_index  起始文件夹索引，含（默认 1）
+  --end_index    终止文件夹索引，含（默认不限，跑全部）
+  例：--start_index 2 --end_index 1000 → 评测 2_xxxx 到 1000_xxxx，共 999 个文件夹
+
 ─── 目录结构约定 ───────────────────────────────────────────
 
 中文数据集（--task ch）：
   {image_dir}/
-  └── {idx}_{四字成语}/
+  └── {idx}_{四字成语}/           ← idx 为整数前缀，供 index range 过滤使用
       └── 1/
-          ├── {idiom}_base_v001.png              → sequential prompt
+          ├── {idiom}_base_v001.png              → sequential prompt（variant_set=base/all）
           ├── seq_varients_pure/
-          │   └── *.png                          → freeform prompt
+          │   ├── {idiom}_v002.png               → freeform prompt（variant_set=pure/all）
+          │   └── {idiom}_v003.png               → freeform prompt（variant_set=pure/all）
           └── seq_varients_with_guideance/
-              └── *.png                          → guided prompt
+              ├── {idiom}_v004.png               → guided prompt（variant_set=guided/all）
+              └── {idiom}_v005.png               → guided prompt（variant_set=guided/all）
 
 英文数据集（--task en）：
   {image_dir}/
-  └── {idx}_{idiom_with_underscores}/
+  └── {idx}_{idiom_with_underscores}/  ← idx 为整数前缀，供 index range 过滤使用
       └── {idiom}_base.png                       → sequential prompt
 
 ─── 输出 JSON 格式 ──────────────────────────────────────────
@@ -109,7 +124,8 @@ from unified_client import UnifiedImageLLMClient, create_client
 
 logger = logging.getLogger(__name__)
 
-TaskType = Literal["ch", "en"]
+TaskType   = Literal["ch", "en"]
+VariantSet = Literal["base", "pure", "guided", "all"]
 
 # ══════════════════════════════════════════════════════════
 #  Prompt 模板
@@ -185,12 +201,10 @@ _CH_SYSTEM_PROMPT = (
 
 _EN_FEW_SHOT = (
     "Here is one example to illustrate the reasoning format:\n"
-    "Emojis: 📍 🧑 ❤️ 🔥\n"
-    'Output: {"idiom": "set one\'s heart ablaze", "inference_chain": '
-    '"📍→set (semantic: a pin being fixed in place = to set/fix) | '
-    "🧑→one's (semantic: a person = one's/someone's) | "
-    "❤️→heart (semantic: heart) | "
-    '🔥→ablaze (semantic: fire/flames = ablaze)"}\n\n'
+    "Emojis: 💔 🧊\n"
+    'Output: {"idiom": "break the ice", "inference_chain": '
+    '"💔→break (metaphor: a broken heart represents breaking/shattering) | '
+    '🧊→ice (semantic: ice)"}\n\n'
     "Now identify the idiom for the image below.\n"
 )
 
@@ -214,8 +228,7 @@ def _build_en_prompt(gt_word_count: Optional[int] = None) -> str:
         "The emojis are arranged horizontally from left to right. "
         "The emojis collectively hint at the idiom. Each emoji may:\n"
         "1) Directly represent a word in the idiom (Semantic Match).\n"
-        "2) Sound like a word in the idiom in English (Phonetic Match).\n"
-        "3) Serve as a visual metaphor for the overall theme or a key concept of the idiom.\n\n"
+        "2) Serve as a visual metaphor for the overall theme or a key concept of the idiom.\n\n"
         + _EN_FEW_SHOT
         + length_hint
         + "You MUST output a single JSON object with NO additional text:\n"
@@ -524,12 +537,45 @@ class GuessBenchmarkAnalyzer:
             logger.error(f"_parse_gt_from_folder 解析异常 folder={folder_name!r}: {e}")
             return None
 
+    @staticmethod
+    def _parse_folder_index(folder_name: str) -> Optional[int]:
+        """
+        从文件夹名称解析整数前缀索引，用于 index range 过滤。
+
+        例：
+            "1_一心一意"        → 1
+            "42_trade_off"      → 42
+            "broken_folder"     → None（无法解析时返回 None，调用方负责跳过）
+        """
+        try:
+            return int(folder_name.split("_", 1)[0])
+        except (ValueError, IndexError):
+            return None
+
     # ══════════════════════════════════════════════════════
     #  图片收集
     # ══════════════════════════════════════════════════════
 
-    def _collect_images_ch(self, image_dir: str) -> list[dict]:
-        """遍历中文数据集目录，收集所有图片及元数据。"""
+    def _collect_images_ch(
+        self,
+        image_dir: str,
+        variant_set: str = "all",
+        start_index: int = 1,
+        end_index: Optional[int] = None,
+    ) -> list[dict]:
+        """
+        遍历中文数据集目录，收集符合条件的图片及元数据。
+
+        Args:
+            image_dir:   数据集根目录
+            variant_set: 图片子集选择（"base" / "pure" / "guided" / "all"）
+                         base   → 仅 v001（sequential）
+                         pure   → 仅 v002、v003（freeform）
+                         guided → 仅 v004、v005（guided）
+                         all    → 全部五张（默认）
+            start_index: 起始文件夹索引，含（默认 1）
+            end_index:   终止文件夹索引，含；None 表示不限（默认）
+        """
         root = Path(image_dir)
 
         if not root.exists():
@@ -540,12 +586,29 @@ class GuessBenchmarkAnalyzer:
         items = []
 
         try:
-            idiom_folders = sorted(root.iterdir())
+            all_entries = list(root.iterdir())
         except PermissionError as e:
             raise PermissionError(f"无权限访问目录: {image_dir}") from e
 
+        # 按整数前缀排序，保证 1, 2, 3 ... 10, 11 的正确顺序
+        # 无法解析索引的条目排到最后（不影响正常数据）
+        idiom_folders = sorted(
+            all_entries,
+            key=lambda p: self._parse_folder_index(p.name) if p.is_dir() else float("inf"),
+        )
+
         for idiom_folder in idiom_folders:
             if not idiom_folder.is_dir():
+                continue
+
+            # ── index range 过滤 ──────────────────────────
+            folder_idx = self._parse_folder_index(idiom_folder.name)
+            if folder_idx is None:
+                logger.warning(f"无法解析文件夹索引，跳过: {idiom_folder.name}")
+                continue
+            if folder_idx < start_index:
+                continue
+            if end_index is not None and folder_idx > end_index:
                 continue
 
             gt = self._parse_gt_from_folder(idiom_folder.name, "ch")
@@ -559,31 +622,53 @@ class GuessBenchmarkAnalyzer:
                 continue
 
             try:
-                # base → sequential
-                for f in sorted(set_dir.glob("*.png")):
-                    items.append({"path": f, "gt": gt, "prompt_type": "sequential"})
+                # ── base（v001）→ sequential ──────────────
+                if variant_set in ("base", "all"):
+                    for f in sorted(set_dir.glob("*.png")):
+                        # set_dir 直接层级只放 base 文件，额外校验 v001 防误收
+                        if "v001" in f.stem:
+                            items.append({"path": f, "gt": gt, "prompt_type": "sequential"})
 
-                # pure 变体 → freeform
-                pure_dir = set_dir / "seq_varients_pure"
-                if pure_dir.is_dir():
-                    for f in sorted(pure_dir.glob("*.png")):
-                        items.append({"path": f, "gt": gt, "prompt_type": "freeform"})
+                # ── pure 变体（v002, v003）→ freeform ────
+                if variant_set in ("pure", "all"):
+                    pure_dir = set_dir / "seq_varients_pure"
+                    if pure_dir.is_dir():
+                        for f in sorted(pure_dir.glob("*.png")):
+                            if variant_set == "all" or "v002" in f.stem or "v003" in f.stem:
+                                items.append({"path": f, "gt": gt, "prompt_type": "freeform"})
 
-                # guidance 变体 → guided
-                guide_dir = set_dir / "seq_varients_with_guideance"
-                if guide_dir.is_dir():
-                    for f in sorted(guide_dir.glob("*.png")):
-                        items.append({"path": f, "gt": gt, "prompt_type": "guided"})
+                # ── guided 变体（v004, v005）→ guided ────
+                if variant_set in ("guided", "all"):
+                    guide_dir = set_dir / "seq_varients_with_guideance"
+                    if guide_dir.is_dir():
+                        for f in sorted(guide_dir.glob("*.png")):
+                            if variant_set == "all" or "v004" in f.stem or "v005" in f.stem:
+                                items.append({"path": f, "gt": gt, "prompt_type": "guided"})
 
             except Exception as e:
                 logger.error(f"遍历子目录失败 [{idiom_folder}]: {e}，跳过此成语")
                 continue
 
-        logger.info(f"中文数据集：共收集 {len(items)} 张图片")
+        logger.info(
+            f"中文数据集：共收集 {len(items)} 张图片 "
+            f"(variant_set={variant_set}, index={start_index}~{end_index or 'end'})"
+        )
         return items
 
-    def _collect_images_en(self, image_dir: str) -> list[dict]:
-        """遍历英文数据集目录，收集所有图片及元数据。"""
+    def _collect_images_en(
+        self,
+        image_dir: str,
+        start_index: int = 1,
+        end_index: Optional[int] = None,
+    ) -> list[dict]:
+        """
+        遍历英文数据集目录，收集符合条件的图片及元数据。
+
+        Args:
+            image_dir:   数据集根目录
+            start_index: 起始文件夹索引，含（默认 1）
+            end_index:   终止文件夹索引，含；None 表示不限（默认）
+        """
         root = Path(image_dir)
 
         if not root.exists():
@@ -594,12 +679,28 @@ class GuessBenchmarkAnalyzer:
         items = []
 
         try:
-            idiom_folders = sorted(root.iterdir())
+            all_entries = list(root.iterdir())
         except PermissionError as e:
             raise PermissionError(f"无权限访问目录: {image_dir}") from e
 
+        # 按整数前缀排序，保证 1, 2, 3 ... 10, 11 的正确顺序
+        idiom_folders = sorted(
+            all_entries,
+            key=lambda p: self._parse_folder_index(p.name) if p.is_dir() else float("inf"),
+        )
+
         for idiom_folder in idiom_folders:
             if not idiom_folder.is_dir():
+                continue
+
+            # ── index range 过滤 ──────────────────────────
+            folder_idx = self._parse_folder_index(idiom_folder.name)
+            if folder_idx is None:
+                logger.warning(f"无法解析文件夹索引，跳过: {idiom_folder.name}")
+                continue
+            if folder_idx < start_index:
+                continue
+            if end_index is not None and folder_idx > end_index:
                 continue
 
             gt = self._parse_gt_from_folder(idiom_folder.name, "en")
@@ -614,15 +715,41 @@ class GuessBenchmarkAnalyzer:
                 logger.error(f"遍历子目录失败 [{idiom_folder}]: {e}，跳过此 idiom")
                 continue
 
-        logger.info(f"英文数据集：共收集 {len(items)} 张图片")
+        logger.info(
+            f"英文数据集：共收集 {len(items)} 张图片 "
+            f"(index={start_index}~{end_index or 'end'})"
+        )
         return items
 
-    def collect_images(self, image_dir: str) -> list[dict]:
-        """根据当前 task 收集图片。"""
+    def collect_images(
+        self,
+        image_dir: str,
+        variant_set: str = "all",
+        start_index: int = 1,
+        end_index: Optional[int] = None,
+    ) -> list[dict]:
+        """
+        根据当前 task 收集符合条件的图片。
+
+        Args:
+            image_dir:   数据集根目录
+            variant_set: 图片子集（仅 ch 有效，en 忽略此参数）
+            start_index: 起始文件夹索引，含（默认 1）
+            end_index:   终止文件夹索引，含；None 表示不限
+        """
         if self.task == "ch":
-            return self._collect_images_ch(image_dir)
+            return self._collect_images_ch(
+                image_dir,
+                variant_set=variant_set,
+                start_index=start_index,
+                end_index=end_index,
+            )
         else:
-            return self._collect_images_en(image_dir)
+            return self._collect_images_en(
+                image_dir,
+                start_index=start_index,
+                end_index=end_index,
+            )
 
     # ══════════════════════════════════════════════════════
     #  单图推断
@@ -748,6 +875,9 @@ class GuessBenchmarkAnalyzer:
         image_dir: str,
         output_file: str,
         resume: bool = True,
+        variant_set: str = "all",
+        start_index: int = 1,
+        end_index: Optional[int] = None,
     ) -> list[dict]:
         """
         批量推断整个数据集目录。
@@ -756,9 +886,12 @@ class GuessBenchmarkAnalyzer:
         结果每处理一张立即写入磁盘（断点续传保护）。
 
         Args:
-            image_dir:    数据集根目录
-            output_file:  结果输出 JSON 文件路径
-            resume:       True 时跳过已存在结果的图片（断点续传）
+            image_dir:   数据集根目录
+            output_file: 结果输出 JSON 文件路径
+            resume:      True 时跳过已存在结果的图片（断点续传）
+            variant_set: 图片子集（仅 ch 有效）："base"/"pure"/"guided"/"all"
+            start_index: 起始文件夹索引，含（默认 1）
+            end_index:   终止文件夹索引，含；None 表示不限（默认）
 
         Returns:
             全部结果列表
@@ -771,7 +904,12 @@ class GuessBenchmarkAnalyzer:
             raise RuntimeError(f"无法创建输出目录 {output_file.parent}: {e}") from e
 
         # 收集图片（目录不存在等硬错误在此抛出，不继续）
-        all_items = self.collect_images(image_dir)
+        all_items = self.collect_images(
+            image_dir,
+            variant_set=variant_set,
+            start_index=start_index,
+            end_index=end_index,
+        )
         if not all_items:
             logger.warning(f"未找到任何图片，目录: {image_dir}")
             return []
@@ -792,11 +930,15 @@ class GuessBenchmarkAnalyzer:
 
         todo = [item for item in all_items if item["path"].name not in done_names]
 
+        idx_range_str = f"{start_index} ~ {end_index if end_index is not None else 'end'}"
         print(f"\n{'═' * 58}")
         print(f"  Task            : {self.task.upper()}")
         print(f"  Model           : {self.client.current_model}")
+        if self.task == "ch":
+            print(f"  Variant set     : {variant_set}")
         if self.task == "en":
             print(f"  Match threshold : {self.match_threshold}")
+        print(f"  Index range     : {idx_range_str}")
         print(f"  数据集目录      : {image_dir}")
         print(f"  总图片数        : {len(all_items)}")
         print(f"  待处理          : {len(todo)}")
@@ -983,29 +1125,50 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例：
-  # 中文成语，gpt-4o
-  python guess_bench_analyzer.py \\
+  # 中文成语，全部五张，gpt-4o
+  python guess_bench_analyzer_for_experiment.py \\
       --task ch \\
-      --image_dir /path/to/variants_chinese/sequential/ \\
-      --output results/ch_gpt4o.json
+      --image_dir /path/to/variants_chinese/ \\
+      --output results/ch_gpt4o_all.json
+
+  # 中文成语，仅 base 图（v001），索引 1~100
+  python guess_bench_analyzer_for_experiment.py \\
+      --task ch --variant_set base \\
+      --start_index 1 --end_index 100 \\
+      --image_dir /path/to/variants_chinese/ \\
+      --output results/ch_gpt4o_base_1to100.json
+
+  # 中文成语，仅 pure 变体（v002, v003）
+  python guess_bench_analyzer_for_experiment.py \\
+      --task ch --variant_set pure \\
+      --image_dir /path/to/variants_chinese/ \\
+      --output results/ch_gpt4o_pure.json
+
+  # 中文成语，仅 guided 变体（v004, v005），索引 2~1000
+  python guess_bench_analyzer_for_experiment.py \\
+      --task ch --variant_set guided \\
+      --start_index 2 --end_index 1000 \\
+      --image_dir /path/to/variants_chinese/ \\
+      --output results/ch_gpt4o_guided_2to1000.json
 
   # 英文 idiom，gpt-4o，默认模糊阈值 0.85
-  python guess_bench_analyzer.py \\
+  python guess_bench_analyzer_for_experiment.py \\
       --task en \\
-      --image_dir /path/to/variants_english/sequential/ \\
+      --image_dir /path/to/variants_english/ \\
       --output results/en_gpt4o.json
 
-  # 英文 idiom，自定义模糊阈值 0.75
-  python guess_bench_analyzer.py \\
+  # 英文 idiom，索引 2~1000，自定义模糊阈值 0.75
+  python guess_bench_analyzer_for_experiment.py \\
       --task en \\
-      --image_dir /path/to/variants_english/sequential/ \\
-      --output results/en_gpt4o.json \\
-      --match_threshold 0.75
+      --start_index 2 --end_index 1000 \\
+      --match_threshold 0.75 \\
+      --image_dir /path/to/variants_english/ \\
+      --output results/en_gpt4o_2to1000.json
 
   # 禁用断点续传，从头重跑
-  python guess_bench_analyzer.py \\
+  python guess_bench_analyzer_for_experiment.py \\
       --task ch \\
-      --image_dir /path/to/variants_chinese/sequential/ \\
+      --image_dir /path/to/variants_chinese/ \\
       --output results/ch_gpt4o.json \\
       --no_resume
         """,
@@ -1015,17 +1178,37 @@ if __name__ == "__main__":
         "--task", required=True, choices=["ch", "en"],
         help="数据集类型：ch=中文成语，en=英文idiom",
     )
-    parser.add_argument("--image_dir",        required=True,  help="数据集根目录")
-    parser.add_argument("--output",           required=True,  help="输出 JSON 文件路径")
-    parser.add_argument("--model",            default="gpt-4o", help="模型名称（默认 gpt-4o）")
-    parser.add_argument("--provider",         default=None,   help="API provider（默认读 config.env）")
-    parser.add_argument("--config",           default="config.env", help="配置文件路径")
-    parser.add_argument("--no_resume",        action="store_true",  help="禁用断点续传，从头重跑")
-    parser.add_argument("--max_tokens",       type=int,   default=512,  help="最大生成 token 数")
-    parser.add_argument("--temperature",      type=float, default=0.2,  help="采样温度")
+    parser.add_argument("--image_dir",   required=True,  help="数据集根目录")
+    parser.add_argument("--output",      required=True,  help="输出 JSON 文件路径")
+    parser.add_argument("--model",       default="gpt-4o", help="模型名称（默认 gpt-4o）")
+    parser.add_argument("--provider",    default=None,   help="API provider（默认读 config.env）")
+    parser.add_argument("--config",      default="config.env", help="配置文件路径")
+    parser.add_argument("--no_resume",   action="store_true",  help="禁用断点续传，从头重跑")
+    parser.add_argument("--max_tokens",  type=int,   default=512,  help="最大生成 token 数")
+    parser.add_argument("--temperature", type=float, default=0.2,  help="采样温度")
     parser.add_argument(
         "--match_threshold", type=float, default=DEFAULT_MATCH_THRESHOLD,
         help=f"英文模糊匹配阈值，0.0~1.0（默认 {DEFAULT_MATCH_THRESHOLD}）",
+    )
+    parser.add_argument(
+        "--variant_set",
+        choices=["base", "pure", "guided", "all"],
+        default="all",
+        help=(
+            "【仅 --task ch 有效】评测的图片子集（默认 all）：\n"
+            "  base   - 仅 v001 基础图（sequential prompt），每个成语 1 张\n"
+            "  pure   - 仅 seq_varients_pure 中的 v002、v003（freeform prompt），每个成语 2 张\n"
+            "  guided - 仅 seq_varients_with_guideance 中的 v004、v005（guided prompt），每个成语 2 张\n"
+            "  all    - 全部五张（默认）"
+        ),
+    )
+    parser.add_argument(
+        "--start_index", type=int, default=1,
+        help="起始文件夹索引，含（默认 1）",
+    )
+    parser.add_argument(
+        "--end_index", type=int, default=None,
+        help="终止文件夹索引，含（默认不限，跑全部）",
     )
 
     args = parser.parse_args()
@@ -1045,4 +1228,7 @@ if __name__ == "__main__":
         image_dir=args.image_dir,
         output_file=args.output,
         resume=not args.no_resume,
+        variant_set=args.variant_set,
+        start_index=args.start_index,
+        end_index=args.end_index,
     )
