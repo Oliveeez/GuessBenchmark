@@ -1041,11 +1041,11 @@ class GuessBenchmarkAnalyzer:
         print(f"  模型            : {self.client.current_model}")
 
         if self.task == "ch":
-            valid = [r for r in results if r.get("gt") is not None]
+            valid = [r for r in results if r.get("gt") is not None and r.get("success")]
             correct = sum(1 for r in valid if r.get("correct"))
             acc = correct / len(valid) * 100 if valid else 0.0
 
-            print(f"  有 GT 样本      : {len(valid)}")
+            print(f"  有效样本(GT+成功): {len(valid)}")
             print(f"  正确数          : {correct}")
             print(f"  准确率          : {acc:.2f}%")
             print(f"  ── 细分准确率 ──────────────────────────────")
@@ -1057,7 +1057,7 @@ class GuessBenchmarkAnalyzer:
                     print(f"  {pt:<14}: {pt_correct}/{len(pt_valid)} ({pct:.1f}%)")
 
         else:
-            valid = [r for r in results if r.get("gt") is not None]
+            valid = [r for r in results if r.get("gt") is not None and r.get("success")]
             strict_correct = sum(1 for r in valid if r.get("strict_correct"))
             match_correct  = sum(1 for r in valid if r.get("match_correct"))
             strict_acc = strict_correct / len(valid) * 100 if valid else 0.0
@@ -1068,7 +1068,7 @@ class GuessBenchmarkAnalyzer:
             ]
             avg_score = sum(scores) / len(scores) if scores else 0.0
 
-            print(f"  有 GT 样本      : {len(valid)}")
+            print(f"  有效样本(GT+成功): {len(valid)}")
             print(f"  ── strict_accuracy（标准化精确匹配）────────")
             print(f"  正确数          : {strict_correct}/{len(valid)}")
             print(f"  strict_accuracy : {strict_acc:.2f}%")
