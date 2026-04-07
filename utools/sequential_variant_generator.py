@@ -176,7 +176,8 @@ class SequentialVariantGenerator:
     
     def __init__(self, emoji_size: int = 128, canvas_size: Tuple[int, int] = (1024, 1024),
                  background_color: str = 'white', guide_line_color: str = 'darkblue',
-                 agent_verbose: bool = False, sample_mode: bool = False, index_select: Optional[int] = None):
+                 agent_verbose: bool = False, sample_mode: bool = False,
+                 index_select: Optional[int] = None, base_only: bool = False):
         """
         Initialize the generator
         
@@ -188,6 +189,7 @@ class SequentialVariantGenerator:
             agent_verbose: Whether to enable verbose mode for EmojiProcessAgent
             sample_mode: If True, generate only a subset of variants (default: False)
             index_select: If specified, only process emoji sets with this index (default: None for all)
+            base_only: If True, generate only the base horizontal image, skip all other variants
         """
         self.emoji_size = emoji_size
         self.canvas_size = canvas_size
@@ -195,6 +197,7 @@ class SequentialVariantGenerator:
         self.guide_line_color = guide_line_color
         self.sample_mode = sample_mode
         self.index_select = index_select
+        self.base_only = base_only
         
         # Initialize emoji processing
         self.emoji_cache = {}
@@ -203,8 +206,15 @@ class SequentialVariantGenerator:
         
         # Initialize layout engine
         self.layout_engine = LayoutEngine()
-    
-    
+
+    # ------------------------------------------------------------------
+    # Helper: sanitize a name for use in file/folder paths
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _sanitize_name(name: str) -> str:
+        """Replace spaces with underscores in a name string."""
+        return name.replace(' ', '_')
+
     def get_emoji_image(self, emoji: str) -> Image.Image:
         """
         Get emoji image using EmojiProcessAgent
@@ -587,28 +597,50 @@ class SequentialVariantGenerator:
     
     def generate_variants_for_emoji_set(self, idiom: str, emoji_set: str, output_dir: str) -> Dict[str, str]:
         """
-        Generate all variants for a specific emoji set according to the new structure
+        Generate variants for a specific emoji set.
+
+        When base_only=True, only the base horizontal image is generated and
+        saved directly into output_dir (no sub-directories created).
+        The idiom name used in the filename has spaces replaced with underscores.
+        Otherwise the full / sample variant tree is generated as before.
         
         Args:
-            idiom: The idiom name
+            idiom: The idiom name (may contain spaces; will be sanitized for filenames)
             emoji_set: String containing emoji sequence
             output_dir: Output directory for this emoji set
             
         Returns:
             Dictionary mapping variant names to file paths
         """
-        # Create output directory and subdirectories
         os.makedirs(output_dir, exist_ok=True)
+        generated_files = {}
+
+        # ── BASE-ONLY MODE ──────────────────────────────────────────────────────
+        if self.base_only:
+            # Sanitize idiom name: replace spaces with underscores for the filename
+            safe_idiom = self._sanitize_name(idiom)
+            try:
+                print(f"    Generating base image (base-only mode)...")
+                base_image = self.generate_single_variant(emoji_set, 'horizontal', False, False)
+                base_filename = f"{safe_idiom}_base.png"
+                base_filepath = os.path.join(output_dir, base_filename)
+                base_image.save(base_filepath)
+                generated_files['base_horizontal'] = base_filepath
+                print(f"    ✅ Generated base: {base_filename}")
+            except Exception as e:
+                print(f"    ❌ Failed to generate base image: {e}")
+            return generated_files
+
+        # ── FULL / SAMPLE MODE ──────────────────────────────────────────────────
         pure_dir = os.path.join(output_dir, "seq_varients_pure")
         guidance_dir = os.path.join(output_dir, "seq_varients_with_guideance")
         os.makedirs(pure_dir, exist_ok=True)
         os.makedirs(guidance_dir, exist_ok=True)
         
-        generated_files = {}
         variant_count = 1
         
         try:
-            # 1. Generate base horizontal image (no guide, no numbers) - always generated
+            # 1. Base horizontal image (always generated)
             print(f"    Generating base horizontal image...")
             base_image = self.generate_single_variant(emoji_set, 'horizontal', False, False)
             base_filename = f"{idiom}_base_v{variant_count:03d}.png"
@@ -618,16 +650,13 @@ class SequentialVariantGenerator:
             print(f"    ✅ Generated base: {base_filename}")
             variant_count += 1
             
-            # Layout configurations
             other_layouts = ['vertical', 'diagonal', 'circular', 'grid', 'zigzag', 'star']
             
             if self.sample_mode:
                 print(f"    📦 Sample mode: selecting 2 random layouts")
-                # In sample mode, randomly select 2 layouts
                 selected_layouts = random.sample(other_layouts, 2)
                 print(f"    🎯 Selected layouts: {selected_layouts}")
                 
-                # Generate pure variants for selected layouts
                 selected_pure_variants = {}
                 for layout in selected_layouts:
                     try:
@@ -644,7 +673,6 @@ class SequentialVariantGenerator:
                         print(f"    ❌ Failed to generate pure {layout}: {e}")
                         continue
                 
-                # Generate guidance variants for selected layouts
                 guidance_combinations = [
                     ('guide_only', True, False),
                     ('numbers_only', False, True),
@@ -653,7 +681,6 @@ class SequentialVariantGenerator:
                 
                 for layout in selected_layouts:
                     if layout in selected_pure_variants:
-                        # Randomly select one guidance combination for this layout
                         combo_name, guide, numbers = random.choice(guidance_combinations)
                         print(f"    🎯 Selected guidance for {layout}: {combo_name}")
                         
@@ -674,7 +701,6 @@ class SequentialVariantGenerator:
                 
             else:
                 print(f"    📦 Full mode: generating all variants")
-                # 2. Generate pure variants (no guide, no numbers) for other layouts
                 for layout in other_layouts:
                     try:
                         print(f"    Generating pure variant: {layout}")
@@ -689,8 +715,6 @@ class SequentialVariantGenerator:
                         print(f"    ❌ Failed to generate pure {layout}: {e}")
                         continue
                 
-                # 3. Generate guidance variants (3 combinations for each layout)
-                # Combinations: guide_only, numbers_only, guide+numbers
                 guidance_combinations = [
                     ('guide_only', True, False),
                     ('numbers_only', False, True),
@@ -721,7 +745,15 @@ class SequentialVariantGenerator:
     
     def process_idioms_from_json(self, json_path: str, output_base_dir: str) -> Dict[str, Dict[str, Dict[str, str]]]:
         """
-        Process all idioms from JSON file and generate sequential variants
+        Process all idioms from JSON file and generate sequential variants.
+
+        兼容两种 JSON 格式：
+          - 中文格式：emoji_rep 的每项含 index / homophonic_num 字段
+          - 英文格式：emoji_rep 的每项只含 emoji_set 字段（index 默认为 1）
+
+        In base_only mode, spaces in idiom names are replaced with underscores
+        for both folder names and image filenames (e.g. "trade off" → "trade_off",
+        image → "trade_off_base.png").
         
         Args:
             json_path: Path to JSON file containing idioms data
@@ -730,7 +762,6 @@ class SequentialVariantGenerator:
         Returns:
             Dictionary mapping idiom names to their emoji sets and generated files
         """
-        # Read JSON file
         try:
             with open(json_path, 'r', encoding='utf-8') as f:
                 idioms_data = json.load(f)
@@ -738,16 +769,16 @@ class SequentialVariantGenerator:
         except Exception as e:
             raise RuntimeError(f"Failed to read JSON file {json_path}: {e}")
         
-        # Create base output directory
         os.makedirs(output_base_dir, exist_ok=True)
         print(f"📁 Created output directory: {output_base_dir}")
         
-        if self.sample_mode:
+        if self.base_only:
+            print(f"🖼️  Running in BASE-ONLY MODE - generating only base horizontal images")
+        elif self.sample_mode:
             print(f"🎯 Running in SAMPLE MODE - generating subset of variants")
         else:
             print(f"📦 Running in FULL MODE - generating all variants")
         
-        # Add index selection information
         if self.index_select is not None:
             print(f"🔢 INDEX SELECT MODE: only processing emoji sets with index {self.index_select}")
         else:
@@ -758,10 +789,10 @@ class SequentialVariantGenerator:
         total_emoji_sets = 0
         skipped_emoji_sets = 0
         
-        # Process each idiom
         for i, item in enumerate(idioms_data):
+            idiom = ""
             try:
-                idiom_index = item.get("idiom_index", i+1)
+                idiom_index = item.get("idiom_index", i + 1)
                 idiom = item.get("idiom", "")
                 emoji_rep_list = item.get("emoji_rep", [])
                 
@@ -773,15 +804,20 @@ class SequentialVariantGenerator:
                 print(f"Processing {i+1}/{len(idioms_data)}: {idiom} (index: {idiom_index})")
                 print(f"Found {len(emoji_rep_list)} emoji sets")
                 
-                # Create idiom directory: {idiom_index}_{idiom}
-                idiom_dir_name = f"{idiom_index}_{idiom}"
+                # In base_only mode, replace spaces with underscores in the folder name
+                if self.base_only:
+                    safe_idiom_for_dir = self._sanitize_name(idiom)
+                    idiom_dir_name = f"{idiom_index}_{safe_idiom_for_dir}"
+                else:
+                    idiom_dir_name = f"{idiom_index}_{idiom}"
+
                 idiom_output_dir = os.path.join(output_base_dir, idiom_dir_name)
                 
                 idiom_results = {}
                 
-                # Process each emoji set in the list
                 for emoji_set_data in emoji_rep_list:
                     try:
+                        # 兼容有无 index 字段的两种格式
                         set_index = emoji_set_data.get("index", 1)
                         emoji_set = emoji_set_data.get("emoji_set", "")
                         homophonic_num = emoji_set_data.get("homophonic_num", 0)
@@ -790,7 +826,6 @@ class SequentialVariantGenerator:
                             print(f"  ⚠️  Skipping emoji set {set_index}: missing emoji_set")
                             continue
                         
-                        # Check if this emoji set should be processed based on index_select
                         if self.index_select is not None and set_index != self.index_select:
                             print(f"  ⏭️  Skipping emoji set {set_index}: not matching selected index {self.index_select}")
                             skipped_emoji_sets += 1
@@ -798,10 +833,14 @@ class SequentialVariantGenerator:
                         
                         print(f"  Processing emoji set {set_index}: {emoji_set} (homophonic: {homophonic_num})")
                         
-                        # Create output directory for this emoji set: {index}
-                        set_output_dir = os.path.join(idiom_output_dir, str(set_index))
+                        # base_only 模式下直接把图片存到 idiom 目录，无需 set_index 子目录
+                        if self.base_only:
+                            set_output_dir = idiom_output_dir
+                        else:
+                            set_output_dir = os.path.join(idiom_output_dir, str(set_index))
                         
-                        # Generate variants for this emoji set
+                        # In base_only mode, pass the original idiom; _sanitize_name is applied
+                        # inside generate_variants_for_emoji_set for the filename.
                         generated_files = self.generate_variants_for_emoji_set(
                             idiom, emoji_set, set_output_dir
                         )
@@ -815,18 +854,15 @@ class SequentialVariantGenerator:
                         print(f"  ❌ Failed to process emoji set {set_index}: {e}")
                         continue
                 
-                if idiom_results:  # Only add to results if we actually processed some emoji sets
+                if idiom_results:
                     all_results[idiom] = idiom_results
                     successful_count += 1
                 
                 print(f"✅ Completed processing: {idiom}")
-                
-                # 处理完当前成语后立即清理临时文件
                 self.cleanup_temp_files()
                 
             except Exception as e:
                 print(f"❌ Failed to process idiom '{idiom}': {e}")
-                # 即使处理失败也清理临时文件
                 self.cleanup_temp_files()
                 continue
         
@@ -841,29 +877,23 @@ class SequentialVariantGenerator:
         return all_results
 
     def cleanup_temp_files(self):
-        """
-        清理工作目录中所有以temp_emoji开头的临时文件
-        """
+        """清理工作目录中所有以temp_emoji开头的临时文件"""
         try:
             current_dir = os.getcwd()
-            temp_files = []
-            
-            # 查找所有temp_emoji开头的png文件
-            for filename in os.listdir(current_dir):
-                if filename.startswith("temp_emoji_") and filename.endswith(".png"):
-                    temp_files.append(filename)
+            temp_files = [
+                f for f in os.listdir(current_dir)
+                if f.startswith("temp_emoji_") and f.endswith(".png")
+            ]
             
             if temp_files:
                 print(f"  🧹 清理 {len(temp_files)} 个临时文件...")
                 for temp_file in temp_files:
                     try:
-                        file_path = os.path.join(current_dir, temp_file)
-                        os.remove(file_path)
+                        os.remove(os.path.join(current_dir, temp_file))
                         print(f"    ✅ 删除: {temp_file}")
                     except Exception as e:
                         print(f"    ⚠️  无法删除 {temp_file}: {e}")
                 print(f"  🧹 临时文件清理完成")
-            # 如果没有临时文件，不显示消息（避免输出过多）
                 
         except Exception as e:
             print(f"  ⚠️  清理临时文件时出错: {e}")
@@ -879,6 +909,7 @@ Example usage:
   %(prog)s --datapath idioms.json --outputfolder ./output
   %(prog)s --datapath data.json --outputfolder /path/to/output --sample
   %(prog)s --datapath idioms.json --outputfolder ./output --indexselect 1
+  %(prog)s --datapath idioms.json --outputfolder ./output --baseonly
   %(prog)s --datapath idioms.json --outputfolder ./output --sample --verbose --indexselect 2
         """
     )
@@ -893,8 +924,11 @@ Example usage:
     parser.add_argument('--indexselect', type=int, default=None,
                        help='Select specific emoji set index to process (default: None, process all indices)')
     
-    # Sample mode option
-    parser.add_argument('--sample', action='store_true', default=False,
+    # Mode options (mutually exclusive)
+    mode_group = parser.add_mutually_exclusive_group()
+    mode_group.add_argument('--baseonly', action='store_true', default=False,
+                       help='Generate only the base horizontal image per idiom, skip all other variants')
+    mode_group.add_argument('--sample', action='store_true', default=False,
                        help='Enable sample mode: generate only a subset of variants (default: False)')
     
     # Appearance options
@@ -914,12 +948,10 @@ Example usage:
     args = parser.parse_args()
     
     try:
-        # Validate input file
         if not os.path.exists(args.datapath):
             print(f"❌ Error: JSON file not found: {args.datapath}")
             return 1
         
-        # Validate output directory
         if not os.path.exists(args.outputfolder):
             try:
                 os.makedirs(args.outputfolder, exist_ok=True)
@@ -928,13 +960,14 @@ Example usage:
                 print(f"❌ Error: Cannot create output directory {args.outputfolder}: {e}")
                 return 1
         
-        # Validate index selection
         if args.indexselect is not None and args.indexselect < 1:
             print(f"❌ Error: indexselect must be a positive integer (got: {args.indexselect})")
             return 1
         
         # Display mode information
-        if args.sample:
+        if args.baseonly:
+            print(f"🖼️  Base-only mode: will generate 1 base image per emoji set")
+        elif args.sample:
             print(f"🎯 Sample mode enabled: will generate 5 variants per emoji set (1 base + 2 pure + 2 guidance)")
         else:
             print(f"📦 Full mode: will generate 25 variants per emoji set")
@@ -942,7 +975,6 @@ Example usage:
         if args.indexselect is not None:
             print(f"🔢 Index selection enabled: only processing emoji sets with index {args.indexselect}")
         
-        # Create generator
         generator = SequentialVariantGenerator(
             emoji_size=args.emoji_size,
             canvas_size=tuple(args.canvas_size),
@@ -950,10 +982,10 @@ Example usage:
             guide_line_color=args.guide_color,
             agent_verbose=args.verbose,
             sample_mode=args.sample,
-            index_select=args.indexselect
+            index_select=args.indexselect,
+            base_only=args.baseonly,
         )
         
-        # Process all idioms from JSON
         all_results = generator.process_idioms_from_json(
             json_path=args.datapath,
             output_base_dir=args.outputfolder
@@ -968,7 +1000,12 @@ Example usage:
                 total_files += len(set_files)
         
         print(f"\n📈 Final Summary:")
-        print(f"   Mode: {'Sample' if args.sample else 'Full'}")
+        if args.baseonly:
+            print(f"   Mode: Base-only")
+        elif args.sample:
+            print(f"   Mode: Sample")
+        else:
+            print(f"   Mode: Full")
         if args.indexselect is not None:
             print(f"   Index selection: Only processing index {args.indexselect}")
         print(f"   Total idioms processed: {len(all_results)}")
@@ -976,7 +1013,12 @@ Example usage:
         print(f"   Total files generated: {total_files}")
         if total_emoji_sets > 0:
             print(f"   Average files per emoji set: {total_files/total_emoji_sets:.1f}")
-            expected_per_set = 5 if args.sample else 25
+            if args.baseonly:
+                expected_per_set = 1
+            elif args.sample:
+                expected_per_set = 5
+            else:
+                expected_per_set = 25
             print(f"   Expected files per emoji set: {expected_per_set}")
         
     except Exception as e:
@@ -988,7 +1030,7 @@ Example usage:
         temp_generator = SequentialVariantGenerator()
         temp_generator.cleanup_temp_files()
     except:
-        pass  # 静默失败，避免影响主要流程
+        pass
     
     return 0
 
